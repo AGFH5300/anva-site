@@ -1,54 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  /* Minimalist Palette: Crisp White, Soft Gray, Deep Charcoal, Subtle Accent */
-  --background: 0 0% 100%;       /* #FFFFFF */
-  --foreground: 0 0% 10%;        /* #1A1A1A */
-  
-  --primary: 210 20% 98%;        /* #FAFAFA - Subtle background for cards */
-  --primary-foreground: 0 0% 10%;
-  
-  --secondary: 0 0% 96%;         /* #F5F5F5 */
-  --secondary-foreground: 0 0% 40%;
-  
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
-  
-  --accent: 0 0% 90%;            /* Subtle interaction color */
-  --accent-foreground: 0 0% 10%;
-  
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 0 0% 80%;
-  
-  --radius: 0.5rem;
-  
-  /* Fonts */
-  --font-sans: 'Inter', sans-serif;
-  --font-display: 'Playfair Display', serif;
-}
-
-@layer base {
-  body {
-    @apply bg-background text-foreground antialiased selection:bg-gray-100 selection:text-black;
-    font-family: var(--font-sans);
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-    @apply tracking-tight;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+html,
+body,
+#root {
+  min-height: 100%;
 }
