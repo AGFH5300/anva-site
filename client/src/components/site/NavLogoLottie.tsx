@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 
 type AnimationItem = {
   addEventListener: (event: string, callback: () => void) => void;
+  removeEventListener: (event: string, callback: () => void) => void;
   destroy: () => void;
   goToAndStop: (value: number, isFrame: boolean) => void;
   play: () => void;
@@ -102,19 +103,52 @@ const NavLogoLottie = () => {
       });
 
       animationRef.current = animation;
+      animation.goToAndStop(0, true);
 
-      animation.addEventListener("DOMLoaded", () => {
+      const handleDomLoaded = () => {
         const scrolled = window.scrollY > SCROLL_THRESHOLD;
         isScrolledRef.current = scrolled;
-        const targetFrame = scrolled ? animation.totalFrames : 0;
-        animation.goToAndStop(targetFrame, true);
-      });
+        if (scrolled) {
+          const last = animation.totalFrames
+            ? Math.floor(animation.totalFrames - 1)
+            : null;
+          if (last !== null) {
+            animation.goToAndStop(last, true);
+          }
+        } else {
+          animation.goToAndStop(0, true);
+        }
+      };
+
+      const handleComplete = () => {
+        if (isScrolledRef.current) {
+          const last = animation.totalFrames
+            ? Math.floor(animation.totalFrames - 1)
+            : null;
+          if (last !== null) {
+            animation.goToAndStop(last, true);
+          }
+        } else {
+          animation.goToAndStop(0, true);
+        }
+      };
+
+      animation.addEventListener("DOMLoaded", handleDomLoaded);
+      animation.addEventListener("complete", handleComplete);
+
+      return () => {
+        animation.removeEventListener("DOMLoaded", handleDomLoaded);
+        animation.removeEventListener("complete", handleComplete);
+      };
     };
 
-    loadAnimation();
+    const cleanupPromise = loadAnimation();
 
     return () => {
       isMounted = false;
+      cleanupPromise
+        ?.then((cleanup) => cleanup?.())
+        .catch(() => null);
       animationRef.current?.destroy();
       animationRef.current = null;
     };
