@@ -5,8 +5,8 @@ type AnimationItem = {
   removeEventListener: (event: string, callback: () => void) => void;
   destroy: () => void;
   goToAndStop: (value: number, isFrame: boolean) => void;
-  play: () => void;
-  setDirection: (direction: number) => void;
+  playSegments: (segments: [number, number], forceFlag?: boolean) => void;
+  resize: () => void;
   totalFrames: number;
 };
 
@@ -17,6 +17,11 @@ type LottiePlayer = {
     loop: boolean;
     autoplay: boolean;
     animationData: unknown;
+    rendererSettings?: {
+      preserveAspectRatio?: string;
+      progressiveLoad?: boolean;
+      hideOnTransparent?: boolean;
+    };
   }) => AnimationItem;
 };
 
@@ -32,28 +37,25 @@ const LOTTIE_SCRIPT_SRC =
 
 const loadLottiePlayer = () =>
   new Promise<LottiePlayer>((resolve, reject) => {
-    if (typeof window === "undefined") {
-      reject(new Error("Lottie can only load in the browser."));
-      return;
-    }
+    if (typeof window === "undefined") return reject(new Error("Browser only"));
 
-    if (window.lottie) {
-      resolve(window.lottie);
-      return;
-    }
+    if (window.lottie) return resolve(window.lottie);
 
-    const existingScript = document.querySelector<HTMLScriptElement>(
-      "script[data-lottie-web]",
+    const existing = document.querySelector<HTMLScriptElement>(
+      "script[data-lottie-web]"
     );
 
-    if (existingScript) {
-      existingScript.addEventListener("load", () => {
-        if (window.lottie) {
-          resolve(window.lottie);
-        } else {
-          reject(new Error("Lottie failed to initialize."));
-        }
-      });
+    const onReady = () => {
+      if (window.lottie) resolve(window.lottie);
+      else reject(new Error("Lottie failed to initialize"));
+    };
+
+    if (existing) {
+      // If it's already there but still loading, wait for it.
+      existing.addEventListener("load", onReady);
+      existing.addEventListener("error", () =>
+        reject(new Error("Failed to load Lottie script"))
+      );
       return;
     }
 
@@ -61,128 +63,144 @@ const loadLottiePlayer = () =>
     script.src = LOTTIE_SCRIPT_SRC;
     script.async = true;
     script.dataset.lottieWeb = "true";
-    script.addEventListener("load", () => {
-      if (window.lottie) {
-        resolve(window.lottie);
-      } else {
-        reject(new Error("Lottie failed to initialize."));
-      }
-    });
-    script.addEventListener("error", () => {
-      reject(new Error("Failed to load Lottie script."));
-    });
+    script.addEventListener("load", onReady);
+    script.addEventListener("error", () =>
+      reject(new Error("Failed to load Lottie script"))
+    );
     document.body.appendChild(script);
   });
 
-const NavLogoLottie = () => {
+export default function NavLogoLottie() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const animationRef = useRef<AnimationItem | null>(null);
+  const animRef = useRef<AnimationItem | null>(null);
+
   const isScrolledRef = useRef(false);
+  const isPlayingRef = useRef(false);
   const tickingRef = useRef(false);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !containerRef.current) return;
+    if (typeof window === "undefined") return;
+    if (!containerRef.current) return;
 
-    let isMounted = true;
+    let mounted = true;
+    let cleanupAnimListeners: (() => void) | null = null;
 
-    const loadAnimation = async () => {
+    const init = async () => {
       const [player, response] = await Promise.all([
         loadLottiePlayer(),
-        fetch("/lottie.json"),
+        fetch("/lottie.json", { cache: "no-store" }),
       ]);
+
       const animationData = await response.json();
+      if (!mounted || !containerRef.current) return;
 
-      if (!isMounted || !containerRef.current) return;
-
-      const animation = player.loadAnimation({
+      const anim = player.loadAnimation({
         container: containerRef.current,
         renderer: "svg",
         loop: false,
         autoplay: false,
         animationData,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid meet",
+          progressiveLoad: true,
+          hideOnTransparent: false,
+        },
       });
 
-      animationRef.current = animation;
-      animation.goToAndStop(0, true);
+      animRef.current = anim;
 
-      const handleDomLoaded = () => {
-        const scrolled = window.scrollY > SCROLL_THRESHOLD;
-        isScrolledRef.current = scrolled;
-        if (scrolled) {
-          const last = animation.totalFrames
-            ? Math.floor(animation.totalFrames - 1)
-            : null;
-          if (last !== null) {
-            animation.goToAndStop(last, true);
-          }
-        } else {
-          animation.goToAndStop(0, true);
-        }
+      const lastFrame = () =>
+        anim.totalFrames ? Math.max(0, Math.floor(anim.totalFrames - 1)) : 0;
+
+      const snapToState = () => {
+        const scrolledNow = window.scrollY > SCROLL_THRESHOLD;
+        isScrolledRef.current = scrolledNow;
+        anim.goToAndStop(scrolledNow ? lastFrame() : 0, true);
+        // When navbar layout changes, resizing helps prevent “disappear”
+        anim.resize();
       };
 
-      const handleComplete = () => {
-        if (isScrolledRef.current) {
-          const last = animation.totalFrames
-            ? Math.floor(animation.totalFrames - 1)
-            : null;
-          if (last !== null) {
-            animation.goToAndStop(last, true);
-          }
-        } else {
-          animation.goToAndStop(0, true);
-        }
+      const onDomLoaded = () => {
+        snapToState();
       };
 
-      animation.addEventListener("DOMLoaded", handleDomLoaded);
-      animation.addEventListener("complete", handleComplete);
-
-      return () => {
-        animation.removeEventListener("DOMLoaded", handleDomLoaded);
-        animation.removeEventListener("complete", handleComplete);
+      const onComplete = () => {
+        // Snap exactly to end frame after any play
+        anim.goToAndStop(isScrolledRef.current ? lastFrame() : 0, true);
+        isPlayingRef.current = false;
       };
+
+      anim.addEventListener("DOMLoaded", onDomLoaded);
+      anim.addEventListener("complete", onComplete);
+
+      cleanupAnimListeners = () => {
+        anim.removeEventListener("DOMLoaded", onDomLoaded);
+        anim.removeEventListener("complete", onComplete);
+      };
+
+      // In case DOMLoaded already fired quickly
+      snapToState();
+
+      // Also handle resize (nav height changes on scroll can cause weird sizing)
+      const onResize = () => anim.resize();
+      window.addEventListener("resize", onResize);
+      return () => window.removeEventListener("resize", onResize);
     };
 
-    const cleanupPromise = loadAnimation();
+    const initPromise = init();
 
     return () => {
-      isMounted = false;
-      cleanupPromise
-        ?.then((cleanup) => cleanup?.())
-        .catch(() => null);
-      animationRef.current?.destroy();
-      animationRef.current = null;
+      mounted = false;
+      initPromise.catch(() => null);
+      cleanupAnimListeners?.();
+      animRef.current?.destroy();
+      animRef.current = null;
     };
   }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const handleScroll = () => {
-      if (tickingRef.current) return;
+    const playTo = (scrolled: boolean) => {
+      const anim = animRef.current;
+      if (!anim) return;
 
+      const last = anim.totalFrames ? Math.max(0, Math.floor(anim.totalFrames - 1)) : 0;
+
+      // prevent spam while already animating
+      if (isPlayingRef.current) return;
+
+      isPlayingRef.current = true;
+      isScrolledRef.current = scrolled;
+
+      if (scrolled) {
+        anim.playSegments([0, last], true);
+      } else {
+        anim.playSegments([last, 0], true);
+      }
+    };
+
+    const onScroll = () => {
+      if (tickingRef.current) return;
       tickingRef.current = true;
 
       window.requestAnimationFrame(() => {
         const scrolled = window.scrollY > SCROLL_THRESHOLD;
-
-        if (scrolled !== isScrolledRef.current && animationRef.current) {
-          animationRef.current.setDirection(scrolled ? 1 : -1);
-          animationRef.current.play();
-          isScrolledRef.current = scrolled;
-        }
-
+        if (scrolled !== isScrolledRef.current) playTo(scrolled);
         tickingRef.current = false;
       });
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return <div className="nav-logo-lottie" ref={containerRef} />;
-};
-
-export default NavLogoLottie;
+  return (
+    <div
+      ref={containerRef}
+      className="nav-logo-lottie"
+      style={{ width: 44, height: 44, display: "block" }}
+      aria-hidden="true"
+    />
+  );
+}
