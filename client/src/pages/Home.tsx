@@ -2,7 +2,7 @@ function Home() {
   return (
     <iframe
       title="ANVA Marine"
-      src="/index.html"
+      src="/anva.html"
       style={{
         width: "100%",
         height: "100vh",
