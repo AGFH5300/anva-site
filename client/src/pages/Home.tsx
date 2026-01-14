@@ -23,7 +23,7 @@ function Home() {
           fill="#00FF22"
         ></path>
         <path
-          d="M72 3C72 1.89543 72.8954 1 74 1H83C84.1046 1 85 1.89543 85 3V23C85 24.1046 84.1046 25 83 25H74C72.8954 25 72 24.1046 72 23V3Z"
+          d="M72 3C72 1.89543 72.8954 1 74 1H83C84.1046 1 85 1.89543 85 3V23C85 24.1046 84.1046 25 83 25H74C72 25 72 24.1046 72 23V3Z"
           fill="#00FF22"
         ></path>
       </svg>
@@ -243,7 +243,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section data-node-id="gDsjRDiQLUTm" className="" id="brands">
+            <section data-node-id="gDsjRDiQLUTm" className="" id="brands">
         <div data-node-id="VCaEMbNweETE" className="">
           <div data-node-id="JfzKuwpEVUpV" className="">
             <h2 data-node-id="wgJBEFfLVwYL">Authorized Representation</h2>
