@@ -2459,6 +2459,16 @@ flex-grow: 0;
 z-index: 2;
 }
 
+.nav-link:hover {
+text-decoration: underline;
+text-underline-offset: 4px;
+}
+
+.nav-logo-lottie {
+width: 96px;
+height: 32px;
+}
+
 @property --border-angle {
 syntax: "<angle>";
 initial-value: 0deg;
