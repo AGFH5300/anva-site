@@ -2465,8 +2465,15 @@ text-underline-offset: 4px;
 }
 
 .nav-logo-lottie {
-width: 96px;
+width: 128px;
 height: 32px;
+display: flex;
+align-items: center;
+}
+.nav-logo-lottie svg {
+width: 100%;
+height: 100%;
+display: block;
 }
 
 @property --border-angle {
