@@ -53,7 +53,7 @@ function Brands() {
             </a>
           </div>
           <div data-node-id="VeelMFZSuzvJ" className="">
-            <a data-node-id="vhDLiXdGQysI" className="" href="#rfq">
+            <a data-node-id="vhDLiXdGQysI" className="" href="/contact">
               <span data-node-id="gLPzXAqECaix">Request Quote</span>
               <svg
                 data-node-id="oayjLCHsRVqI"
@@ -165,7 +165,7 @@ function Brands() {
                   </span>
                 </li>
               </ul>
-              <a data-node-id="gQBgDkdeOMAp" href="#rfq">
+              <a data-node-id="gQBgDkdeOMAp" href="/contact">
                 Enquire about MARIDIS
               </a>
             </div>
@@ -244,7 +244,7 @@ function Brands() {
                   <span data-node-id="TQqzQdNULyCf">Directional Valves</span>
                 </div>
               </div>
-              <a data-node-id="FVNELOdugAoa" href="#rfq">
+              <a data-node-id="FVNELOdugAoa" href="/contact">
                 Enquire about Rexroth
               </a>
             </div>
@@ -296,7 +296,7 @@ function Brands() {
                   </span>
                 </li>
               </ul>
-              <a data-node-id="HKiLAOcFSmGZ" href="#rfq">
+              <a data-node-id="HKiLAOcFSmGZ" href="/contact">
                 Enquire about HYDAC
               </a>
             </div>
@@ -376,7 +376,7 @@ function Brands() {
                   <span data-node-id="FWhWUjZgwbNn">Signaling Controller</span>
                 </div>
               </div>
-              <a data-node-id="zcXUjxZmhmts" href="#rfq">
+              <a data-node-id="zcXUjxZmhmts" href="/contact">
                 Enquire about Tyfons
               </a>
             </div>
@@ -423,7 +423,7 @@ function Brands() {
                   <span data-node-id="MyCtbkClMmaE">LGT &amp; LS200 Sensors</span>
                 </li>
               </ul>
-              <a data-node-id="ZcXZaxdJpQoO" href="#rfq">
+              <a data-node-id="ZcXZaxdJpQoO" href="/contact">
                 Enquire about Loadmaster
               </a>
             </div>
@@ -504,7 +504,7 @@ function Brands() {
                   <span data-node-id="nHHgVAGgdOJB">Mobile Cleaning Units</span>
                 </div>
               </div>
-              <a data-node-id="lsfChCpfPctE" href="#rfq">
+              <a data-node-id="lsfChCpfPctE" href="/contact">
                 Enquire about Polarjet
               </a>
             </div>
@@ -557,7 +557,7 @@ function Brands() {
                   <span data-node-id="AejttlVjmxdi">Complete Rudder Assemblies</span>
                 </li>
               </ul>
-              <a data-node-id="fqrOrxSlpKhc" href="#rfq">
+              <a data-node-id="fqrOrxSlpKhc" href="/contact">
                 Enquire about Propulsion
               </a>
             </div>
@@ -637,7 +637,7 @@ function Brands() {
                   <span data-node-id="gAlVJCbHmcfi">Sea Chest Antifouling</span>
                 </div>
               </div>
-              <a data-node-id="mwwkrdeVLVKT" href="#rfq">
+              <a data-node-id="mwwkrdeVLVKT" href="/contact">
                 Enquire about ICCP/MGPS
               </a>
             </div>
@@ -726,246 +726,6 @@ function Brands() {
           </div>
         </div>
       </section>
-      <section data-node-id="LsHYhUUxaorL" className="" id="quality">
-        <div data-node-id="gfAJhwJiIiqR" className="">
-          <div data-node-id="RxbmKiTTeetS" className="">
-            <div data-node-id="ctyZfrFUZXCi" className="">
-              <h2 data-node-id="CWvgxCUAXxPs">Certified Quality &amp; Compliance</h2>
-              <p data-node-id="jPQLbkwEerJx">
-                Quality is not a department; it's our doctrine. ANVA Marine adheres to
-                the strictest international standards, ensuring that every project
-                meets IMO/SOLAS regulations and exceeds client expectations. We are
-                committed to operational safety and environmental stewardship.
-              </p>
-              <div data-node-id="OmbetwJcfUBA" className="">
-                <div data-node-id="trzUDvBltpAj" className="">
-                  <svg
-                    data-node-id="pMEJHgBeJyKa"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                  <span data-node-id="xOItxOWzBShB">ISO 9001:2015</span>
-                </div>
-                <div data-node-id="VEmPmXcFwCcO" className="">
-                  <svg
-                    data-node-id="xnvyozASlzgF"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                  <span data-node-id="HfquQiCdnnCg">ISO 14001:2015</span>
-                </div>
-                <div data-node-id="EQPfTjVEsMaU" className="">
-                  <svg
-                    data-node-id="jNlQdKGiiATE"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                  <span data-node-id="foJZBMYTrcNE">ISO 45001:2018</span>
-                </div>
-              </div>
-            </div>
-            <div data-node-id="VVrHdHeJkyMi" className="">
-              <div data-node-id="BCaBIcqPdpQR" className="">
-                <div data-node-id="iCJBFFxqTalu" className="">
-                  <svg
-                    data-node-id="UdleaKStzHWi"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path>
-                    <circle cx="12" cy="8" r="6"></circle>
-                  </svg>
-                </div>
-                <div data-node-id="ETXhbKFIoGFK" className=""></div>
-                <div data-node-id="HHBwQDgmhgvk" className=""></div>
-              </div>
-              <div data-node-id="snsEJgUlAdGw" className="">
-                <div data-node-id="cMzYNxrVvuxq" className="">
-                  <svg
-                    data-node-id="txlNHBQecwop"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
-                    <path d="m9 12 2 2 4-4"></path>
-                  </svg>
-                </div>
-                <div data-node-id="LpipZVRxEbAL" className=""></div>
-                <div data-node-id="SHidaOvjYOsX" className=""></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section data-node-id="nmdEwJiyQyVM" className="" id="rfq">
-        <div data-node-id="aVUkUmEdVMap" className="">
-          <div data-node-id="zvOQyGYtaANu" className="">
-            <div data-node-id="RvKewjNVnTdl" className="">
-              <h2 data-node-id="iEeagPRhIbZM">Request a Quotation</h2>
-              <p data-node-id="qYLUdPLwLlXg">
-                Direct gateway for clients and suppliers. We guarantee a response
-                within one business day.
-              </p>
-              <div data-node-id="QPITWqDpQbnU" className="">
-                <div data-node-id="AuNxMljUYuwu" className="">
-                  <div data-node-id="maFbHWBLuHKQ" className="">
-                    <svg
-                      data-node-id="pNCWpscJNTDP"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                  </div>
-                  <div data-node-id="QmNqBegjmmIH" className="">
-                    <h4 data-node-id="bPsEsOJdIpvN">Dubai Maritime City</h4>
-                    <p data-node-id="CmgDIfamkVpp">
-                      Warehouse 44, Industrial Precinct, Dubai, UAE
-                    </p>
-                  </div>
-                </div>
-                <div data-node-id="RhezcLzdouqq" className="">
-                  <div data-node-id="keyTPzXLKbMo" className="">
-                    <svg
-                      data-node-id="ecDqHZcnAZQw"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
-                    </svg>
-                  </div>
-                  <div data-node-id="RsuwDufMqnDv" className="">
-                    <h4 data-node-id="GQZSARbXSrzC">24/7 Support</h4>
-                    <p data-node-id="BHWDSkJACNlx">+971 4 000 0000</p>
-                  </div>
-                </div>
-                <div data-node-id="MuNFbpKBnhKg" className="">
-                  <div data-node-id="aHgRLfrzYzdq" className="">
-                    <svg
-                      data-node-id="fCJLQOvlmzBL"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                  </div>
-                  <div data-node-id="MZmLdPsMfbqU" className="">
-                    <h4 data-node-id="dnwfMjmNFeiN">WhatsApp Priority</h4>
-                    <a data-node-id="tPSxEZXKPKsH" href="#">
-                      Start Chat
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <form data-node-id="nhZMnGtZjjWp" className="">
-              <div data-node-id="isWKWciGwTew" className="">
-                <div data-node-id="MLYUPPmWjecG" className="">
-                  <label data-node-id="gjzqEuFjrLHy">Name</label>
-                  <input data-node-id="grjKHxFkaHLN" type="text" />
-                </div>
-                <div data-node-id="LVpANfUkazCi" className="">
-                  <label data-node-id="nvUGjdPTWCMc">Company</label>
-                  <input data-node-id="IgdUJnHJsxOK" type="text" />
-                </div>
-              </div>
-              <div data-node-id="ZwXrxVbWJvBU" className="">
-                <div data-node-id="averKfXnJuJN" className="">
-                  <label data-node-id="mwwOAEXHOLqZ">Email</label>
-                  <input data-node-id="zhHdvZKqGlzb" type="email" />
-                </div>
-                <div data-node-id="DQdueATdoVZz" className="">
-                  <label data-node-id="dHSYEZYCNMJE">Phone</label>
-                  <input data-node-id="kwrjwShOjMUD" type="tel" />
-                </div>
-              </div>
-              <div data-node-id="KCYllySAmNUL" className="">
-                <div data-node-id="rucBaoNaGyoc" className="">
-                  <label data-node-id="COgHSuncnXfx">Vessel Name</label>
-                  <input data-node-id="wlbtEXRZIZUm" type="text" />
-                </div>
-                <div data-node-id="ZcUqjlNQIGXm" className="">
-                  <label data-node-id="PCPNVPsbsMNm">Port/Location</label>
-                  <input data-node-id="KHnPOvfgkVBe" type="text" />
-                </div>
-              </div>
-              <div data-node-id="QkamSupqSPdw" className="">
-                <label data-node-id="sensoJwywNQR">Message / Scope</label>
-                <textarea data-node-id="kFuQkgljaFrE" rows={4}></textarea>
-              </div>
-              <button data-node-id="mZeoixiEdlst" type="submit">
-                Submit Request
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
       <footer data-node-id="EnSDwRneCzlm" className="" data-shared-component="site-footer">
         <div data-node-id="UyNbOrqBbqOA" className="">
           <div data-node-id="plxkfmBdKicj" className="">
@@ -1049,7 +809,7 @@ function Brands() {
                   </a>
                 </li>
                 <li data-node-id="UkZLnuzzCdBk" className="">
-                  <a data-node-id="AZQumLiRYPtJ" href="#quality">
+                  <a data-node-id="AZQumLiRYPtJ" href="/#quality">
                     ISO &amp; Quality
                   </a>
                 </li>
