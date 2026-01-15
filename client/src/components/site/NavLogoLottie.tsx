@@ -199,7 +199,6 @@ export default function NavLogoLottie() {
     <div
       ref={containerRef}
       className="nav-logo-lottie"
-      style={{ width: 44, height: 44, display: "block" }}
       aria-hidden="true"
     />
   );
