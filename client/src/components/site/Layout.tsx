@@ -8,14 +8,14 @@ const Layout = ({ children }: PropsWithChildren) => {
   useLegacyPageEffects();
 
   return (
-    <div data-node-id="aYtCzgLuEOHT" className="">
+    <div className="overflow-x-hidden bg-[var(--colors-marine-900)] font-[var(--fontFamily-body)] text-[var(--colors-white)] selection:bg-[var(--colors-signal-500)] selection:text-[var(--colors-marine-900)]">
       <svg
         width="32"
         height="26"
         viewBox="0 0 85 26"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="badge-icon"
+        className="shrink-0"
       >
         <circle cx="35" cy="13" r="13" fill="#00FF22"></circle>
         <path
