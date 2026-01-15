@@ -118,7 +118,7 @@ const Footer = () => (
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
               <span data-node-id="CuDQezMPxYGi">
-                Dubai Maritime City, Industrial Precinct, UAE
+                Office Address: F1B-W228, Dubai Maritime City, Dubai, UAE.
               </span>
             </li>
             <li data-node-id="JkEPyJkeuplp" className="">
@@ -136,7 +136,9 @@ const Footer = () => (
               >
                 <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
               </svg>
-              <span data-node-id="knGiJoyKZjWM">+971 4 000 0000</span>
+              <span data-node-id="knGiJoyKZjWM">
+                +971 52 356 7890 | +971 58 535 3890
+              </span>
             </li>
             <li data-node-id="ySTNhRyUvXuN" className="">
               <svg
@@ -154,7 +156,7 @@ const Footer = () => (
                 <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
                 <rect x="2" y="4" width="20" height="16" rx="2"></rect>
               </svg>
-              <span data-node-id="JstifupCRBbU">info@anvamarine.com</span>
+              <span data-node-id="JstifupCRBbU">info@anva-group.com</span>
             </li>
           </ul>
         </div>

@@ -325,9 +325,9 @@ function Home() {
                     </svg>
                   </div>
                   <div data-node-id="QmNqBegjmmIH" className="">
-                    <h4 data-node-id="bPsEsOJdIpvN">Dubai Maritime City</h4>
+                    <h4 data-node-id="bPsEsOJdIpvN">Office Address</h4>
                     <p data-node-id="CmgDIfamkVpp">
-                      Warehouse 44, Industrial Precinct, Dubai, UAE
+                      F1B-W228, Dubai Maritime City, Dubai, UAE.
                     </p>
                   </div>
                 </div>
@@ -349,8 +349,10 @@ function Home() {
                     </svg>
                   </div>
                   <div data-node-id="RsuwDufMqnDv" className="">
-                    <h4 data-node-id="GQZSARbXSrzC">24/7 Support</h4>
-                    <p data-node-id="BHWDSkJACNlx">+971 4 000 0000</p>
+                    <h4 data-node-id="GQZSARbXSrzC">Phone</h4>
+                    <p data-node-id="BHWDSkJACNlx">
+                      +971 52 356 7890 | +971 58 535 3890
+                    </p>
                   </div>
                 </div>
                 <div data-node-id="MuNFbpKBnhKg" className="">
