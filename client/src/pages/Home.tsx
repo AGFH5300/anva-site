@@ -1,31 +1,61 @@
 function Home() {
   return (
     <>
-      <section data-node-id="LuDBwaQCmXGI" className="" id="hero">
-        <div data-node-id="lVeqciuQlLSu" className="">
+      <section
+        data-node-id="LuDBwaQCmXGI"
+        className="relative flex min-h-screen items-center overflow-hidden pt-20"
+        id="hero"
+      >
+        <div data-node-id="lVeqciuQlLSu" className="absolute inset-0 z-0">
           <img
             data-node-id="tZfOQetPxiQm"
+            className="h-full w-full object-cover object-center opacity-40"
             src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"
           />
-          <div data-node-id="HOeCVNIQZkPc" className=""></div>
+          <div
+            data-node-id="HOeCVNIQZkPc"
+            className="absolute inset-0 bg-gradient-to-r from-marine-900 via-marine-900-80 to-transparent"
+          ></div>
         </div>
-        <div data-node-id="WMhUVXpUpceK" className="">
-          <div data-node-id="eLmGrolwkACF" className="">
-            <div data-node-id="UVsgnwrzHUHo" className="">
-              <span data-node-id="wwLEsFQfXgfk" className=""></span>
+        <div
+          data-node-id="WMhUVXpUpceK"
+          className="relative z-10 mx-auto grid items-center gap-12 px-6 md:grid-cols-2"
+        >
+          <div data-node-id="eLmGrolwkACF" className="max-w-2xl">
+            <div
+              data-node-id="UVsgnwrzHUHo"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-signal-500-30 bg-signal-500-10 px-3 py-1 text-xs font-bold tracking-[0.05em] text-signal-500"
+            >
+              <span
+                data-node-id="wwLEsFQfXgfk"
+                className="h-2 w-2 animate-pulse rounded-full bg-signal-500"
+              ></span>
               <span data-node-id="NPittQTBCdHT">OPERATIONAL 24/7</span>
             </div>
-            <h1 data-node-id="mqdEygJPDeyt">Where Marine Meets Mastery</h1>
-            <p data-node-id="wkfSlNpBtfdA">
+            <h1
+              data-node-id="mqdEygJPDeyt"
+              className="mb-6 whitespace-pre-wrap font-display text-5xl font-bold leading-tight md:text-7xl md:leading-none"
+            >
+              Where Marine Meets Mastery
+            </h1>
+            <p
+              data-node-id="wkfSlNpBtfdA"
+              className="mb-8 max-w-xl text-lg leading-relaxed text-gray-400"
+            >
               ANVA Marine delivers end-to-end solutions that keep fleets moving. From
               complex punch list closures to global OEM sourcing and offshore
               chartering, we are the maritime backbone of the UAE.
             </p>
-            <div data-node-id="EIvfpsqgfWaw" className="">
-              <a data-node-id="RXXEfwxcRopn" className="" href="/#rfq">
+            <div data-node-id="EIvfpsqgfWaw" className="flex flex-wrap gap-4">
+              <a
+                data-node-id="RXXEfwxcRopn"
+                className="inline-flex items-center gap-2 rounded-sm bg-white px-8 py-4 font-bold text-marine-900 transition-colors hover:bg-gray-100"
+                href="/#rfq"
+              >
                 <span data-node-id="MgUHaPNcUnSR">Request a Quote</span>
                 <svg
                   data-node-id="hNWReggsCcAT"
+                  className="h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -39,25 +69,41 @@ function Home() {
                   <path d="m9 18 6-6-6-6"></path>
                 </svg>
               </a>
-              <a data-node-id="NceAuDGndkoD" href="/brands#services">
+              <a
+                data-node-id="NceAuDGndkoD"
+                className="rounded-sm border border-white/20 px-8 py-4 font-bold text-white transition-colors hover:border-white"
+                href="/brands#services"
+              >
                 View Services
               </a>
             </div>
           </div>
-          <div data-node-id="useNaRTHMmtp" className="">
-            <div data-node-id="vVVVuLyRxFtE" className="">
+          <div data-node-id="useNaRTHMmtp" className="hidden grid-cols-2 gap-4 md:grid">
+            <div
+              data-node-id="vVVVuLyRxFtE"
+              className="rounded-lg border border-white/5 bg-marine-800-50 p-6 backdrop-blur-sm"
+            >
               <div data-node-id="sIKPfjZCpmrs">50+</div>
               <div data-node-id="fNZJFWqQXgDs">Years Expertise</div>
             </div>
-            <div data-node-id="cSTNbbFBRTDP" className="">
+            <div
+              data-node-id="cSTNbbFBRTDP"
+              className="rounded-lg border border-white/5 bg-marine-800-50 p-6 backdrop-blur-sm"
+            >
               <div data-node-id="UqsaFZdcXZMx">24/7</div>
               <div data-node-id="mlXKaTpxAMPu">Reliability</div>
             </div>
-            <div data-node-id="wwLiuVDgfvZM" className="">
+            <div
+              data-node-id="wwLiuVDgfvZM"
+              className="rounded-lg border border-white/5 bg-marine-800-50 p-6 backdrop-blur-sm"
+            >
               <div data-node-id="ZhuRoPvtnmOO">UAE</div>
               <div data-node-id="umwlrNyXhiYx">Port Coverage</div>
             </div>
-            <div data-node-id="nJlnzCTMvGvG" className="">
+            <div
+              data-node-id="nJlnzCTMvGvG"
+              className="rounded-lg border border-white/5 bg-marine-800-50 p-6 backdrop-blur-sm"
+            >
               <div data-node-id="mkHtrxfayokB">100%</div>
               <div data-node-id="fyrRykzFAJQO">Compliance</div>
             </div>
