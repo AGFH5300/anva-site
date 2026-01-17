@@ -1,11 +1,11 @@
 const Footer = () => (
-  <footer data-node-id="EnSDwRneCzlm" className="" data-shared-component="site-footer">
-    <div data-node-id="UyNbOrqBbqOA" className="">
-      <div data-node-id="plxkfmBdKicj" className="">
-        <div data-node-id="vSoTyRYSRCUR" className="">
-          <div data-node-id="OrRfwrjVvVrV" className="">
+  <footer className="" data-shared-component="site-footer">
+    <div className="">
+      <div className="">
+        <div className="">
+          <div className="">
             <svg
-              data-node-id="PPhHXyrbNHGU"
+
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -21,20 +21,20 @@ const Footer = () => (
               <path d="M9 11h6"></path>
               <circle cx="12" cy="4" r="2"></circle>
             </svg>
-            <span data-node-id="DpHBTaIBpklv" className="">
-              <span data-node-id="dNrIsHgIENCp">ANVA</span>
-              <span data-node-id="BiFuIMMHTwHZ">.</span>
-              <span data-node-id="ygYLEiiSfDmV">MARINE</span>
+            <span className="">
+              <span>ANVA</span>
+              <span>.</span>
+              <span>MARINE</span>
             </span>
           </div>
-          <p data-node-id="LDFuNajkjeGK">
+          <p>
             Advanced Nautical Ventures. Delivering end-to-end marine solutions, ship
             repairs, and global OEM support from the heart of Dubai Maritime City.
           </p>
-          <div data-node-id="YZMWfnYcHDLA" className="">
-            <a data-node-id="ngJanVTuSTLU" className="" href="#">
+          <div className="">
+            <a className="" href="#">
               <svg
-                data-node-id="JkaRvouzrIsu"
+
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -50,9 +50,9 @@ const Footer = () => (
                 <circle cx="4" cy="4" r="2"></circle>
               </svg>
             </a>
-            <a data-node-id="lKGWbxURzvnu" className="" href="#">
+            <a className="" href="#">
               <svg
-                data-node-id="txBRnPrwptXg"
+
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -68,42 +68,42 @@ const Footer = () => (
             </a>
           </div>
         </div>
-        <div data-node-id="opBuatgafbMs" className="">
-          <h4 data-node-id="UMEDfieiRZGl">Quick Links</h4>
-          <ul data-node-id="VgqbKCAGPaNg" className="">
-            <li data-node-id="TizVLEdoFPjI" className="">
-              <a data-node-id="ABULKvQfYezE" href="/#about">
+        <div className="">
+          <h4>Quick Links</h4>
+          <ul className="">
+            <li className="">
+              <a href="/#about">
                 About Us
               </a>
             </li>
-            <li data-node-id="WXImVpmPKqJy" className="">
-              <a data-node-id="LkyvPLjLcSWF" href="/brands">
+            <li className="">
+              <a href="/brands">
                 Services &amp; Brands
               </a>
             </li>
-            <li data-node-id="UkZLnuzzCdBk" className="">
-              <a data-node-id="AZQumLiRYPtJ" href="/#quality">
+            <li className="">
+              <a href="/#quality">
                 ISO &amp; Quality
               </a>
             </li>
-            <li data-node-id="oWWmpsXjnqIp" className="">
-              <a data-node-id="AltVcXBLgpmC" href="#">
+            <li className="">
+              <a href="#">
                 Vendor Portal
               </a>
             </li>
-            <li data-node-id="VotkJpRrGxDF" className="">
-              <a data-node-id="vLEMyFJwVGDb" href="#">
+            <li className="">
+              <a href="#">
                 Careers
               </a>
             </li>
           </ul>
         </div>
-        <div data-node-id="ZtQqUdypnpLE" className="">
-          <h4 data-node-id="OYYdciiUHtRq">Contact</h4>
-          <ul data-node-id="ZFZfyaGeWWiR" className="">
-            <li data-node-id="fjbRXvnUfOvT" className="">
+        <div className="">
+          <h4>Contact</h4>
+          <ul className="">
+            <li className="">
               <svg
-                data-node-id="uYQsqnlHSeUZ"
+
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -117,13 +117,13 @@ const Footer = () => (
                 <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
-              <span data-node-id="CuDQezMPxYGi">
+              <span>
                 Office Address: F1B-W228, Dubai Maritime City, Dubai, UAE.
               </span>
             </li>
-            <li data-node-id="JkEPyJkeuplp" className="">
+            <li className="">
               <svg
-                data-node-id="aBeehRQcBZeF"
+
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -136,13 +136,13 @@ const Footer = () => (
               >
                 <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
               </svg>
-              <span data-node-id="knGiJoyKZjWM">
+              <span>
                 +971 52 356 7890 | +971 58 535 3890
               </span>
             </li>
-            <li data-node-id="ySTNhRyUvXuN" className="">
+            <li className="">
               <svg
-                data-node-id="NKWhcMYbQGLL"
+
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -156,21 +156,21 @@ const Footer = () => (
                 <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path>
                 <rect x="2" y="4" width="20" height="16" rx="2"></rect>
               </svg>
-              <span data-node-id="JstifupCRBbU">info@anva-group.com</span>
+              <span>info@anva-group.com</span>
             </li>
           </ul>
         </div>
       </div>
-      <div data-node-id="TMLtgSJToVxy" className="">
-        <p data-node-id="NYflBdruxRfp">© 2024 Advanced Nautical Ventures. All rights reserved.</p>
-        <div data-node-id="fUHKfayhSwYU" className="">
-          <a data-node-id="wcGKYkLkJwSE" href="#">
+      <div className="">
+        <p>© 2024 Advanced Nautical Ventures. All rights reserved.</p>
+        <div className="">
+          <a href="#">
             Privacy Policy
           </a>
-          <a data-node-id="DbfsqomdteFZ" href="#">
+          <a href="#">
             Terms of Service
           </a>
-          <span data-node-id="KgRdCkhxFtvi"></span>
+          <span></span>
         </div>
       </div>
     </div>
