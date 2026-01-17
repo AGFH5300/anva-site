@@ -110,55 +110,113 @@ function Home() {
           </div>
         </div>
       </section>
-      <section data-node-id="zbUDJmXdYFKm" className="" id="about">
-        <div data-node-id="pqJTWvCzThtX" className="">
-          <div data-node-id="grzDnyaJCwjC" className="">
+      <section
+        data-node-id="zbUDJmXdYFKm"
+        className="bg-marine-900 py-24"
+        id="about"
+      >
+        <div data-node-id="pqJTWvCzThtX" className="mx-auto px-6">
+          <div
+            data-node-id="grzDnyaJCwjC"
+            className="grid items-start gap-16 md:grid-cols-2"
+          >
             <div data-node-id="RMxOnisFcIpf" className="">
-              <h2 data-node-id="gNqJzggVtxPe">50 Years of Nautical Excellence</h2>
-              <p data-node-id="FNyIBqUOGhPF">
+              <h2
+                data-node-id="gNqJzggVtxPe"
+                className="mb-6 font-display text-4xl font-bold leading-10"
+              >
+                50 Years of Nautical Excellence
+              </h2>
+              <p
+                data-node-id="FNyIBqUOGhPF"
+                className="mb-8 text-gray-400 leading-relaxed"
+              >
                 Advanced Nautical Ventures (ANVA Marine) is a UAE-based powerhouse in
                 marine services. We don't just fix ships; we engineer reliability. Our
                 strategic goal is to be recognized as the global leader in marine
                 services, bridging the gap between intricate engineering problems and
                 seamless operational solutions.
               </p>
-              <div data-node-id="DPsCAykNYIAy" className="">
-                <div data-node-id="VOHjJTvMClNw" className="">
-                  <h3 data-node-id="xaHUKWvFfTwp">Quality &amp; Reliability</h3>
-                  <p data-node-id="JlUZgDdHgeeS">
+              <div
+                data-node-id="DPsCAykNYIAy"
+                className="grid gap-6 md:grid-cols-2"
+              >
+                <div
+                  data-node-id="VOHjJTvMClNw"
+                  className="border-l-2 border-signal-500 pl-4"
+                >
+                  <h3
+                    data-node-id="xaHUKWvFfTwp"
+                    className="mb-2 font-display font-bold text-white"
+                  >
+                    Quality &amp; Reliability
+                  </h3>
+                  <p data-node-id="JlUZgDdHgeeS" className="text-sm leading-5 text-gray-500">
                     Uncompromising standards in every spare part and service hour.
                   </p>
                 </div>
-                <div data-node-id="CUqKPPddReRa" className="">
-                  <h3 data-node-id="ZoPavSmtZvqf">Innovation</h3>
-                  <p data-node-id="UpvOMyZLgdcJ">
+                <div
+                  data-node-id="CUqKPPddReRa"
+                  className="border-l-2 border-signal-500 pl-4"
+                >
+                  <h3
+                    data-node-id="ZoPavSmtZvqf"
+                    className="mb-2 font-display font-bold text-white"
+                  >
+                    Innovation
+                  </h3>
+                  <p data-node-id="UpvOMyZLgdcJ" className="text-sm leading-5 text-gray-500">
                     Leveraging latest diagnostics and propulsion tech.
                   </p>
                 </div>
-                <div data-node-id="SDiBYgbWnWho" className="">
-                  <h3 data-node-id="nUTirpRtqacm">Safety First</h3>
-                  <p data-node-id="pkzuNgMGdxcz">
+                <div
+                  data-node-id="SDiBYgbWnWho"
+                  className="border-l-2 border-signal-500 pl-4"
+                >
+                  <h3
+                    data-node-id="nUTirpRtqacm"
+                    className="mb-2 font-display font-bold text-white"
+                  >
+                    Safety First
+                  </h3>
+                  <p data-node-id="pkzuNgMGdxcz" className="text-sm leading-5 text-gray-500">
                     ISO 45001:2018 driven safety protocols.
                   </p>
                 </div>
-                <div data-node-id="ZDYuyCxSKVBj" className="">
-                  <h3 data-node-id="rAEaNLAkQwIX">Sustainability</h3>
-                  <p data-node-id="VHOZZnDpfVEc">
+                <div
+                  data-node-id="ZDYuyCxSKVBj"
+                  className="border-l-2 border-signal-500 pl-4"
+                >
+                  <h3
+                    data-node-id="rAEaNLAkQwIX"
+                    className="mb-2 font-display font-bold text-white"
+                  >
+                    Sustainability
+                  </h3>
+                  <p data-node-id="VHOZZnDpfVEc" className="text-sm leading-5 text-gray-500">
                     Eco-friendly cleaning and fuel-saving solutions.
                   </p>
                 </div>
               </div>
             </div>
-            <div data-node-id="fQrUCNEXLlsG" className="">
-              <div data-node-id="HSYODDIWcecO" className=""></div>
+            <div data-node-id="fQrUCNEXLlsG" className="relative">
+              <div
+                data-node-id="HSYODDIWcecO"
+                className="pointer-events-none absolute -inset-4 translate-x-4 translate-y-4 rounded-lg border border-signal-500-20"
+              ></div>
               <img
                 data-node-id="eTvtPyzSVhhG"
+                className="relative w-full rounded-lg grayscale shadow-2xl transition duration-700 hover:grayscale-0"
                 src="https://images.unsplash.com/photo-1566835266472-351119b4b45d?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"
               />
-              <div data-node-id="YbTtuZOftTYw" className="">
-                <div data-node-id="faHTfqmXSkRw" className="">
+              <div
+                data-node-id="YbTtuZOftTYw"
+                className="absolute bottom-8 left-8 max-w-xs rounded-sm bg-marine-800 p-6 shadow-lg"
+              >
+                <div data-node-id="faHTfqmXSkRw" className="mb-2 flex items-center gap-3">
                   <svg
                     data-node-id="wslJquyFikEY"
+                    className="text-signal-500"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -172,9 +230,11 @@ function Home() {
                     <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                   </svg>
-                  <span data-node-id="yoPOPePdUCoV">Dubai Maritime City</span>
+                  <span data-node-id="yoPOPePdUCoV" className="font-bold">
+                    Dubai Maritime City
+                  </span>
                 </div>
-                <p data-node-id="cobypArZKHqH">
+                <p data-node-id="cobypArZKHqH" className="text-xs leading-4 text-gray-400">
                   Strategic Hub for UAE &amp; Global Operations
                 </p>
               </div>
@@ -182,66 +242,171 @@ function Home() {
           </div>
         </div>
       </section>
-            <section data-node-id="gDsjRDiQLUTm" className="" id="brands">
-        <div data-node-id="VCaEMbNweETE" className="">
-          <div data-node-id="JfzKuwpEVUpV" className="">
-            <h2 data-node-id="wgJBEFfLVwYL">Authorized Representation</h2>
-            <p data-node-id="PGWOsdSKoJPg">
+      <section
+        data-node-id="gDsjRDiQLUTm"
+        className="bg-marine-800 py-24"
+        id="brands"
+      >
+        <div data-node-id="VCaEMbNweETE" className="mx-auto px-6">
+          <div data-node-id="JfzKuwpEVUpV" className="mx-auto mb-16 max-w-3xl text-center">
+            <h2
+              data-node-id="wgJBEFfLVwYL"
+              className="mb-4 font-display text-4xl font-bold leading-10"
+            >
+              Authorized Representation
+            </h2>
+            <p data-node-id="PGWOsdSKoJPg" className="text-gray-400">
               ANVA Marine proudly represents and supports leading global OEMs, bringing
               factory-level precision to local waters.
             </p>
           </div>
-          <div data-node-id="rUTAmKTEZtHq" className="">
-            <div data-node-id="xdEjSrULcaTF" className="">
-              <span data-node-id="lhVrqRDRGMRR">MARIDIS</span>
-              <span data-node-id="bPAjLvIxGqOY">Engine Diagnostics</span>
+          <div data-node-id="rUTAmKTEZtHq" className="grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div
+              data-node-id="xdEjSrULcaTF"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="lhVrqRDRGMRR"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                MARIDIS
+              </span>
+              <span data-node-id="bPAjLvIxGqOY" className="mt-2 text-xs leading-4 text-gray-500">
+                Engine Diagnostics
+              </span>
             </div>
-            <div data-node-id="wyFlcLswBYdW" className="">
-              <span data-node-id="ScYydokhVUGO">Rexroth</span>
-              <span data-node-id="LiHRbgooLzNt">Bosch Hydraulics</span>
+            <div
+              data-node-id="wyFlcLswBYdW"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="ScYydokhVUGO"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Rexroth
+              </span>
+              <span data-node-id="LiHRbgooLzNt" className="mt-2 text-xs leading-4 text-gray-500">
+                Bosch Hydraulics
+              </span>
             </div>
-            <div data-node-id="SoMTSlLqgcYV" className="">
-              <span data-node-id="WcfqIbiMpFQK">HYDAC</span>
-              <span data-node-id="VuXEqapfgJuo">Fluid Control</span>
+            <div
+              data-node-id="SoMTSlLqgcYV"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="WcfqIbiMpFQK"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                HYDAC
+              </span>
+              <span data-node-id="VuXEqapfgJuo" className="mt-2 text-xs leading-4 text-gray-500">
+                Fluid Control
+              </span>
             </div>
-            <div data-node-id="dKGacLwGLDYW" className="">
-              <span data-node-id="JsgjYgYWAAez">Kockums</span>
-              <span data-node-id="vqeUpIvWRXIg">Signaling Systems</span>
+            <div
+              data-node-id="dKGacLwGLDYW"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="JsgjYgYWAAez"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Kockums
+              </span>
+              <span data-node-id="vqeUpIvWRXIg" className="mt-2 text-xs leading-4 text-gray-500">
+                Signaling Systems
+              </span>
             </div>
-            <div data-node-id="gQEQonhEGTPK" className="">
-              <span data-node-id="TaksZNjUussJ">Loadmaster</span>
-              <span data-node-id="qdecEdqpmwHX">Tank Gauging</span>
+            <div
+              data-node-id="gQEQonhEGTPK"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="TaksZNjUussJ"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Loadmaster
+              </span>
+              <span data-node-id="qdecEdqpmwHX" className="mt-2 text-xs leading-4 text-gray-500">
+                Tank Gauging
+              </span>
             </div>
-            <div data-node-id="kGXkscpXrsPG" className="">
-              <span data-node-id="FVuuGjTwCbHf">Polarjet</span>
-              <span data-node-id="cdhcePEEQgTn">Tank Cleaning</span>
+            <div
+              data-node-id="kGXkscpXrsPG"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="FVuuGjTwCbHf"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Polarjet
+              </span>
+              <span data-node-id="cdhcePEEQgTn" className="mt-2 text-xs leading-4 text-gray-500">
+                Tank Cleaning
+              </span>
             </div>
-            <div data-node-id="cSKkUpBsGDDg" className="">
-              <span data-node-id="tleNhjWNaEho">Subhadra</span>
-              <span data-node-id="whCEeGqEnCxG">Propulsion</span>
+            <div
+              data-node-id="cSKkUpBsGDDg"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="tleNhjWNaEho"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Subhadra
+              </span>
+              <span data-node-id="whCEeGqEnCxG" className="mt-2 text-xs leading-4 text-gray-500">
+                Propulsion
+              </span>
             </div>
-            <div data-node-id="zyRPzZaSyhSy" className="">
-              <span data-node-id="ljAvZHzgcbYf">ICCP/MGPS</span>
-              <span data-node-id="kthvsrhZBgFy">Cathodic Protection</span>
+            <div
+              data-node-id="zyRPzZaSyhSy"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="ljAvZHzgcbYf"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                ICCP/MGPS
+              </span>
+              <span data-node-id="kthvsrhZBgFy" className="mt-2 text-xs leading-4 text-gray-500">
+                Cathodic Protection
+              </span>
             </div>
           </div>
         </div>
       </section>
-      <section data-node-id="LsHYhUUxaorL" className="" id="quality">
-        <div data-node-id="gfAJhwJiIiqR" className="">
-          <div data-node-id="RxbmKiTTeetS" className="">
-            <div data-node-id="ctyZfrFUZXCi" className="">
-              <h2 data-node-id="CWvgxCUAXxPs">Certified Quality &amp; Compliance</h2>
-              <p data-node-id="jPQLbkwEerJx">
+      <section
+        data-node-id="LsHYhUUxaorL"
+        className="bg-white py-20 text-marine-900"
+        id="quality"
+      >
+        <div data-node-id="gfAJhwJiIiqR" className="mx-auto px-6">
+          <div
+            data-node-id="RxbmKiTTeetS"
+            className="flex flex-col items-center justify-between gap-12 md:flex-row"
+          >
+            <div data-node-id="ctyZfrFUZXCi" className="max-w-2xl">
+              <h2
+                data-node-id="CWvgxCUAXxPs"
+                className="mb-6 font-display text-4xl font-bold leading-10"
+              >
+                Certified Quality &amp; Compliance
+              </h2>
+              <p data-node-id="jPQLbkwEerJx" className="mb-8 leading-relaxed text-gray-600">
                 Quality is not a department; it's our doctrine. ANVA Marine adheres to
                 the strictest international standards, ensuring that every project
                 meets IMO/SOLAS regulations and exceeds client expectations. We are
                 committed to operational safety and environmental stewardship.
               </p>
-              <div data-node-id="OmbetwJcfUBA" className="">
-                <div data-node-id="trzUDvBltpAj" className="">
+              <div data-node-id="OmbetwJcfUBA" className="flex flex-wrap gap-4">
+                <div
+                  data-node-id="trzUDvBltpAj"
+                  className="flex items-center gap-3 rounded-full bg-gray-100 px-5 py-3"
+                >
                   <svg
                     data-node-id="pMEJHgBeJyKa"
+                    className="h-5 w-5 text-green-600"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -255,11 +420,17 @@ function Home() {
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="m9 12 2 2 4-4"></path>
                   </svg>
-                  <span data-node-id="xOItxOWzBShB">ISO 9001:2015</span>
+                  <span data-node-id="xOItxOWzBShB" className="text-sm font-bold leading-5">
+                    ISO 9001:2015
+                  </span>
                 </div>
-                <div data-node-id="VEmPmXcFwCcO" className="">
+                <div
+                  data-node-id="VEmPmXcFwCcO"
+                  className="flex items-center gap-3 rounded-full bg-gray-100 px-5 py-3"
+                >
                   <svg
                     data-node-id="xnvyozASlzgF"
+                    className="h-5 w-5 text-green-600"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -273,11 +444,17 @@ function Home() {
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="m9 12 2 2 4-4"></path>
                   </svg>
-                  <span data-node-id="HfquQiCdnnCg">ISO 14001:2015</span>
+                  <span data-node-id="HfquQiCdnnCg" className="text-sm font-bold leading-5">
+                    ISO 14001:2015
+                  </span>
                 </div>
-                <div data-node-id="EQPfTjVEsMaU" className="">
+                <div
+                  data-node-id="EQPfTjVEsMaU"
+                  className="flex items-center gap-3 rounded-full bg-gray-100 px-5 py-3"
+                >
                   <svg
                     data-node-id="jNlQdKGiiATE"
+                    className="h-5 w-5 text-green-600"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -291,15 +468,24 @@ function Home() {
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="m9 12 2 2 4-4"></path>
                   </svg>
-                  <span data-node-id="foJZBMYTrcNE">ISO 45001:2018</span>
+                  <span data-node-id="foJZBMYTrcNE" className="text-sm font-bold leading-5">
+                    ISO 45001:2018
+                  </span>
                 </div>
               </div>
             </div>
-            <div data-node-id="VVrHdHeJkyMi" className="">
-              <div data-node-id="BCaBIcqPdpQR" className="">
-                <div data-node-id="iCJBFFxqTalu" className="">
+            <div data-node-id="VVrHdHeJkyMi" className="flex gap-6">
+              <div
+                data-node-id="BCaBIcqPdpQR"
+                className="flex h-44 w-32 flex-col items-center justify-center rounded border border-gray-200 bg-white p-4 shadow-lg"
+              >
+                <div
+                  data-node-id="iCJBFFxqTalu"
+                  className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100"
+                >
                   <svg
                     data-node-id="UdleaKStzHWi"
+                    className="text-marine-900"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -314,13 +500,20 @@ function Home() {
                     <circle cx="12" cy="8" r="6"></circle>
                   </svg>
                 </div>
-                <div data-node-id="ETXhbKFIoGFK" className=""></div>
-                <div data-node-id="HHBwQDgmhgvk" className=""></div>
+                <div data-node-id="ETXhbKFIoGFK" className="mb-2 h-2 w-16 rounded bg-gray-200"></div>
+                <div data-node-id="HHBwQDgmhgvk" className="h-2 w-10 rounded bg-gray-200"></div>
               </div>
-              <div data-node-id="snsEJgUlAdGw" className="">
-                <div data-node-id="cMzYNxrVvuxq" className="">
+              <div
+                data-node-id="snsEJgUlAdGw"
+                className="mt-[-24px] flex h-44 w-32 flex-col items-center justify-center rounded border border-gray-200 bg-white p-4 shadow-lg"
+              >
+                <div
+                  data-node-id="cMzYNxrVvuxq"
+                  className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gray-100"
+                >
                   <svg
                     data-node-id="txlNHBQecwop"
+                    className="text-marine-900"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -335,27 +528,40 @@ function Home() {
                     <path d="m9 12 2 2 4-4"></path>
                   </svg>
                 </div>
-                <div data-node-id="LpipZVRxEbAL" className=""></div>
-                <div data-node-id="SHidaOvjYOsX" className=""></div>
+                <div data-node-id="LpipZVRxEbAL" className="mb-2 h-2 w-16 rounded bg-gray-200"></div>
+                <div data-node-id="SHidaOvjYOsX" className="h-2 w-10 rounded bg-gray-200"></div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section data-node-id="nmdEwJiyQyVM" className="" id="rfq">
-        <div data-node-id="aVUkUmEdVMap" className="">
-          <div data-node-id="zvOQyGYtaANu" className="">
+      <section
+        data-node-id="nmdEwJiyQyVM"
+        className="relative bg-marine-900 py-24"
+        id="rfq"
+      >
+        <div data-node-id="aVUkUmEdVMap" className="relative z-10 mx-auto px-6">
+          <div data-node-id="zvOQyGYtaANu" className="grid gap-16 md:grid-cols-2">
             <div data-node-id="RvKewjNVnTdl" className="">
-              <h2 data-node-id="iEeagPRhIbZM">Request a Quotation</h2>
-              <p data-node-id="qYLUdPLwLlXg">
+              <h2
+                data-node-id="iEeagPRhIbZM"
+                className="mb-6 font-display text-4xl font-bold leading-10"
+              >
+                Request a Quotation
+              </h2>
+              <p data-node-id="qYLUdPLwLlXg" className="mb-8 text-gray-400">
                 Direct gateway for clients and suppliers. We guarantee a response
                 within one business day.
               </p>
-              <div data-node-id="QPITWqDpQbnU" className="">
-                <div data-node-id="AuNxMljUYuwu" className="">
-                  <div data-node-id="maFbHWBLuHKQ" className="">
+              <div data-node-id="QPITWqDpQbnU" className="mb-12 space-y-6">
+                <div data-node-id="AuNxMljUYuwu" className="flex items-start gap-4">
+                  <div
+                    data-node-id="maFbHWBLuHKQ"
+                    className="rounded-sm bg-marine-800 p-3"
+                  >
                     <svg
                       data-node-id="pNCWpscJNTDP"
+                      className="text-signal-500"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -371,16 +577,22 @@ function Home() {
                     </svg>
                   </div>
                   <div data-node-id="QmNqBegjmmIH" className="">
-                    <h4 data-node-id="bPsEsOJdIpvN">Office Address</h4>
-                    <p data-node-id="CmgDIfamkVpp">
+                    <h4 data-node-id="bPsEsOJdIpvN" className="font-bold text-white">
+                      Office Address
+                    </h4>
+                    <p data-node-id="CmgDIfamkVpp" className="text-sm leading-5 text-gray-400">
                       F1B-W228, Dubai Maritime City, Dubai, UAE.
                     </p>
                   </div>
                 </div>
-                <div data-node-id="RhezcLzdouqq" className="">
-                  <div data-node-id="keyTPzXLKbMo" className="">
+                <div data-node-id="RhezcLzdouqq" className="flex items-start gap-4">
+                  <div
+                    data-node-id="keyTPzXLKbMo"
+                    className="rounded-sm bg-marine-800 p-3"
+                  >
                     <svg
                       data-node-id="ecDqHZcnAZQw"
+                      className="text-signal-500"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -395,16 +607,22 @@ function Home() {
                     </svg>
                   </div>
                   <div data-node-id="RsuwDufMqnDv" className="">
-                    <h4 data-node-id="GQZSARbXSrzC">Phone</h4>
-                    <p data-node-id="BHWDSkJACNlx">
+                    <h4 data-node-id="GQZSARbXSrzC" className="font-bold text-white">
+                      Phone
+                    </h4>
+                    <p data-node-id="BHWDSkJACNlx" className="text-sm leading-5 text-gray-400">
                       +971 52 356 7890 | +971 58 535 3890
                     </p>
                   </div>
                 </div>
-                <div data-node-id="MuNFbpKBnhKg" className="">
-                  <div data-node-id="aHgRLfrzYzdq" className="">
+                <div data-node-id="MuNFbpKBnhKg" className="flex items-start gap-4">
+                  <div
+                    data-node-id="aHgRLfrzYzdq"
+                    className="rounded-sm bg-marine-800 p-3"
+                  >
                     <svg
                       data-node-id="fCJLQOvlmzBL"
+                      className="text-signal-500"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -419,61 +637,120 @@ function Home() {
                     </svg>
                   </div>
                   <div data-node-id="MZmLdPsMfbqU" className="">
-                    <h4 data-node-id="dnwfMjmNFeiN">WhatsApp Priority</h4>
-                    <a data-node-id="tPSxEZXKPKsH" href="#">
+                    <h4 data-node-id="dnwfMjmNFeiN" className="font-bold text-white">
+                      WhatsApp Priority
+                    </h4>
+                    <a
+                      data-node-id="tPSxEZXKPKsH"
+                      className="text-sm leading-5 text-signal-500 hover:underline"
+                      href="#"
+                    >
                       Start Chat
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-            <form data-node-id="nhZMnGtZjjWp" className="">
-              <div data-node-id="isWKWciGwTew" className="">
-                <div data-node-id="MLYUPPmWjecG" className="">
-                  <label data-node-id="gjzqEuFjrLHy">Name</label>
-                  <input data-node-id="grjKHxFkaHLN" type="text" />
+            <form
+              data-node-id="nhZMnGtZjjWp"
+              className="space-y-4 rounded-sm border border-white/5 bg-marine-800 p-8"
+            >
+              <div data-node-id="isWKWciGwTew" className="grid grid-cols-2 gap-4">
+                <div data-node-id="MLYUPPmWjecG" className="space-y-1">
+                  <label data-node-id="gjzqEuFjrLHy" className="text-xs font-bold uppercase text-gray-500">
+                    Name
+                  </label>
+                  <input
+                    data-node-id="grjKHxFkaHLN"
+                    className="w-full rounded-sm border border-white/10 bg-marine-900 p-3 text-white transition-colors focus:border-signal-500 focus:outline-none"
+                    type="text"
+                  />
                 </div>
-                <div data-node-id="LVpANfUkazCi" className="">
-                  <label data-node-id="nvUGjdPTWCMc">Company</label>
-                  <input data-node-id="IgdUJnHJsxOK" type="text" />
-                </div>
-              </div>
-              <div data-node-id="ZwXrxVbWJvBU" className="">
-                <div data-node-id="averKfXnJuJN" className="">
-                  <label data-node-id="mwwOAEXHOLqZ">Email</label>
-                  <input data-node-id="zhHdvZKqGlzb" type="email" />
-                </div>
-                <div data-node-id="DQdueATdoVZz" className="">
-                  <label data-node-id="dHSYEZYCNMJE">Phone</label>
-                  <input data-node-id="kwrjwShOjMUD" type="tel" />
-                </div>
-              </div>
-              <div data-node-id="KCYllySAmNUL" className="">
-                <div data-node-id="rucBaoNaGyoc" className="">
-                  <label data-node-id="COgHSuncnXfx">Vessel Name</label>
-                  <input data-node-id="wlbtEXRZIZUm" type="text" />
-                </div>
-                <div data-node-id="ZcUqjlNQIGXm" className="">
-                  <label data-node-id="PCPNVPsbsMNm">Port/Location</label>
-                  <input data-node-id="KHnPOvfgkVBe" type="text" />
+                <div data-node-id="LVpANfUkazCi" className="space-y-1">
+                  <label data-node-id="nvUGjdPTWCMc" className="text-xs font-bold uppercase text-gray-500">
+                    Company
+                  </label>
+                  <input
+                    data-node-id="IgdUJnHJsxOK"
+                    className="w-full rounded-sm border border-white/10 bg-marine-900 p-3 text-white transition-colors focus:border-signal-500 focus:outline-none"
+                    type="text"
+                  />
                 </div>
               </div>
-              <div data-node-id="QkamSupqSPdw" className="">
-                <label data-node-id="sensoJwywNQR">Message / Scope</label>
-                <textarea data-node-id="kFuQkgljaFrE" rows={4}></textarea>
+              <div data-node-id="ZwXrxVbWJvBU" className="grid grid-cols-2 gap-4">
+                <div data-node-id="averKfXnJuJN" className="space-y-1">
+                  <label data-node-id="mwwOAEXHOLqZ" className="text-xs font-bold uppercase text-gray-500">
+                    Email
+                  </label>
+                  <input
+                    data-node-id="zhHdvZKqGlzb"
+                    className="w-full rounded-sm border border-white/10 bg-marine-900 p-3 text-white transition-colors focus:border-signal-500 focus:outline-none"
+                    type="email"
+                  />
+                </div>
+                <div data-node-id="DQdueATdoVZz" className="space-y-1">
+                  <label data-node-id="dHSYEZYCNMJE" className="text-xs font-bold uppercase text-gray-500">
+                    Phone
+                  </label>
+                  <input
+                    data-node-id="kwrjwShOjMUD"
+                    className="w-full rounded-sm border border-white/10 bg-marine-900 p-3 text-white transition-colors focus:border-signal-500 focus:outline-none"
+                    type="tel"
+                  />
+                </div>
               </div>
-              <button data-node-id="mZeoixiEdlst" type="submit">
+              <div data-node-id="KCYllySAmNUL" className="grid grid-cols-2 gap-4">
+                <div data-node-id="rucBaoNaGyoc" className="space-y-1">
+                  <label data-node-id="COgHSuncnXfx" className="text-xs font-bold uppercase text-gray-500">
+                    Vessel Name
+                  </label>
+                  <input
+                    data-node-id="wlbtEXRZIZUm"
+                    className="w-full rounded-sm border border-white/10 bg-marine-900 p-3 text-white transition-colors focus:border-signal-500 focus:outline-none"
+                    type="text"
+                  />
+                </div>
+                <div data-node-id="ZcUqjlNQIGXm" className="space-y-1">
+                  <label data-node-id="PCPNVPsbsMNm" className="text-xs font-bold uppercase text-gray-500">
+                    Port/Location
+                  </label>
+                  <input
+                    data-node-id="KHnPOvfgkVBe"
+                    className="w-full rounded-sm border border-white/10 bg-marine-900 p-3 text-white transition-colors focus:border-signal-500 focus:outline-none"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div data-node-id="QkamSupqSPdw" className="space-y-1">
+                <label data-node-id="sensoJwywNQR" className="text-xs font-bold uppercase text-gray-500">
+                  Message / Scope
+                </label>
+                <textarea
+                  data-node-id="kFuQkgljaFrE"
+                  className="w-full rounded-sm border border-white/10 bg-marine-900 p-3 text-white transition-colors focus:border-signal-500 focus:outline-none"
+                  rows={4}
+                ></textarea>
+              </div>
+              <button
+                data-node-id="mZeoixiEdlst"
+                className="w-full rounded-sm bg-signal-500 py-4 font-bold text-marine-900 transition-colors hover:bg-signal-600"
+                type="submit"
+              >
                 Submit Request
               </button>
             </form>
           </div>
         </div>
       </section>
-      <section data-node-id="gZIAADWmTQIH" className="">
-        <div data-node-id="YKsPfVfFWADb" className="">
-          <div data-node-id="ElFoPEYJljFy" className="">
+      <section data-node-id="gZIAADWmTQIH" className="bg-white py-12">
+        <div data-node-id="YKsPfVfFWADb" className="mx-auto px-6">
+          <div
+            data-node-id="ElFoPEYJljFy"
+            className="rounded-lg border-2 border-dashed border-gray-300 p-12 text-center"
+          >
             <svg
               data-node-id="slqArPJUcMCT"
+              className="mx-auto mb-4 h-12 w-12 text-gray-400"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -488,12 +765,25 @@ function Home() {
               <circle cx="19" cy="21" r="1"></circle>
               <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
             </svg>
-            <h3 data-node-id="HoIRNZEcFgco">eCommerce Store Coming Soon</h3>
-            <p data-node-id="QekuPEBOkUPO">
+            <h3
+              data-node-id="HoIRNZEcFgco"
+              className="mb-2 font-display text-2xl font-bold text-marine-900"
+            >
+              eCommerce Store Coming Soon
+            </h3>
+            <p
+              data-node-id="QekuPEBOkUPO"
+              className="mx-auto mb-6 max-w-md text-gray-500"
+            >
               Direct purchase of Hydraulics, Filters, Valves, and Sensors. Search by
               part number with live stock integration.
             </p>
-            <span data-node-id="YpCIxulaoyPW">Under Development</span>
+            <span
+              data-node-id="YpCIxulaoyPW"
+              className="inline-flex rounded-full bg-gray-100 px-4 py-1 text-xs font-bold uppercase tracking-wide text-gray-600"
+            >
+              Under Development
+            </span>
           </div>
         </div>
       </section>
