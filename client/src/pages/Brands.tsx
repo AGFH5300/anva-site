@@ -574,47 +574,136 @@ function Brands() {
           </div>
         </div>
       </section>
-      <section data-node-id="gDsjRDiQLUTm" className="" id="brands">
-        <div data-node-id="VCaEMbNweETE" className="">
-          <div data-node-id="JfzKuwpEVUpV" className="">
-            <h2 data-node-id="wgJBEFfLVwYL">Brands</h2>
-            <p data-node-id="PGWOsdSKoJPg">
+      <section
+        data-node-id="gDsjRDiQLUTm"
+        className="bg-marine-800 py-24"
+        id="brands"
+      >
+        <div data-node-id="VCaEMbNweETE" className="mx-auto px-6">
+          <div data-node-id="JfzKuwpEVUpV" className="mx-auto mb-16 max-w-3xl text-center">
+            <h2
+              data-node-id="wgJBEFfLVwYL"
+              className="mb-4 font-display text-4xl font-bold leading-10"
+            >
+              Brands
+            </h2>
+            <p data-node-id="PGWOsdSKoJPg" className="text-gray-400">
               ANVA Marine proudly represents and supports leading global OEMs, bringing
               factory-level precision to local waters.
             </p>
           </div>
-          <div data-node-id="rUTAmKTEZtHq" className="">
-            <div data-node-id="xdEjSrULcaTF" className="">
-              <span data-node-id="lhVrqRDRGMRR">MARIDIS</span>
-              <span data-node-id="bPAjLvIxGqOY">Engine Diagnostics</span>
+          <div data-node-id="rUTAmKTEZtHq" className="grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div
+              data-node-id="xdEjSrULcaTF"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="lhVrqRDRGMRR"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                MARIDIS
+              </span>
+              <span data-node-id="bPAjLvIxGqOY" className="mt-2 text-xs leading-4 text-gray-500">
+                Engine Diagnostics
+              </span>
             </div>
-            <div data-node-id="wyFlcLswBYdW" className="">
-              <span data-node-id="ScYydokhVUGO">Rexroth</span>
-              <span data-node-id="LiHRbgooLzNt">Bosch Hydraulics</span>
+            <div
+              data-node-id="wyFlcLswBYdW"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="ScYydokhVUGO"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Rexroth
+              </span>
+              <span data-node-id="LiHRbgooLzNt" className="mt-2 text-xs leading-4 text-gray-500">
+                Bosch Hydraulics
+              </span>
             </div>
-            <div data-node-id="SoMTSlLqgcYV" className="">
-              <span data-node-id="WcfqIbiMpFQK">HYDAC</span>
-              <span data-node-id="VuXEqapfgJuo">Fluid Control</span>
+            <div
+              data-node-id="SoMTSlLqgcYV"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="WcfqIbiMpFQK"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                HYDAC
+              </span>
+              <span data-node-id="VuXEqapfgJuo" className="mt-2 text-xs leading-4 text-gray-500">
+                Fluid Control
+              </span>
             </div>
-            <div data-node-id="dKGacLwGLDYW" className="">
-              <span data-node-id="JsgjYgYWAAez">Kockums</span>
-              <span data-node-id="vqeUpIvWRXIg">Signaling Systems</span>
+            <div
+              data-node-id="dKGacLwGLDYW"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="JsgjYgYWAAez"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Kockums
+              </span>
+              <span data-node-id="vqeUpIvWRXIg" className="mt-2 text-xs leading-4 text-gray-500">
+                Signaling Systems
+              </span>
             </div>
-            <div data-node-id="gQEQonhEGTPK" className="">
-              <span data-node-id="TaksZNjUussJ">Loadmaster</span>
-              <span data-node-id="qdecEdqpmwHX">Tank Gauging</span>
+            <div
+              data-node-id="gQEQonhEGTPK"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="TaksZNjUussJ"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Loadmaster
+              </span>
+              <span data-node-id="qdecEdqpmwHX" className="mt-2 text-xs leading-4 text-gray-500">
+                Tank Gauging
+              </span>
             </div>
-            <div data-node-id="kGXkscpXrsPG" className="">
-              <span data-node-id="FVuuGjTwCbHf">Polarjet</span>
-              <span data-node-id="cdhcePEEQgTn">Tank Cleaning</span>
+            <div
+              data-node-id="kGXkscpXrsPG"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="FVuuGjTwCbHf"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Polarjet
+              </span>
+              <span data-node-id="cdhcePEEQgTn" className="mt-2 text-xs leading-4 text-gray-500">
+                Tank Cleaning
+              </span>
             </div>
-            <div data-node-id="cSKkUpBsGDDg" className="">
-              <span data-node-id="tleNhjWNaEho">Subhadra</span>
-              <span data-node-id="whCEeGqEnCxG">Propulsion</span>
+            <div
+              data-node-id="cSKkUpBsGDDg"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="tleNhjWNaEho"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                Subhadra
+              </span>
+              <span data-node-id="whCEeGqEnCxG" className="mt-2 text-xs leading-4 text-gray-500">
+                Propulsion
+              </span>
             </div>
-            <div data-node-id="zyRPzZaSyhSy" className="">
-              <span data-node-id="ljAvZHzgcbYf">ICCP/MGPS</span>
-              <span data-node-id="kthvsrhZBgFy">Cathodic Protection</span>
+            <div
+              data-node-id="zyRPzZaSyhSy"
+              className="group flex flex-col items-center justify-center rounded-sm border border-white/5 bg-marine-900 p-8 transition-colors hover:border-signal-500-50"
+            >
+              <span
+                data-node-id="ljAvZHzgcbYf"
+                className="font-display text-xl font-bold leading-7 transition-colors group-hover:text-signal-500"
+              >
+                ICCP/MGPS
+              </span>
+              <span data-node-id="kthvsrhZBgFy" className="mt-2 text-xs leading-4 text-gray-500">
+                Cathodic Protection
+              </span>
             </div>
           </div>
         </div>
