@@ -8,11 +8,9 @@ const Layout = ({ children }: PropsWithChildren) => {
   useLegacyPageEffects();
 
   return (
-    <div
-
-      className="bg-marine-900 font-body text-white selection:bg-signal-500 selection:text-marine-900 overflow-x-hidden"
-    >
+    <div className="bg-marine-900 font-body text-white selection:bg-signal-500 selection:text-marine-900 overflow-x-hidden">
       <Header />
+      <div className="bg-red-500 p-4 text-white">Tailwind Test</div>
       {children}
       <Footer />
     </div>
