@@ -10,10 +10,10 @@ const Header = () => (
       data-node-id="JiWOfPBWaCWm"
       className="mx-auto flex h-20 items-center justify-between px-6"
     >
-      <div data-node-id="eJwWIABxuAxw" className="flex items-center gap-3">
+      <div data-node-id="eJwWIABxuAxw" className="flex items-center gap-4 md:gap-5">
         <a
           data-node-id="jQYXkwrxjwtX"
-          className="font-display text-2xl font-bold leading-8 tracking-[-0.025em]"
+          className="flex items-center font-display text-2xl font-bold leading-8 tracking-[-0.025em]"
           href="/"
           aria-label="ANVA home"
         >
@@ -22,7 +22,7 @@ const Header = () => (
       </div>
       <div
         data-node-id="pipWZEBYfTCy"
-        className="hidden items-center gap-8 text-sm font-medium leading-5 text-gray-300 md:flex"
+        className="hidden items-center gap-7 text-sm font-medium leading-5 text-gray-300 md:flex lg:gap-8"
       >
         <a
           data-node-id="CXdDrucOJkEv"

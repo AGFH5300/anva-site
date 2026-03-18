@@ -1624,16 +1624,31 @@ text-underline-offset: 4px;
 }
 
 .nav-logo-lottie {
-width: 200px;
-height: 48px;
+width: 280px;
+height: 68px;
 display: flex;
 align-items: center;
+justify-content: center;
 flex-shrink: 0;
 }
 .nav-logo-lottie svg {
 width: 100% !important;
 height: 100% !important;
 display: block;
+}
+
+@media (max-width: 1023px) {
+.nav-logo-lottie {
+width: 250px;
+height: 60px;
+}
+}
+
+@media (max-width: 767px) {
+.nav-logo-lottie {
+width: 220px;
+height: 54px;
+}
 }
 
 /* contact.html */
