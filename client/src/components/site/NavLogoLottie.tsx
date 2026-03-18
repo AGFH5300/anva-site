@@ -2,7 +2,43 @@ import { useEffect, useRef } from "react";
 import lottie, { type AnimationItem } from "lottie-web";
 
 const SCROLL_THRESHOLD = 20;
+const SVG_CONTENT_SELECTOR = "svg > g";
+const VIEWBOX_X_PADDING_RATIO = 0.035;
+const VIEWBOX_Y_PADDING_RATIO = 0.08;
 const animationDataUrl = new URL("../../assets/nav-logo-lottie.json", import.meta.url).href;
+
+const fitArtworkViewBox = (container: HTMLDivElement | null) => {
+  if (!container) return null;
+
+  const svg = container.querySelector("svg");
+  const artworkRoot = container.querySelector<SVGGElement>(SVG_CONTENT_SELECTOR);
+
+  if (!svg || !artworkRoot) return null;
+
+  const originalViewBox = svg.dataset.originalViewBox ?? svg.getAttribute("viewBox") ?? "0 0 512 512";
+  svg.dataset.originalViewBox = originalViewBox;
+  svg.setAttribute("viewBox", originalViewBox);
+
+  const bbox = artworkRoot.getBBox();
+  if (!Number.isFinite(bbox.width) || !Number.isFinite(bbox.height) || bbox.width <= 0 || bbox.height <= 0) {
+    return null;
+  }
+
+  const padX = Math.max(2, bbox.width * VIEWBOX_X_PADDING_RATIO);
+  const padY = Math.max(2, bbox.height * VIEWBOX_Y_PADDING_RATIO);
+  const fittedViewBox = [
+    bbox.x - padX,
+    bbox.y - padY,
+    bbox.width + padX * 2,
+    bbox.height + padY * 2,
+  ];
+
+  svg.setAttribute("viewBox", fittedViewBox.join(" "));
+  svg.setAttribute("preserveAspectRatio", "xMinYMid meet");
+  svg.style.overflow = "visible";
+
+  return { bbox, fittedViewBox };
+};
 
 export default function NavLogoLottie() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -18,6 +54,7 @@ export default function NavLogoLottie() {
     let mounted = true;
     let cleanupResize: (() => void) | null = null;
     let cleanupAnimListeners: (() => void) | null = null;
+    let fitFrame: number | null = null;
 
     const init = async () => {
       const response = await fetch(animationDataUrl, { cache: "force-cache" });
@@ -43,20 +80,32 @@ export default function NavLogoLottie() {
       const lastFrame = () =>
         anim.totalFrames ? Math.max(0, Math.floor(anim.totalFrames - 1)) : 0;
 
+      const fitArtwork = () => {
+        if (fitFrame !== null) window.cancelAnimationFrame(fitFrame);
+
+        fitFrame = window.requestAnimationFrame(() => {
+          fitFrame = null;
+          fitArtworkViewBox(containerRef.current);
+        });
+      };
+
       const snapToState = () => {
         const scrolledNow = window.scrollY > SCROLL_THRESHOLD;
         isScrolledRef.current = scrolledNow;
         anim.goToAndStop(scrolledNow ? lastFrame() : 0, true);
         anim.resize();
+        fitArtwork();
       };
 
       const onDomLoaded = () => {
         snapToState();
+        fitArtwork();
       };
 
       const onComplete = () => {
         anim.goToAndStop(isScrolledRef.current ? lastFrame() : 0, true);
         isPlayingRef.current = false;
+        fitArtwork();
       };
 
       anim.addEventListener("DOMLoaded", onDomLoaded);
@@ -69,7 +118,10 @@ export default function NavLogoLottie() {
 
       snapToState();
 
-      const onResize = () => anim.resize();
+      const onResize = () => {
+        anim.resize();
+        fitArtwork();
+      };
       window.addEventListener("resize", onResize);
       cleanupResize = () => window.removeEventListener("resize", onResize);
     };
@@ -79,6 +131,7 @@ export default function NavLogoLottie() {
     return () => {
       mounted = false;
       initPromise.catch(() => null);
+      if (fitFrame !== null) window.cancelAnimationFrame(fitFrame);
       cleanupAnimListeners?.();
       cleanupResize?.();
       animRef.current?.destroy();
