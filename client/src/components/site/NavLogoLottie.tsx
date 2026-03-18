@@ -196,10 +196,8 @@ export default function NavLogoLottie() {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="nav-logo-lottie"
-      aria-hidden="true"
-    />
+    <div className="nav-logo-lottie" aria-hidden="true">
+      <div ref={containerRef} className="nav-logo-lottie__viewport" />
+    </div>
   );
 }
