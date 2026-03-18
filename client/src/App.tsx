@@ -4,6 +4,7 @@ import Layout from "./components/site/Layout";
 import Brands from "./pages/Brands";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -19,6 +20,11 @@ function App() {
       <Route path="/contact">
         <Layout>
           <Contact />
+        </Layout>
+      </Route>
+      <Route path="/about">
+        <Layout>
+          <About />
         </Layout>
       </Route>
       <Route path="/">
