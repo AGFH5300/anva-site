@@ -5,7 +5,7 @@ const SCROLL_THRESHOLD = 20;
 const SVG_CONTENT_SELECTOR = "svg > g";
 const VIEWBOX_X_PADDING_RATIO = 0.035;
 const VIEWBOX_Y_PADDING_RATIO = 0.08;
-const VIEWBOX_SCALE_DAMPENING = 1.3;
+const VIEWBOX_SCALE_DAMPENING = 1.5;
 const animationDataUrl = new URL("../../assets/nav-logo-lottie.json", import.meta.url).href;
 
 const fitArtworkViewBox = (container: HTMLDivElement | null) => {
@@ -50,6 +50,7 @@ export default function NavLogoLottie() {
   const isScrolledRef = useRef(false);
   const isPlayingRef = useRef(false);
   const tickingRef = useRef(false);
+  const frameBoundsRef = useRef({ start: 0, end: 0 });
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current) return;
@@ -62,6 +63,9 @@ export default function NavLogoLottie() {
     const init = async () => {
       const response = await fetch(animationDataUrl, { cache: "force-cache" });
       const animationData = await response.json();
+      const restingStartFrame = Math.max(0, Math.round(animationData.ip ?? 0));
+      const restingEndFrame = Math.max(restingStartFrame, Math.round((animationData.op ?? animationData.ip ?? 0) - 1));
+      frameBoundsRef.current = { start: restingStartFrame, end: restingEndFrame };
 
       if (!mounted || !containerRef.current) return;
 
@@ -79,9 +83,7 @@ export default function NavLogoLottie() {
       });
 
       animRef.current = anim;
-
-      const lastFrame = () =>
-        anim.totalFrames ? Math.max(0, Math.floor(anim.totalFrames - 1)) : 0;
+      anim.setSubframe(false);
 
       const fitArtwork = () => {
         if (fitFrame !== null) window.cancelAnimationFrame(fitFrame);
@@ -95,7 +97,7 @@ export default function NavLogoLottie() {
       const snapToState = () => {
         const scrolledNow = window.scrollY > SCROLL_THRESHOLD;
         isScrolledRef.current = scrolledNow;
-        anim.goToAndStop(scrolledNow ? lastFrame() : 0, true);
+        anim.goToAndStop(scrolledNow ? restingEndFrame : restingStartFrame, true);
         anim.resize();
         fitArtwork();
       };
@@ -106,7 +108,7 @@ export default function NavLogoLottie() {
       };
 
       const onComplete = () => {
-        anim.goToAndStop(isScrolledRef.current ? lastFrame() : 0, true);
+        anim.goToAndStop(isScrolledRef.current ? restingEndFrame : restingStartFrame, true);
         isPlayingRef.current = false;
         fitArtwork();
       };
@@ -149,15 +151,17 @@ export default function NavLogoLottie() {
       const anim = animRef.current;
       if (!anim || isPlayingRef.current) return;
 
-      const last = anim.totalFrames ? Math.max(0, Math.floor(anim.totalFrames - 1)) : 0;
+      const { start: startFrame, end: endFrame } = frameBoundsRef.current;
 
       isPlayingRef.current = true;
       isScrolledRef.current = scrolled;
 
       if (scrolled) {
-        anim.playSegments([0, last], true);
+        anim.goToAndStop(startFrame, true);
+        anim.playSegments([startFrame, endFrame], true);
       } else {
-        anim.playSegments([last, 0], true);
+        anim.goToAndStop(endFrame, true);
+        anim.playSegments([endFrame, startFrame], true);
       }
     };
 
