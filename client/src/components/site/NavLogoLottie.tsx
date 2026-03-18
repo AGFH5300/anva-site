@@ -1,203 +1,40 @@
-import { useEffect, useRef } from "react";
-
-type AnimationItem = {
-  addEventListener: (event: string, callback: () => void) => void;
-  removeEventListener: (event: string, callback: () => void) => void;
-  destroy: () => void;
-  goToAndStop: (value: number, isFrame: boolean) => void;
-  playSegments: (segments: [number, number], forceFlag?: boolean) => void;
-  resize: () => void;
-  totalFrames: number;
-};
-
-type LottiePlayer = {
-  loadAnimation: (config: {
-    container: HTMLElement;
-    renderer: "svg";
-    loop: boolean;
-    autoplay: boolean;
-    animationData: unknown;
-    rendererSettings?: {
-      preserveAspectRatio?: string;
-      progressiveLoad?: boolean;
-      hideOnTransparent?: boolean;
-    };
-  }) => AnimationItem;
-};
-
-declare global {
-  interface Window {
-    lottie?: LottiePlayer;
-  }
-}
-
-const SCROLL_THRESHOLD = 20;
-const LOTTIE_SCRIPT_SRC =
-  "https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js";
-
-const loadLottiePlayer = () =>
-  new Promise<LottiePlayer>((resolve, reject) => {
-    if (typeof window === "undefined") return reject(new Error("Browser only"));
-
-    if (window.lottie) return resolve(window.lottie);
-
-    const existing = document.querySelector<HTMLScriptElement>(
-      "script[data-lottie-web]"
-    );
-
-    const onReady = () => {
-      if (window.lottie) resolve(window.lottie);
-      else reject(new Error("Lottie failed to initialize"));
-    };
-
-    if (existing) {
-      // If it's already there but still loading, wait for it.
-      existing.addEventListener("load", onReady);
-      existing.addEventListener("error", () =>
-        reject(new Error("Failed to load Lottie script"))
-      );
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = LOTTIE_SCRIPT_SRC;
-    script.async = true;
-    script.dataset.lottieWeb = "true";
-    script.addEventListener("load", onReady);
-    script.addEventListener("error", () =>
-      reject(new Error("Failed to load Lottie script"))
-    );
-    document.body.appendChild(script);
-  });
+const NAV_LOGO_VIEWBOX_WIDTH = 420;
+const NAV_LOGO_VIEWBOX_HEIGHT = 96;
 
 export default function NavLogoLottie() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const animRef = useRef<AnimationItem | null>(null);
-
-  const isScrolledRef = useRef(false);
-  const isPlayingRef = useRef(false);
-  const tickingRef = useRef(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (!containerRef.current) return;
-
-    let mounted = true;
-    let cleanupAnimListeners: (() => void) | null = null;
-
-    const init = async () => {
-      const [player, response] = await Promise.all([
-        loadLottiePlayer(),
-        fetch("/lottie.json", { cache: "no-store" }),
-      ]);
-
-      const animationData = await response.json();
-      if (!mounted || !containerRef.current) return;
-
-      const anim = player.loadAnimation({
-        container: containerRef.current,
-        renderer: "svg",
-        loop: false,
-        autoplay: false,
-        animationData,
-        rendererSettings: {
-          preserveAspectRatio: "xMidYMid meet",
-          progressiveLoad: true,
-          hideOnTransparent: false,
-        },
-      });
-
-      animRef.current = anim;
-
-      const lastFrame = () =>
-        anim.totalFrames ? Math.max(0, Math.floor(anim.totalFrames - 1)) : 0;
-
-      const snapToState = () => {
-        const scrolledNow = window.scrollY > SCROLL_THRESHOLD;
-        isScrolledRef.current = scrolledNow;
-        anim.goToAndStop(scrolledNow ? lastFrame() : 0, true);
-        // When navbar layout changes, resizing helps prevent “disappear”
-        anim.resize();
-      };
-
-      const onDomLoaded = () => {
-        snapToState();
-      };
-
-      const onComplete = () => {
-        // Snap exactly to end frame after any play
-        anim.goToAndStop(isScrolledRef.current ? lastFrame() : 0, true);
-        isPlayingRef.current = false;
-      };
-
-      anim.addEventListener("DOMLoaded", onDomLoaded);
-      anim.addEventListener("complete", onComplete);
-
-      cleanupAnimListeners = () => {
-        anim.removeEventListener("DOMLoaded", onDomLoaded);
-        anim.removeEventListener("complete", onComplete);
-      };
-
-      // In case DOMLoaded already fired quickly
-      snapToState();
-
-      // Also handle resize (nav height changes on scroll can cause weird sizing)
-      const onResize = () => anim.resize();
-      window.addEventListener("resize", onResize);
-      return () => window.removeEventListener("resize", onResize);
-    };
-
-    const initPromise = init();
-
-    return () => {
-      mounted = false;
-      initPromise.catch(() => null);
-      cleanupAnimListeners?.();
-      animRef.current?.destroy();
-      animRef.current = null;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const playTo = (scrolled: boolean) => {
-      const anim = animRef.current;
-      if (!anim) return;
-
-      const last = anim.totalFrames ? Math.max(0, Math.floor(anim.totalFrames - 1)) : 0;
-
-      // prevent spam while already animating
-      if (isPlayingRef.current) return;
-
-      isPlayingRef.current = true;
-      isScrolledRef.current = scrolled;
-
-      if (scrolled) {
-        anim.playSegments([0, last], true);
-      } else {
-        anim.playSegments([last, 0], true);
-      }
-    };
-
-    const onScroll = () => {
-      if (tickingRef.current) return;
-      tickingRef.current = true;
-
-      window.requestAnimationFrame(() => {
-        const scrolled = window.scrollY > SCROLL_THRESHOLD;
-        if (scrolled !== isScrolledRef.current) playTo(scrolled);
-        tickingRef.current = false;
-      });
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <div className="nav-logo-lottie" aria-hidden="true">
-      <div ref={containerRef} className="nav-logo-lottie__viewport" />
+    <div
+      className="nav-logo-lottie"
+      aria-hidden="true"
+      style={{ width: "320px", height: "74px" }}
+    >
+      <div className="nav-logo-lottie__viewport">
+        <svg
+          viewBox={`0 0 ${NAV_LOGO_VIEWBOX_WIDTH} ${NAV_LOGO_VIEWBOX_HEIGHT}`}
+          className="h-full w-full"
+          role="presentation"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g fill="none" fillRule="evenodd">
+            <path
+              d="M28 79L71 16h26l44 63H110l-11-17H69L58 79H28Zm50-39h14L85 29 78 40Z"
+              fill="#FFFFFF"
+            />
+            <path
+              d="M149 79V16h23l53 36V16h29v63h-23l-53-36v36h-29Z"
+              fill="#FFFFFF"
+            />
+            <path
+              d="M264 16h32l21 38 22-38h31l-39 63h-28l-39-63Z"
+              fill="#FDB004"
+            />
+            <path
+              d="M335 79l43-63h26l44 63h-31l-11-17h-30l-11 17h-30Zm50-39h14l-7-11-7 11Z"
+              fill="#FDB004"
+            />
+          </g>
+        </svg>
+      </div>
     </div>
   );
 }
