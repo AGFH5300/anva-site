@@ -5,6 +5,7 @@ const SCROLL_THRESHOLD = 20;
 const SVG_CONTENT_SELECTOR = "svg > g";
 const VIEWBOX_X_PADDING_RATIO = 0.035;
 const VIEWBOX_Y_PADDING_RATIO = 0.08;
+const VIEWBOX_SCALE_DAMPENING = 1.1;
 const animationDataUrl = new URL("../../assets/nav-logo-lottie.json", import.meta.url).href;
 
 const fitArtworkViewBox = (container: HTMLDivElement | null) => {
@@ -26,11 +27,13 @@ const fitArtworkViewBox = (container: HTMLDivElement | null) => {
 
   const padX = Math.max(2, bbox.width * VIEWBOX_X_PADDING_RATIO);
   const padY = Math.max(2, bbox.height * VIEWBOX_Y_PADDING_RATIO);
+  const fittedWidth = (bbox.width + padX * 2) * VIEWBOX_SCALE_DAMPENING;
+  const fittedHeight = (bbox.height + padY * 2) * VIEWBOX_SCALE_DAMPENING;
   const fittedViewBox = [
     bbox.x - padX,
-    bbox.y - padY,
-    bbox.width + padX * 2,
-    bbox.height + padY * 2,
+    bbox.y - padY - (fittedHeight - (bbox.height + padY * 2)) / 2,
+    fittedWidth,
+    fittedHeight,
   ];
 
   svg.setAttribute("viewBox", fittedViewBox.join(" "));
