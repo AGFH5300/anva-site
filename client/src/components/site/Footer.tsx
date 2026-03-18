@@ -72,7 +72,7 @@ const Footer = () => (
           <h4 data-node-id="UMEDfieiRZGl">Quick Links</h4>
           <ul data-node-id="VgqbKCAGPaNg" className="">
             <li data-node-id="TizVLEdoFPjI" className="">
-              <a data-node-id="ABULKvQfYezE" href="/#about">
+              <a data-node-id="ABULKvQfYezE" href="/about">
                 About Us
               </a>
             </li>
