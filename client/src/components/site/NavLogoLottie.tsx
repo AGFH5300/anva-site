@@ -5,7 +5,7 @@ const SCROLL_THRESHOLD = 20;
 const SVG_CONTENT_SELECTOR = "svg > g";
 const VIEWBOX_X_PADDING_RATIO = 0.035;
 const VIEWBOX_Y_PADDING_RATIO = 0.08;
-const VIEWBOX_SCALE_DAMPENING = 1.1;
+const VIEWBOX_SCALE_DAMPENING = 1.3;
 const animationDataUrl = new URL("../../assets/nav-logo-lottie.json", import.meta.url).href;
 
 const fitArtworkViewBox = (container: HTMLDivElement | null) => {
