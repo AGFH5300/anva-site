@@ -1624,8 +1624,8 @@ text-underline-offset: 4px;
 }
 
 .nav-logo-lottie {
-width: 280px;
-height: 68px;
+width: 320px;
+height: 74px;
 display: block;
 line-height: 0;
 flex-shrink: 0;
@@ -1645,15 +1645,15 @@ overflow: visible;
 
 @media (max-width: 1023px) {
 .nav-logo-lottie {
-width: 250px;
-height: 60px;
+width: 280px;
+height: 66px;
 }
 }
 
 @media (max-width: 767px) {
 .nav-logo-lottie {
-width: 220px;
-height: 54px;
+width: 236px;
+height: 58px;
 }
 }
 
