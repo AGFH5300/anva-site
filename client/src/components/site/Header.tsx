@@ -26,9 +26,19 @@ const Header = () => {
       className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-marine-900-90 backdrop-blur-md"
       data-shared-component="primary-navigation"
     >
+      <div data-node-id="eJwWIABxuAxw" className="flex items-center gap-4 md:gap-5">
+        <a
+          data-node-id="jQYXkwrxjwtX"
+          className="flex items-center font-display text-2xl font-bold leading-8 tracking-[-0.025em]"
+          href="/"
+          aria-label="ANVA home"
+        >
+          <NavLogoLottie />
+        </a>
+      </div>
       <div
-        data-node-id="JiWOfPBWaCWm"
-        className="mx-auto flex h-20 items-center justify-between px-6"
+        data-node-id="pipWZEBYfTCy"
+        className="hidden items-center gap-7 text-sm font-medium leading-5 text-gray-300 md:flex lg:gap-8"
       >
         <div data-node-id="eJwWIABxuAxw" className="flex items-center gap-3">
           <a
