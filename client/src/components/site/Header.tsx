@@ -32,13 +32,13 @@ const Header = () => {
       className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-marine-900-90 backdrop-blur-lg"
       data-shared-component="primary-navigation"
     >
-      <Container className="flex h-20 items-center gap-4">
+      <Container className="flex h-[4.5rem] items-center gap-3 lg:gap-5">
         <a className="shrink-0" href="/" aria-label="ANVA home">
           <NavLogoLottie />
         </a>
 
-        <nav className="ml-4 hidden min-w-0 flex-1 items-center justify-center xl:flex">
-          <ul className="flex items-center gap-1 text-sm font-medium text-gray-200 2xl:gap-2">
+        <nav className="ml-2 hidden min-w-0 flex-1 items-center justify-center lg:flex">
+          <ul className="flex items-center gap-0.5 text-sm font-medium text-gray-200 xl:gap-1.5 2xl:gap-2">
             {navItems.map((item) => {
               const active = isActiveRoute(location, item.href);
               return (
@@ -47,8 +47,10 @@ const Header = () => {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "inline-flex rounded-md px-3 py-2 text-center leading-tight transition-colors duration-150",
-                      active ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white",
+                      "inline-flex rounded-md px-2.5 py-2 text-center leading-tight transition-colors duration-150 xl:px-3",
+                      active
+                        ? "bg-white/8 text-white ring-1 ring-white/15"
+                        : "hover:bg-white/5 hover:text-white",
                     )}
                   >
                     {item.label}
@@ -59,13 +61,13 @@ const Header = () => {
           </ul>
         </nav>
 
-        <a href="/contact" className={cn(primaryButtonClass, "hidden shrink-0 xl:inline-flex")}>
-          Request Quote
+        <a href="/contact" className={cn(primaryButtonClass, "hidden shrink-0 lg:inline-flex")}>
+          Request a Quote
         </a>
 
         <button
           type="button"
-          className="ml-auto inline-flex rounded-md border border-white/20 p-2 text-white transition hover:bg-white/10 xl:hidden"
+          className="ml-auto inline-flex rounded-md border border-white/20 p-2 text-white transition hover:bg-white/10 lg:hidden"
           onClick={() => setIsOpen((prev) => !prev)}
           data-ref="mobile-menu-btn"
           aria-label="Toggle mobile menu"
@@ -75,7 +77,7 @@ const Header = () => {
         </button>
       </Container>
 
-      <div className={cn("border-t border-white/10 bg-marine-900 xl:hidden", isOpen ? "block" : "hidden")} data-ref="mobile-menu">
+      <div className={cn("border-t border-white/10 bg-marine-900 lg:hidden", isOpen ? "block" : "hidden")} data-ref="mobile-menu">
         <Container className="py-4">
           <nav>
             <ul className="space-y-1">
@@ -98,7 +100,7 @@ const Header = () => {
               })}
             </ul>
           </nav>
-          <a href="/contact" className={cn(primaryButtonClass, "mt-4 w-full")}>Request Quote</a>
+          <a href="/contact" className={cn(primaryButtonClass, "mt-4 w-full")}>Request a Quote</a>
         </Container>
       </div>
     </header>
