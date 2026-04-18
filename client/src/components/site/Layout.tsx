@@ -10,7 +10,7 @@ const Layout = ({ children }: PropsWithChildren) => {
   return (
     <div className="min-h-screen overflow-x-clip bg-marine-900 font-body text-white selection:bg-signal-500 selection:text-marine-900">
       <Header />
-      <main className="pt-20">{children}</main>
+      <main className="pt-[4.75rem] lg:pt-[5rem]">{children}</main>
       <Footer />
     </div>
   );
