@@ -102,3 +102,27 @@
     color: var(--colors-white);
   }
 }
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  letter-spacing: 0.01em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
