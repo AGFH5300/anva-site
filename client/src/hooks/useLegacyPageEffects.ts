@@ -84,28 +84,4 @@ export function useLegacyPageEffects() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  useEffect(() => {
-    const nav = document.querySelector(
-      '[data-shared-component="primary-navigation"]',
-    );
-
-    if (!nav) return;
-
-    const button = nav.querySelector<HTMLElement>("[data-ref=\"mobile-menu-btn\"]");
-    const menu = nav.querySelector<HTMLElement>("[data-ref=\"mobile-menu\"]");
-
-    if (!button || !menu) return;
-
-    const toggleMenu = () => {
-      const isHidden = getComputedStyle(menu).display === "none";
-      menu.style.display = isHidden ? "block" : "none";
-    };
-
-    button.addEventListener("click", toggleMenu);
-
-    return () => {
-      button.removeEventListener("click", toggleMenu);
-    };
-  }, []);
 }
