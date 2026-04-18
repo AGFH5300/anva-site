@@ -4,22 +4,27 @@ import { Container, Section, SectionHeading, SurfaceCard, primaryButtonClass, se
 
 const services = [
   {
+    id: "drydocking-ship-repair-support",
     title: "Drydocking & Ship Repair Support",
     points: ["Repair planning and scope coordination", "Pre-drydock technical preparation", "Yard coordination and progress follow-up", "Punch list and completion support"],
   },
   {
+    id: "marine-riding-squads-onboard-repair-teams",
     title: "Marine Riding Squads & Onboard Repair Teams",
     points: ["Mechanical, piping, steel, and electrical riding squads", "Support in port, anchorage, and voyage windows where suitable", "Urgent attendance and planned work packs", "Manpower backed by material and spare support"],
   },
   {
+    id: "marine-project-management",
     title: "Marine Project Management",
     points: ["Project planning and timeline tracking", "Supplier and contractor coordination", "Technical documentation follow-up", "Execution support for retrofit and operational projects"],
   },
   {
+    id: "marine-technical-consultancy",
     title: "Marine Technical Consultancy",
     points: ["Technical assessments and practical recommendations", "Troubleshooting and root-cause support", "Equipment selection and retrofit planning", "On-the-ground support through implementation"],
   },
   {
+    id: "commercial-procurement-consultancy",
     title: "Commercial & Procurement Consultancy",
     points: ["Commercially practical sourcing guidance", "Bid and quotation comparison support", "Specification alignment and lead-time strategy", "Urgent and planned procurement coordination"],
   },
@@ -38,7 +43,7 @@ function Services() {
         <Container>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service) => (
-              <SurfaceCard key={service.title}>
+              <SurfaceCard key={service.title} id={service.id} className="scroll-mt-28">
                 <h2 className="text-xl font-semibold text-white">{service.title}</h2>
                 <ul className="mt-4 space-y-2 text-gray-300">
                   {service.points.map((point) => (
