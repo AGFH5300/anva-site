@@ -8,12 +8,9 @@ const Layout = ({ children }: PropsWithChildren) => {
   useLegacyPageEffects();
 
   return (
-    <div
-      data-node-id="aYtCzgLuEOHT"
-      className="bg-marine-900 font-body text-white selection:bg-signal-500 selection:text-marine-900 overflow-x-hidden"
-    >
+    <div className="min-h-screen overflow-x-clip bg-marine-900 font-body text-white selection:bg-signal-500 selection:text-marine-900">
       <Header />
-      {children}
+      <main className="pt-20">{children}</main>
       <Footer />
     </div>
   );

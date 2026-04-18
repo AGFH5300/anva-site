@@ -1,59 +1,48 @@
-const squadTypes = [
-  "Mechanical riding squads",
-  "Piping repair squads",
-  "Steel and structural teams",
-  "Electrical and controls support",
-  "Technical supervision support",
-];
+import { CheckCircle2 } from "lucide-react";
+
+import { Container, Section, SectionHeading, SurfaceCard, primaryButtonClass } from "../components/site/SitePrimitives";
+
+const squadTypes = ["Mechanical riding squads", "Piping repair squads", "Steel and structural teams", "Electrical and controls support", "Technical supervision support"];
 
 function RidingSquads() {
   return (
     <>
-      <section className="border-b border-white/10 bg-marine-900 pt-28 pb-16" id="hero">
-        <div className="mx-auto max-w-7xl px-6">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.08em] text-signal-500">Service Page</p>
-          <h1 className="mb-4 font-display text-5xl font-bold">Marine Riding Squads &amp; Onboard Repair Teams</h1>
-          <p className="max-w-4xl text-lg leading-8 text-gray-300">
-            Practical riding squad support for urgent and planned vessel repairs, including
-            attendance in port, at anchorage, and voyage windows where suitable.
-          </p>
-        </div>
+      <section className="border-b border-white/10 bg-marine-900 py-16 sm:py-20" id="hero">
+        <Container>
+          <SectionHeading eyebrow="Service Page" title="Marine Riding Squads & Onboard Repair Teams" description="Practical riding squad support for urgent and planned vessel repairs, including attendance in port, at anchorage, and voyage windows where suitable." />
+        </Container>
       </section>
 
-      <section className="bg-marine-800-50 py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-2">
-          <div className="rounded-xl border border-white/10 bg-marine-900-60 p-7">
-            <h2 className="mb-4 text-2xl font-semibold">Scope of support</h2>
-            <ul className="space-y-2 text-gray-300">
+      <Section className="bg-marine-800-50">
+        <Container className="grid gap-6 lg:grid-cols-2">
+          <SurfaceCard>
+            <h2 className="text-2xl font-semibold">Scope of support</h2>
+            <ul className="mt-4 space-y-2 text-gray-300">
               {squadTypes.map((item) => (
-                <li key={item}>• {item}</li>
+                <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-signal-500" />{item}</li>
               ))}
             </ul>
-          </div>
-          <div className="rounded-xl border border-white/10 bg-marine-900-60 p-7">
-            <h2 className="mb-4 text-2xl font-semibold">Execution focus</h2>
-            <ul className="space-y-2 text-gray-300">
-              <li>• Pre-drydock repair preparation and onboard completion support.</li>
-              <li>• Reduce downtime through coordinated manpower attendance.</li>
-              <li>• Respond to urgent defects and planned maintenance windows.</li>
-              <li>• Combine manpower with required materials and spare supply.</li>
+          </SurfaceCard>
+          <SurfaceCard>
+            <h2 className="text-2xl font-semibold">Execution focus</h2>
+            <ul className="mt-4 space-y-2 text-gray-300">
+              {["Pre-drydock repair preparation and onboard completion support.", "Reduce downtime through coordinated manpower attendance.", "Respond to urgent defects and planned maintenance windows.", "Combine manpower with required materials and spare supply."].map((item) => (
+                <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-signal-500" />{item}</li>
+              ))}
             </ul>
-          </div>
-        </div>
-      </section>
+          </SurfaceCard>
+        </Container>
+      </Section>
 
-      <section className="bg-marine-900 py-16">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-4 font-display text-4xl font-bold">Need riding squad attendance?</h2>
-          <p className="mb-7 text-lg text-gray-300">
-            Share vessel details, location, and repair scope. ANVA will advise the most practical
-            attendance plan and support window.
-          </p>
-          <a className="rounded-sm bg-signal-500 px-8 py-3 font-semibold text-marine-900 hover:bg-signal-600" href="/contact">
-            Request Riding Squad Support
-          </a>
-        </div>
-      </section>
+      <Section className="bg-marine-900">
+        <Container>
+          <div className="mx-auto max-w-4xl rounded-2xl border border-white/10 bg-marine-800/70 p-8 text-center sm:p-10">
+            <h2 className="font-display text-3xl font-bold sm:text-4xl">Need riding squad attendance?</h2>
+            <p className="mt-4 text-lg text-gray-300">Share vessel details, location, and repair scope. ANVA will advise the most practical attendance plan and support window.</p>
+            <a className={`${primaryButtonClass} mt-7`} href="/contact">Request Riding Squad Support</a>
+          </div>
+        </Container>
+      </Section>
     </>
   );
 }
