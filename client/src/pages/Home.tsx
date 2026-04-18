@@ -33,7 +33,7 @@ const whoWeServe = ["Shipowners", "Ship Managers", "Shipyards", "Technical Teams
 function Home() {
   return (
     <>
-      <section className="relative isolate overflow-hidden py-20 sm:py-24 lg:py-28" id="hero">
+      <section className="relative isolate overflow-hidden py-24 sm:py-28 lg:py-32" id="hero">
         <div className="absolute inset-0 -z-20">
           <img
             className="h-full w-full object-cover object-center opacity-35"
@@ -44,18 +44,18 @@ function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(11,18,33,0.95)_0%,rgba(11,18,33,0.9)_45%,rgba(11,18,33,0.2)_100%)]" />
         </div>
         <Container>
-          <div className="max-w-3xl rounded-2xl border border-white/10 bg-marine-900/45 p-8 shadow-2xl backdrop-blur sm:p-10">
+          <div className="max-w-3xl rounded-2xl border border-white/10 bg-marine-900/45 p-9 shadow-2xl backdrop-blur sm:p-11 lg:p-12">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-signal-500 sm:text-sm">
               Supporting Vessels with Service, Supply &amp; Technical Expertise
             </p>
             <h1 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
               Real marine understanding. Practical support.
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-gray-200 sm:text-lg sm:leading-8">
+            <p className="mt-6 max-w-[62ch] text-base leading-7 text-gray-200 sm:text-lg sm:leading-8">
               ANVA supports shipowners, managers, yards, and technical teams with ship repair support, riding squads,
               project coordination, technical consultancy, specialist supply, and selected green shipping solutions.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-wrap gap-3">
               <a className={primaryButtonClass} href="/contact">
                 Request a Quote <ArrowRight className="h-4 w-4" />
               </a>
@@ -66,14 +66,14 @@ function Home() {
       </section>
 
       <Section className="border-t border-white/10 bg-marine-900">
-        <Container className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
+        <Container className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-12">
           <div>
             <SectionHeading
               title="Who we are. What we do."
               description="ANVA Marine is a marine-commercial support company focused on technical and commercial execution. We help clients complete repair, retrofit, and sourcing requirements with practical planning and responsive follow-up."
             />
           </div>
-          <div className={mutedPanelClass}>
+          <div className={`${mutedPanelClass} shadow-[0_10px_26px_rgba(8,14,27,0.25)]`}>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-500 sm:text-sm">Support scope</p>
             <ul className="mt-5 grid gap-3 text-gray-200 sm:grid-cols-2">
               {["Ship repair support", "Riding squads", "Project coordination", "Technical consultancy", "Specialist spare supply", "Green shipping solutions"].map((item) => (
@@ -86,10 +86,10 @@ function Home() {
 
       <Section className="bg-marine-800-50">
         <Container>
-          <SectionHeading title="Key services" className="mb-10" />
+          <SectionHeading title="Key services" className="mb-10 lg:mb-12" />
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {serviceBlocks.map((service) => (
-              <SurfaceCard key={service.title}>
+              <SurfaceCard key={service.title} className="flex flex-col">
                 <h3 className="text-xl font-semibold text-white">{service.title}</h3>
                 <p className="mt-3 leading-7 text-gray-300">{service.description}</p>
               </SurfaceCard>
@@ -99,26 +99,26 @@ function Home() {
       </Section>
 
       <Section className="bg-marine-900">
-        <Container className="grid gap-6 lg:grid-cols-2">
-          <SurfaceCard>
+        <Container className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
+          <SurfaceCard className="flex flex-col">
             <SectionHeading
               eyebrow="Products & specialist supply"
               title="Products, brands & specialist sourcing"
               description="ANVA supports procurement and sourcing for marine systems, machinery, and spare parts across common and hard-to-source requirements."
             />
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3 pt-1">
               <a className={primaryButtonClass} href="/products-brands">View Products / Brands</a>
               <a className={secondaryButtonClass} href="/spares/engine-room-machinery">Marine Spares Support</a>
             </div>
           </SurfaceCard>
 
-          <SurfaceCard className="bg-[linear-gradient(160deg,rgba(19,31,51,0.85),rgba(11,18,33,0.72))]">
+          <SurfaceCard className="flex flex-col bg-[linear-gradient(160deg,rgba(19,31,51,0.85),rgba(11,18,33,0.72))]">
             <SectionHeading
               eyebrow="Green Shipping"
               title="Practical efficiency upgrades"
               description="We support fuel monitoring, flow measurement, bunker measurement, and retrofit-ready vessel efficiency technologies."
             />
-            <a className={`${secondaryButtonClass} mt-7 border-signal-500 text-signal-500 hover:bg-signal-500 hover:text-marine-900`} href="/green-shipping-solutions">
+            <a className={`${secondaryButtonClass} mt-7 border-signal-500 text-signal-500 hover:bg-signal-500 hover:text-marine-900 lg:mt-auto`} href="/green-shipping-solutions">
               Explore Green Shipping Solutions
             </a>
           </SurfaceCard>
@@ -126,7 +126,7 @@ function Home() {
       </Section>
 
       <Section className="bg-marine-800-50">
-        <Container className="grid gap-6 lg:grid-cols-2">
+        <Container className="grid gap-6 lg:grid-cols-2 lg:gap-7">
           <SurfaceCard>
             <SectionHeading title="Why ANVA" />
             <ul className="mt-5 space-y-3 text-gray-200">
@@ -142,9 +142,9 @@ function Home() {
           </SurfaceCard>
           <SurfaceCard>
             <SectionHeading title="Who we serve" />
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2.5">
               {whoWeServe.map((segment) => (
-                <span key={segment} className="rounded-full border border-white/20 px-4 py-2 text-sm text-gray-200">{segment}</span>
+                <span key={segment} className="rounded-full border border-white/20 bg-white/[0.02] px-4 py-2 text-sm text-gray-200">{segment}</span>
               ))}
             </div>
           </SurfaceCard>
