@@ -55,7 +55,7 @@ const gatewayLinks = [
 function Home() {
   return (
     <>
-      <section className="relative isolate overflow-hidden py-20 sm:py-24 lg:py-28" id="hero">
+      <section className="relative isolate overflow-hidden py-16 sm:py-20 lg:py-24" id="hero">
         <div className="absolute inset-0 -z-20">
           <img
             className="h-full w-full object-cover object-center opacity-35"
@@ -92,7 +92,7 @@ function Home() {
         </Container>
       </section>
 
-      <Section className="border-t border-slate-300/70 bg-slate-100/95 py-14 sm:py-16 lg:py-20">
+      <Section className="border-t border-slate-300/70 bg-slate-100/95 py-10 sm:py-12 lg:py-14">
         <Container className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-10">
           <SectionHeading
             title="ANVA Marine in one view"
@@ -107,13 +107,10 @@ function Home() {
             </p>
           </div>
         </Container>
-      </Section>
-
-      <Section className="bg-white py-14 sm:py-16 lg:py-20">
-        <Container>
+        <Container className="mt-8 lg:mt-9">
           <SectionHeading
             title="Service. Supply. Technical expertise."
-            className="mb-8 text-marine-900 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-10"
+            className="mb-7 text-marine-900 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-8"
           />
           <div className="grid gap-6 md:grid-cols-3">
             {anvaPillars.map((pillar) => (
@@ -126,7 +123,7 @@ function Home() {
         </Container>
       </Section>
 
-      <Section className="bg-slate-100/95 py-14 sm:py-16 lg:py-20">
+      <Section className="bg-slate-100/95 py-10 sm:py-12 lg:py-14">
         <Container>
           <SectionHeading
             eyebrow="Gateway"
@@ -151,7 +148,7 @@ function Home() {
         </Container>
       </Section>
 
-      <Section className="border-y border-slate-300/70 bg-white py-14 sm:py-16 lg:py-20">
+      <Section className="border-y border-slate-300/70 bg-white py-10 sm:py-12 lg:py-14">
         <Container className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <h2 className="font-display text-3xl font-semibold text-marine-900">Why ANVA</h2>

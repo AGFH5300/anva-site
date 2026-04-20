@@ -3,3 +3,11 @@ body,
 #root {
   min-height: 100%;
 }
+
+.nav-logo-lottie__viewport svg {
+  filter: saturate(1.35) contrast(1.2) drop-shadow(0 2px 5px rgba(12, 21, 39, 0.22));
+}
+
+.nav-logo-lottie__viewport svg [opacity] {
+  opacity: 1;
+}
