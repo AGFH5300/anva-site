@@ -62,11 +62,11 @@ function Home() {
             src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070&auto=format&fit=crop"
             alt="Commercial marine vessel support"
           />
-          <div className="absolute inset-0 bg-marine-900/55" />
-          <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(11,18,33,0.95)_0%,rgba(11,18,33,0.9)_45%,rgba(11,18,33,0.2)_100%)]" />
+          <div className="absolute inset-0 bg-marine-900/45" />
+          <div className="absolute inset-0 bg-[linear-gradient(108deg,rgba(15,29,54,0.86)_0%,rgba(18,36,66,0.78)_42%,rgba(240,244,250,0.18)_100%)]" />
         </div>
         <Container>
-          <div className="max-w-3xl rounded-2xl border border-white/10 bg-marine-900/45 p-8 shadow-2xl backdrop-blur sm:p-10 lg:p-11">
+          <div className="max-w-3xl rounded-2xl border border-white/45 bg-[rgba(12,25,46,0.62)] p-8 shadow-[0_24px_42px_rgba(7,16,31,0.38)] backdrop-blur-md sm:p-10 lg:p-11">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-signal-500 sm:text-sm">
               Supporting Vessels with Service, Supply &amp; Technical Expertise
             </p>
@@ -92,15 +92,16 @@ function Home() {
         </Container>
       </section>
 
-      <Section className="border-t border-white/10 bg-marine-900">
+      <Section className="border-t border-slate-300/70 bg-slate-100/95 py-14 sm:py-16 lg:py-20">
         <Container className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-10">
           <SectionHeading
             title="ANVA Marine in one view"
             description="Commercial and technical support for active vessel requirements, delivered through one practical workflow across service, supply, and technical follow-up."
+            className="[&_h2]:text-marine-900 [&_p]:text-slate-700"
           />
-          <div className={`${mutedPanelClass} shadow-[0_10px_26px_rgba(8,14,27,0.25)]`}>
+          <div className={`${mutedPanelClass} border-slate-200 bg-white shadow-[0_10px_26px_rgba(8,14,27,0.12)]`}>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-500 sm:text-sm">Who we support</p>
-            <p className="mt-4 leading-7 text-gray-200">
+            <p className="mt-4 leading-7 text-slate-700">
               Shipowners, ship managers, shipyards, technical teams, and procurement teams requiring practical commercial
               and technical response.
             </p>
@@ -108,34 +109,40 @@ function Home() {
         </Container>
       </Section>
 
-      <Section className="bg-marine-800-50">
+      <Section className="bg-white py-14 sm:py-16 lg:py-20">
         <Container>
-          <SectionHeading title="Service. Supply. Technical expertise." className="mb-8 lg:mb-10" />
+          <SectionHeading
+            title="Service. Supply. Technical expertise."
+            className="mb-8 text-marine-900 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-10"
+          />
           <div className="grid gap-6 md:grid-cols-3">
             {anvaPillars.map((pillar) => (
-              <SurfaceCard key={pillar.title} className="flex flex-col">
-                <h3 className="text-xl font-semibold text-white">{pillar.title}</h3>
-                <p className="mt-3 leading-7 text-gray-300">{pillar.description}</p>
+              <SurfaceCard key={pillar.title} className="flex flex-col border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)]">
+                <h3 className="text-xl font-semibold text-marine-900">{pillar.title}</h3>
+                <p className="mt-3 leading-7 text-slate-700">{pillar.description}</p>
               </SurfaceCard>
             ))}
           </div>
         </Container>
       </Section>
 
-      <Section className="bg-marine-900">
+      <Section className="bg-slate-100/95 py-14 sm:py-16 lg:py-20">
         <Container>
           <SectionHeading
             eyebrow="Gateway"
             title="Go directly to the right section"
             description="Use these quick routes to move from overview to detailed ANVA pages."
-            className="mb-8 lg:mb-10"
+            className="mb-8 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-10"
           />
           <div className="grid gap-6 md:grid-cols-2">
             {gatewayLinks.map((item) => (
-              <SurfaceCard key={item.title} className="flex flex-col">
-                <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                <p className="mt-3 leading-7 text-gray-300">{item.description}</p>
-                <a className={`${secondaryButtonClass} mt-6 w-fit`} href={item.href}>
+              <SurfaceCard key={item.title} className="flex flex-col border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)]">
+                <h3 className="text-xl font-semibold text-marine-900">{item.title}</h3>
+                <p className="mt-3 leading-7 text-slate-700">{item.description}</p>
+                <a
+                  className={`${secondaryButtonClass} mt-6 w-fit border-marine-900/20 text-marine-900 hover:bg-marine-900/5`}
+                  href={item.href}
+                >
                   {item.cta} <ArrowRight className="h-4 w-4" />
                 </a>
               </SurfaceCard>
@@ -144,11 +151,11 @@ function Home() {
         </Container>
       </Section>
 
-      <Section className="border-y border-white/10 bg-marine-800-50">
+      <Section className="border-y border-slate-300/70 bg-white py-14 sm:py-16 lg:py-20">
         <Container className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <h2 className="font-display text-3xl font-semibold text-white">Why ANVA</h2>
-            <ul className="mt-4 grid gap-3 text-gray-200 sm:grid-cols-2">
+            <h2 className="font-display text-3xl font-semibold text-marine-900">Why ANVA</h2>
+            <ul className="mt-4 grid gap-3 text-slate-700 sm:grid-cols-2">
               {[
                 "Marine-first response with practical execution.",
                 "Combined commercial and technical support.",

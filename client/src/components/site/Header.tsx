@@ -43,7 +43,6 @@ const navGroups: NavGroup[] = [
       { href: "/products-brands", label: "Products / Brands overview" },
       { href: "/spares/engine-room-machinery", label: "Marine Engine Room & Machinery Spares" },
       { href: "/spares/hard-to-source-oem", label: "Hard-to-Source Marine OEM Spares" },
-      { href: "/green-shipping-solutions", label: "Green Shipping Solutions" },
     ],
   },
 ];
@@ -115,22 +114,24 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b border-white/10 backdrop-blur-xl transition-all duration-200",
-        isScrolled ? "bg-marine-900/97 shadow-[0_12px_30px_rgba(3,8,19,0.4)]" : "bg-marine-900-90",
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-200",
+        isScrolled
+          ? "border-marine-900/15 bg-[rgba(247,249,253,0.98)] shadow-[0_10px_26px_rgba(12,21,39,0.14)]"
+          : "border-slate-300/80 bg-[rgba(247,249,253,0.95)]",
       )}
       data-shared-component="primary-navigation"
     >
       <Container className="flex h-[4.75rem] items-center gap-3 lg:h-[5rem] lg:gap-5">
-        <a className="flex shrink-0 items-center gap-2" href="/" aria-label="ANVA home">
+        <a className="flex shrink-0 items-center gap-2 rounded-lg border border-slate-300/80 bg-white/80 px-2.5 py-1.5 shadow-[0_6px_16px_rgba(12,21,39,0.08)]" href="/" aria-label="ANVA home">
           <NavLogoLottie />
           <span className="hidden text-left sm:block">
-            <strong className="block text-sm font-semibold tracking-wide text-white">ANVA</strong>
-            <span className="block text-[0.675rem] uppercase tracking-[0.16em] text-gray-300">Marine & Commercial</span>
+            <strong className="block text-sm font-semibold tracking-wide text-marine-900">ANVA</strong>
+            <span className="block text-[0.675rem] uppercase tracking-[0.16em] text-slate-600">Marine & Commercial</span>
           </span>
         </a>
 
         <nav className="ml-1 hidden min-w-0 flex-1 items-center justify-center lg:flex" aria-label="Primary">
-          <ul className="flex items-center gap-1 text-sm font-medium text-gray-200 xl:gap-1.5">
+          <ul className="flex items-center gap-1 text-sm font-medium text-slate-700 xl:gap-1.5">
             {topLevelItems.map((item) => {
               const active = isActiveRoute(location, item.href);
               return (
@@ -141,8 +142,8 @@ const Header = () => {
                     className={cn(
                       "inline-flex rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
                       active
-                        ? "bg-white/8 text-white ring-1 ring-white/15"
-                        : "hover:bg-white/5 hover:text-white",
+                        ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
+                        : "hover:bg-marine-900/6 hover:text-marine-900",
                     )}
                   >
                     {item.label}
@@ -162,26 +163,25 @@ const Header = () => {
                   onMouseEnter={() => openDesktopGroup(group.key)}
                   onMouseLeave={queueCloseDesktopMenu}
                 >
-                  <button
-                    type="button"
+                  <a
+                    href={group.items[0].href}
                     className={cn(
                       "inline-flex items-center rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
                       active || expanded
-                        ? "bg-white/8 text-white ring-1 ring-white/15"
-                        : "text-gray-200 hover:bg-white/5 hover:text-white",
+                        ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
+                        : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
                     )}
                     aria-expanded={expanded}
                     aria-haspopup="menu"
-                    onClick={() => setOpenDesktopMenu((prev) => (prev === group.key ? null : group.key))}
                     onFocus={() => openDesktopGroup(group.key)}
                   >
                     {group.label}
-                    <ChevronDown className={cn("ml-1 h-3.5 w-3.5 transition-transform", expanded ? "rotate-180" : "")}/>
-                  </button>
+                    <ChevronDown className={cn("ml-1 h-3.5 w-3.5 transition-transform", expanded ? "rotate-180" : "")} />
+                  </a>
 
                   <div
                     className={cn(
-                      "absolute left-0 top-full mt-1 w-[21rem] rounded-xl border border-white/15 bg-marine-900/98 p-2 shadow-2xl backdrop-blur-lg transition",
+                      "absolute left-0 top-full mt-1 w-[17.5rem] rounded-lg border border-slate-200 bg-white p-1 shadow-[0_14px_24px_rgba(8,18,32,0.12)] transition",
                       expanded ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
                     )}
                     role="menu"
@@ -197,8 +197,8 @@ const Header = () => {
                           href={item.href}
                           role="menuitem"
                           className={cn(
-                            "flex items-center justify-between rounded-lg px-3 py-2.5 text-sm text-gray-200 transition-colors",
-                            activeItem ? "bg-white/12 text-white" : "hover:bg-white/8 hover:text-white",
+                            "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",
+                            activeItem ? "bg-marine-900/10 text-marine-900" : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
                           )}
                         >
                           {item.label}
@@ -219,7 +219,7 @@ const Header = () => {
 
         <button
           type="button"
-          className="ml-auto inline-flex rounded-md border border-white/20 p-2 text-white transition hover:bg-white/10 lg:hidden"
+          className="ml-auto inline-flex rounded-md border border-slate-300 p-2 text-marine-900 transition hover:bg-slate-100 lg:hidden"
           onClick={() => setIsOpen((prev) => !prev)}
           data-ref="mobile-menu-btn"
           aria-label="Toggle mobile menu"
@@ -231,7 +231,7 @@ const Header = () => {
       </Container>
 
       <div
-        className={cn("border-t border-white/10 bg-marine-900/98 lg:hidden", isOpen ? "block" : "hidden")}
+        className={cn("border-t border-slate-200 bg-[rgba(245,248,252,0.98)] lg:hidden", isOpen ? "block" : "hidden")}
         data-ref="mobile-menu"
         id="mobile-primary-menu"
       >
@@ -247,7 +247,7 @@ const Header = () => {
                       aria-current={active ? "page" : undefined}
                       className={cn(
                         "block rounded-md px-4 py-3 text-sm font-medium transition-colors",
-                        active ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white",
+                        active ? "bg-marine-900/10 text-marine-900" : "text-slate-700 hover:bg-marine-900/5 hover:text-marine-900",
                       )}
                     >
                       {item.label}
@@ -261,12 +261,12 @@ const Header = () => {
                 const groupActive = group.items.some((item) => isActiveRoute(location, item.href));
 
                 return (
-                  <li key={`${group.key}-mobile`} className="rounded-md border border-white/10 bg-white/[0.02]">
+                  <li key={`${group.key}-mobile`} className="rounded-md border border-slate-200 bg-white">
                     <button
                       type="button"
                       className={cn(
                         "flex w-full items-center justify-between rounded-md px-4 py-3 text-left text-sm font-medium transition-colors",
-                        groupActive ? "text-white" : "text-gray-200 hover:text-white",
+                        groupActive ? "text-marine-900" : "text-slate-700 hover:text-marine-900",
                       )}
                       onClick={() => toggleMobileSection(group.key)}
                       aria-expanded={expanded}
@@ -288,7 +288,9 @@ const Header = () => {
                               aria-current={active ? "page" : undefined}
                               className={cn(
                                 "block rounded-md px-3 py-2.5 text-sm transition-colors",
-                                active ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white",
+                                active
+                                  ? "bg-marine-900/10 text-marine-900"
+                                  : "text-slate-600 hover:bg-marine-900/5 hover:text-marine-900",
                               )}
                             >
                               {item.label}
