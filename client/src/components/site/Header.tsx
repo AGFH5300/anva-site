@@ -19,7 +19,7 @@ type NavGroup = {
 
 const topLevelItems: SimpleNavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/green-shipping-solutions", label: "Green Shipping Solutions" },
+  { href: "/green-shipping-solutions", label: "Green Shipping" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -114,120 +114,149 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-200",
+        "fixed inset-x-0 top-0 z-50 py-2.5 transition-all duration-200",
         isScrolled
-          ? "border-marine-900/15 bg-[rgba(247,249,253,0.98)] shadow-[0_10px_26px_rgba(12,21,39,0.14)]"
-          : "border-slate-300/80 bg-[rgba(247,249,253,0.95)]",
+          ? "bg-[rgba(236,243,251,0.82)] backdrop-blur-md"
+          : "bg-[rgba(236,243,251,0.45)]",
       )}
       data-shared-component="primary-navigation"
     >
-      <Container className="flex h-[4.75rem] items-center gap-3 lg:h-[5rem] lg:gap-5">
-        <a className="flex shrink-0 items-center gap-2 rounded-lg border border-slate-300/80 bg-white/80 px-2.5 py-1.5 shadow-[0_6px_16px_rgba(12,21,39,0.08)]" href="/" aria-label="ANVA home">
-          <NavLogoLottie />
-          <span className="hidden text-left sm:block">
-            <strong className="block text-sm font-semibold tracking-wide text-marine-900">ANVA</strong>
-            <span className="block text-[0.675rem] uppercase tracking-[0.16em] text-slate-600">Marine & Commercial</span>
-          </span>
-        </a>
+      <Container className="relative">
+        <div
+          className={cn(
+            "flex h-[4.95rem] items-center gap-3 rounded-2xl border px-3 shadow-[0_12px_28px_rgba(12,21,39,0.14)] transition-all lg:h-[5.2rem] lg:gap-5 lg:px-4",
+            isScrolled
+              ? "border-marine-900/18 bg-[rgba(248,250,253,0.96)]"
+              : "border-slate-300/85 bg-[rgba(248,250,253,0.94)]",
+          )}
+        >
+          <a
+            className="flex shrink-0 items-center gap-3 rounded-xl border border-slate-300 bg-white px-3 py-2 shadow-[0_8px_20px_rgba(12,21,39,0.12)]"
+            href="/"
+            aria-label="ANVA home"
+          >
+            <NavLogoLottie />
+            <span className="text-left">
+              <strong className="block text-base font-semibold tracking-[0.05em] text-marine-900">ANVA</strong>
+              <span className="block text-[0.67rem] uppercase tracking-[0.16em] text-slate-600">Marine & Commercial</span>
+            </span>
+          </a>
 
-        <nav className="ml-1 hidden min-w-0 flex-1 items-center justify-center lg:flex" aria-label="Primary">
-          <ul className="flex items-center gap-1 text-sm font-medium text-slate-700 xl:gap-1.5">
-            {topLevelItems.map((item) => {
-              const active = isActiveRoute(location, item.href);
-              return (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "inline-flex whitespace-nowrap rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
-                      active
-                        ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
-                        : "hover:bg-marine-900/6 hover:text-marine-900",
-                    )}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })}
-
-            {navGroups.map((group) => {
-              const active = group.items.some((item) => isActiveRoute(location, item.href));
-              const expanded = openDesktopMenu === group.key;
-
-              return (
-                <li
-                  key={group.key}
-                  className="relative"
-                  onMouseEnter={() => openDesktopGroup(group.key)}
-                  onMouseLeave={queueCloseDesktopMenu}
+          <nav className="ml-1 hidden min-w-0 flex-1 items-center justify-center lg:flex" aria-label="Primary">
+            <ul className="flex items-center gap-1 text-sm font-medium text-slate-700 xl:gap-1.5">
+              <li key="/">
+                <a
+                  href="/"
+                  aria-current={isActiveRoute(location, "/") ? "page" : undefined}
+                  className={cn(
+                    "inline-flex whitespace-nowrap rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
+                    isActiveRoute(location, "/")
+                      ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
+                      : "hover:bg-marine-900/6 hover:text-marine-900",
+                  )}
                 >
-                  <a
-                    href={group.items[0].href}
-                    className={cn(
-                      "inline-flex items-center whitespace-nowrap rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
-                      active || expanded
-                        ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
-                        : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
-                    )}
-                    aria-expanded={expanded}
-                    aria-haspopup="menu"
-                    onFocus={() => openDesktopGroup(group.key)}
-                  >
-                    {group.label}
-                    <ChevronDown className={cn("ml-1 h-3.5 w-3.5 transition-transform", expanded ? "rotate-180" : "")} />
-                  </a>
+                  Home
+                </a>
+              </li>
 
-                  <div
-                    className={cn(
-                      "absolute left-0 top-full mt-1 w-[21rem] rounded-lg border border-slate-200 bg-white p-1 shadow-[0_14px_24px_rgba(8,18,32,0.12)] transition",
-                      expanded ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
-                    )}
-                    role="menu"
-                    aria-label={`${group.label} submenu`}
+              {navGroups.map((group) => {
+                const active = group.items.some((item) => isActiveRoute(location, item.href));
+                const expanded = openDesktopMenu === group.key;
+
+                return (
+                  <li
+                    key={group.key}
+                    className="relative"
                     onMouseEnter={() => openDesktopGroup(group.key)}
                     onMouseLeave={queueCloseDesktopMenu}
                   >
-                    {group.items.map((item) => {
-                      const activeItem = isActiveRoute(location, item.href);
-                      return (
-                        <a
-                          key={item.href}
-                          href={item.href}
-                          role="menuitem"
-                          className={cn(
-                            "flex items-center justify-between rounded-md px-3 py-2 text-sm leading-snug transition-colors",
-                            activeItem ? "bg-marine-900/10 text-marine-900" : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
-                          )}
-                        >
-                          {item.label}
-                          <ChevronRight className="h-3.5 w-3.5 opacity-70" />
-                        </a>
-                      );
-                    })}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
+                    <a
+                      href={group.items[0].href}
+                      className={cn(
+                        "inline-flex items-center whitespace-nowrap rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
+                        active || expanded
+                          ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
+                          : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
+                      )}
+                      aria-expanded={expanded}
+                      aria-haspopup="menu"
+                      onFocus={() => openDesktopGroup(group.key)}
+                    >
+                      {group.label}
+                      <ChevronDown className={cn("ml-1 h-3.5 w-3.5 transition-transform", expanded ? "rotate-180" : "")} />
+                    </a>
 
-        <a href="/contact" className={cn(primaryButtonClass, "hidden shrink-0 lg:inline-flex")}>
-          Request a Quote
-        </a>
+                    <div
+                      className={cn(
+                        "absolute left-0 top-full mt-1 w-[21rem] rounded-lg border border-slate-200 bg-white p-1 shadow-[0_14px_24px_rgba(8,18,32,0.12)] transition",
+                        expanded ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
+                      )}
+                      role="menu"
+                      aria-label={`${group.label} submenu`}
+                      onMouseEnter={() => openDesktopGroup(group.key)}
+                      onMouseLeave={queueCloseDesktopMenu}
+                    >
+                      {group.items.map((item) => {
+                        const activeItem = isActiveRoute(location, item.href);
+                        return (
+                          <a
+                            key={item.href}
+                            href={item.href}
+                            role="menuitem"
+                            className={cn(
+                              "flex items-center justify-between rounded-md px-3 py-2 text-sm leading-snug transition-colors",
+                              activeItem ? "bg-marine-900/10 text-marine-900" : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
+                            )}
+                          >
+                            {item.label}
+                            <ChevronRight className="h-3.5 w-3.5 opacity-70" />
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </li>
+                );
+              })}
 
-        <button
-          type="button"
-          className="ml-auto inline-flex rounded-md border border-slate-300 p-2 text-marine-900 transition hover:bg-slate-100 lg:hidden"
-          onClick={() => setIsOpen((prev) => !prev)}
-          data-ref="mobile-menu-btn"
-          aria-label="Toggle mobile menu"
-          aria-expanded={isOpen}
-          aria-controls="mobile-primary-menu"
-        >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+              {topLevelItems.slice(1).map((item) => {
+                const active = isActiveRoute(location, item.href);
+                return (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "inline-flex whitespace-nowrap rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
+                        active
+                          ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
+                          : "hover:bg-marine-900/6 hover:text-marine-900",
+                      )}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <a href="/contact" className={cn(primaryButtonClass, "hidden shrink-0 lg:inline-flex")}>
+            Request a Quote
+          </a>
+
+          <button
+            type="button"
+            className="ml-auto inline-flex rounded-md border border-slate-300 bg-white p-2 text-marine-900 transition hover:bg-slate-100 lg:hidden"
+            onClick={() => setIsOpen((prev) => !prev)}
+            data-ref="mobile-menu-btn"
+            aria-label="Toggle mobile menu"
+            aria-expanded={isOpen}
+            aria-controls="mobile-primary-menu"
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+
       </Container>
 
       <div
@@ -238,23 +267,20 @@ const Header = () => {
         <Container className="py-4">
           <nav aria-label="Mobile primary">
             <ul className="space-y-1">
-              {topLevelItems.map((item) => {
-                const active = isActiveRoute(location, item.href);
-                return (
-                  <li key={`${item.href}-mobile`}>
-                    <a
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "block rounded-md px-4 py-3 text-sm font-medium transition-colors",
-                        active ? "bg-marine-900/10 text-marine-900" : "text-slate-700 hover:bg-marine-900/5 hover:text-marine-900",
-                      )}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                );
-              })}
+              <li key="/mobile-home">
+                <a
+                  href="/"
+                  aria-current={isActiveRoute(location, "/") ? "page" : undefined}
+                  className={cn(
+                    "block rounded-md px-4 py-3 text-sm font-medium transition-colors",
+                    isActiveRoute(location, "/")
+                      ? "bg-marine-900/10 text-marine-900"
+                      : "text-slate-700 hover:bg-marine-900/5 hover:text-marine-900",
+                  )}
+                >
+                  Home
+                </a>
+              </li>
 
               {navGroups.map((group) => {
                 const expanded = mobileExpandedSections[group.key];
@@ -299,6 +325,24 @@ const Header = () => {
                         );
                       })}
                     </ul>
+                  </li>
+                );
+              })}
+
+              {topLevelItems.slice(1).map((item) => {
+                const active = isActiveRoute(location, item.href);
+                return (
+                  <li key={`${item.href}-mobile`}>
+                    <a
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "block rounded-md px-4 py-3 text-sm font-medium transition-colors",
+                        active ? "bg-marine-900/10 text-marine-900" : "text-slate-700 hover:bg-marine-900/5 hover:text-marine-900",
+                      )}
+                    >
+                      {item.label}
+                    </a>
                   </li>
                 );
               })}

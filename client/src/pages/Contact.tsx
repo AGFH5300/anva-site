@@ -28,8 +28,9 @@ function Contact() {
             </ul>
             <div className="mt-8 rounded-xl border border-white/10 bg-marine-900/50 p-5 text-gray-300">
               <p className="font-semibold text-white">ANVA Marine Office</p>
-              <p className="mt-2">Dubai Maritime City, Dubai, UAE</p>
-              <p className="mt-1">+971 52 356 7890 | +971 58 535 3890</p>
+              <p className="mt-2">F1B-W228, Dubai Maritime City, Dubai, UAE</p>
+              <p className="mt-1">Telephone: +971 4 553 5699</p>
+              <p className="mt-1">Mobile: +971 52 356 7890</p>
               <p className="mt-1">info@anva-group.com</p>
             </div>
           </SurfaceCard>

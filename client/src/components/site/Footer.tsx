@@ -38,8 +38,10 @@ const Footer = () => (
         <ul className="mt-4 space-y-2.5 text-sm text-gray-300">
           <li>F1B-W228, Dubai Maritime City, Dubai, UAE</li>
           <li>
-            <a className="transition-colors hover:text-white" href="tel:+971523567890">+971 52 356 7890</a> · {" "}
-            <a className="transition-colors hover:text-white" href="tel:+971585353890">+971 58 535 3890</a>
+            Telephone: <a className="transition-colors hover:text-white" href="tel:+97145535699">+971 4 553 5699</a>
+          </li>
+          <li>
+            Mobile: <a className="transition-colors hover:text-white" href="tel:+971523567890">+971 52 356 7890</a>
           </li>
           <li>
             <a className="transition-colors hover:text-white" href="mailto:info@anva-group.com">info@anva-group.com</a>
