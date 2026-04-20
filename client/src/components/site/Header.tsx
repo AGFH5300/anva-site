@@ -140,7 +140,7 @@ const Header = () => {
                     href={item.href}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "inline-flex rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
+                      "inline-flex whitespace-nowrap rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
                       active
                         ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
                         : "hover:bg-marine-900/6 hover:text-marine-900",
@@ -166,7 +166,7 @@ const Header = () => {
                   <a
                     href={group.items[0].href}
                     className={cn(
-                      "inline-flex items-center rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
+                      "inline-flex items-center whitespace-nowrap rounded-md px-2.5 py-2 leading-tight transition-colors duration-150 xl:px-3",
                       active || expanded
                         ? "bg-marine-900/10 text-marine-900 ring-1 ring-marine-900/20"
                         : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
@@ -181,7 +181,7 @@ const Header = () => {
 
                   <div
                     className={cn(
-                      "absolute left-0 top-full mt-1 w-[17.5rem] rounded-lg border border-slate-200 bg-white p-1 shadow-[0_14px_24px_rgba(8,18,32,0.12)] transition",
+                      "absolute left-0 top-full mt-1 w-[21rem] rounded-lg border border-slate-200 bg-white p-1 shadow-[0_14px_24px_rgba(8,18,32,0.12)] transition",
                       expanded ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
                     )}
                     role="menu"
@@ -197,7 +197,7 @@ const Header = () => {
                           href={item.href}
                           role="menuitem"
                           className={cn(
-                            "flex items-center justify-between rounded-md px-3 py-2 text-sm transition-colors",
+                            "flex items-center justify-between rounded-md px-3 py-2 text-sm leading-snug transition-colors",
                             activeItem ? "bg-marine-900/10 text-marine-900" : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
                           )}
                         >
