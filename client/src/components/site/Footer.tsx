@@ -9,7 +9,7 @@ const quickLinks = [
 ];
 
 const Footer = () => (
-  <footer className="border-t border-white/10 bg-marine-900" data-shared-component="site-footer">
+  <footer className="border-t border-marine-900/15 bg-marine-800" data-shared-component="site-footer">
     <Container className="grid gap-10 py-12 md:grid-cols-[1.2fr_1fr_1fr] md:gap-8 md:py-14">
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-500">ANVA Marine</p>
@@ -48,7 +48,7 @@ const Footer = () => (
       </div>
     </Container>
 
-    <div className="border-t border-white/10 py-4 sm:py-5">
+    <div className="border-t border-white/15 py-4 sm:py-5">
       <Container className="text-xs text-gray-400 sm:text-sm">© 2026 ANVA Marine. All rights reserved.</Container>
     </div>
   </footer>
