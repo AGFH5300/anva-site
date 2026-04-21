@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 
 import { cn } from "../../lib/utils";
-import logoMark from "../../assets/anva-logo-mark.svg";
+import anvaSymbol from "../../assets/anva-symbol.svg";
 import NavLogoLottie from "./NavLogoLottie";
 import { Container, primaryButtonClass } from "./SitePrimitives";
 
@@ -126,15 +126,15 @@ const Header = () => {
         <div className="flex h-[4.7rem] items-center gap-3 lg:h-[4.95rem] lg:gap-5">
           <a className="group flex shrink-0 items-center gap-2" href="/" aria-label="ANVA home">
             <img
-              src={logoMark}
-              alt="ANVA logo"
-              className="h-10 w-auto shrink-0 sm:h-11 lg:h-[2.8rem]"
+              src={anvaSymbol}
+              alt="ANVA symbol"
+              className="h-6 w-auto shrink-0 sm:h-7 lg:h-8"
               loading="eager"
               decoding="sync"
             />
             <span className="font-display text-xl font-bold tracking-[0.09em] text-marine-900 sm:text-[1.42rem]">ANVA</span>
-            <div className="pointer-events-none ml-0.5 opacity-80" aria-hidden="true">
-              <NavLogoLottie />
+            <div className="pointer-events-none ml-1 opacity-75" aria-hidden="true">
+              <NavLogoLottie speed={0.52} />
             </div>
           </a>
 

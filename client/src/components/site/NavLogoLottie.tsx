@@ -80,7 +80,7 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
 
       animRef.current = anim;
       anim.setSubframe(false);
-      anim.setSpeed(0.58);
+      anim.setSpeed(speed);
 
       const fitArtwork = () => {
         if (fitFrame !== null) window.cancelAnimationFrame(fitFrame);
@@ -126,8 +126,8 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
   }, [speed]);
 
   return (
-    <div className="nav-logo-lottie w-[34px] sm:w-[38px] lg:w-[42px]" aria-hidden="true">
-      <div ref={containerRef} className="nav-logo-lottie__viewport h-5 w-full sm:h-5.5 lg:h-6" />
+    <div className={cn("nav-logo-lottie w-[40px] sm:w-[44px] lg:w-[48px]", className)} aria-hidden="true">
+      <div ref={containerRef} className="nav-logo-lottie__viewport h-[1.35rem] w-full sm:h-6 lg:h-[1.55rem]" />
     </div>
   );
 }
