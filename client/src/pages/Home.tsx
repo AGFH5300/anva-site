@@ -28,25 +28,25 @@ const anvaPillars = [
 const gatewayLinks = [
   {
     title: "Services",
-    description: "Explore ship repair support, riding squads, and technical execution services.",
+    description: "Ship repair support, riding squads, and technical delivery for planned and urgent jobs.",
     href: "/services",
     cta: "Explore Services",
   },
   {
     title: "Products / Brands",
-    description: "View supported products, brands, and specialist marine sourcing scope.",
+    description: "Marine products, represented brands, and practical sourcing support for vessel requirements.",
     href: "/products-brands",
     cta: "View Products / Brands",
   },
   {
     title: "Green Shipping Solutions",
-    description: "See practical vessel efficiency and monitoring solutions for marine operations.",
+    description: "Efficiency and monitoring solutions that support measurable vessel performance improvements.",
     href: "/green-shipping-solutions",
     cta: "Explore Green Shipping",
   },
   {
     title: "Contact / RFQ",
-    description: "Send your requirement and receive practical support options from ANVA.",
+    description: "Send your requirement and get a clear commercial and technical response from ANVA.",
     href: "/contact",
     cta: "Request a Quote",
   },
@@ -96,7 +96,7 @@ function Home() {
         <Container className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-10">
           <SectionHeading
             title="ANVA Marine in one view"
-            description="Commercial and technical support for active vessel requirements, delivered through one practical workflow across service, supply, and technical follow-up."
+            description="Commercial and technical support for active vessel requirements through one clear workflow covering service, supply, and follow-up."
             className="[&_h2]:text-marine-900 [&_p]:text-slate-700"
           />
           <div className={`${mutedPanelClass} border-slate-200 bg-white shadow-[0_10px_26px_rgba(8,14,27,0.12)]`}>
@@ -123,41 +123,40 @@ function Home() {
         </Container>
       </Section>
 
-      <Section className="bg-slate-100/95 py-10 sm:py-12 lg:py-14">
+      <Section className="bg-slate-100/95 py-12 sm:py-14 lg:py-16">
         <Container>
           <SectionHeading
             eyebrow="Gateway"
             title="Go directly to the right section"
-            description="Use these quick routes to move from overview to detailed ANVA pages."
+            description="Quick routes into the core ANVA pages for direct action."
             className="mb-8 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-10"
           />
           <div className="grid gap-6 md:grid-cols-2">
             {gatewayLinks.map((item) => (
-              <SurfaceCard key={item.title} className="flex flex-col border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)]">
-                <h3 className="text-xl font-semibold text-marine-900">{item.title}</h3>
-                <p className="mt-3 leading-7 text-slate-700">{item.description}</p>
-                <a
-                  className={`${secondaryButtonClass} mt-6 w-fit border-marine-900/20 text-marine-900 hover:bg-marine-900/5`}
-                  href={item.href}
-                >
-                  {item.cta} <ArrowRight className="h-4 w-4" />
-                </a>
-              </SurfaceCard>
+              <a key={item.title} href={item.href} className="group block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-marine-700/40">
+                <SurfaceCard className="flex h-full flex-col border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.1)] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-marine-900/25 group-hover:shadow-[0_18px_36px_rgba(8,14,27,0.16)]">
+                  <h3 className="text-xl font-semibold text-marine-900">{item.title}</h3>
+                  <p className="mt-3 leading-7 text-slate-700">{item.description}</p>
+                  <div className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-marine-900">
+                    {item.cta} <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </div>
+                </SurfaceCard>
+              </a>
             ))}
           </div>
         </Container>
       </Section>
 
-      <Section className="border-y border-slate-300/70 bg-white py-10 sm:py-12 lg:py-14">
+      <Section className="border-y border-slate-300/70 bg-white py-12 sm:py-14 lg:py-16">
         <Container className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <h2 className="font-display text-3xl font-semibold text-marine-900">Why ANVA</h2>
             <ul className="mt-4 grid gap-3 text-slate-700 sm:grid-cols-2">
               {[
-                "Marine-first response with practical execution.",
+                "Marine-first response backed by practical execution.",
                 "Combined commercial and technical support.",
                 "Structured handling for urgent and planned requirements.",
-                "Service attendance backed by supply capability.",
+                "Field attendance backed by dependable supply support.",
               ].map((item) => (
                 <li key={item} className="flex gap-2">
                   <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-signal-500" />
