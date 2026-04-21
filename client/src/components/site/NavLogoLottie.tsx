@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 const SVG_CONTENT_SELECTOR = "svg > g";
 const VIEWBOX_X_PADDING_RATIO = 0.03;
 const VIEWBOX_Y_PADDING_RATIO = 0.07;
-const VIEWBOX_SCALE_DAMPENING = 1.7;
+const VIEWBOX_SCALE_DAMPENING = 1.28;
 const animationDataUrl = new URL("../../assets/nav-logo-lottie.json", import.meta.url).href;
 
 const fitArtworkViewBox = (container: HTMLDivElement | null) => {
@@ -126,8 +126,8 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
   }, [speed]);
 
   return (
-    <div className={cn("nav-logo-lottie w-[40px] sm:w-[44px] lg:w-[48px]", className)} aria-hidden="true">
-      <div ref={containerRef} className="nav-logo-lottie__viewport h-[1.35rem] w-full sm:h-6 lg:h-[1.55rem]" />
+    <div className={cn("nav-logo-lottie w-[54px] sm:w-[58px] lg:w-[62px]", className)} aria-hidden="true">
+      <div ref={containerRef} className="nav-logo-lottie__viewport h-[1.75rem] w-full sm:h-[1.92rem] lg:h-[2.05rem]" />
     </div>
   );
 }

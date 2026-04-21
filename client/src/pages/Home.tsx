@@ -123,13 +123,13 @@ function Home() {
         </Container>
       </Section>
 
-      <Section className="bg-slate-100/95 py-12 sm:py-14 lg:py-16">
+      <Section className="bg-slate-100/95 py-10 sm:py-12 lg:py-14">
         <Container>
           <SectionHeading
             eyebrow="Gateway"
             title="Go directly to the right section"
             description="Quick routes into the core ANVA pages for direct action."
-            className="mb-8 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-10"
+            className="mb-7 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-8"
           />
           <div className="grid gap-6 md:grid-cols-2">
             {gatewayLinks.map((item) => (
@@ -144,12 +144,7 @@ function Home() {
               </a>
             ))}
           </div>
-        </Container>
-      </Section>
-
-      <Section className="border-y border-slate-300/70 bg-white py-12 sm:py-14 lg:py-16">
-        <Container className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
-          <div>
+          <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(8,14,27,0.08)] sm:p-7">
             <h2 className="font-display text-3xl font-semibold text-marine-900">Why ANVA</h2>
             <ul className="mt-4 grid gap-3 text-slate-700 sm:grid-cols-2">
               {[
@@ -164,11 +159,10 @@ function Home() {
                 </li>
               ))}
             </ul>
+            <a className={`${primaryButtonClass} mt-6`} href="/contact">
+              Discuss Your Requirement <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
-
-          <a className={primaryButtonClass} href="/contact">
-            Discuss Your Requirement <ArrowRight className="h-4 w-4" />
-          </a>
         </Container>
       </Section>
     </>
