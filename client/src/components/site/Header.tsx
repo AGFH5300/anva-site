@@ -124,19 +124,19 @@ const Header = () => {
     >
       <Container className="relative">
         <div className="flex h-[4.7rem] items-center gap-3 lg:h-[4.95rem] lg:gap-5">
-          <a className="group flex shrink-0 items-center gap-3 sm:gap-3.5" href="/" aria-label="ANVA home">
+          <a className="group flex shrink-0 items-center gap-3.5 sm:gap-4" href="/" aria-label="ANVA home">
             <img
               src={anvaSymbol}
               alt="ANVA symbol"
-              className="h-[2.1rem] w-auto shrink-0 sm:h-[2.35rem] lg:h-[2.5rem]"
+              className="h-[2.15rem] w-auto shrink-0 sm:h-[2.4rem] lg:h-[2.58rem]"
               loading="eager"
               decoding="sync"
             />
-            <span className="font-display text-[1.4rem] font-bold tracking-[0.1em] text-marine-900 sm:text-[1.62rem] lg:text-[1.68rem]">
+            <span className="font-display text-[1.42rem] font-bold tracking-[0.1em] text-marine-900 sm:text-[1.64rem] lg:text-[1.72rem]">
               ANVA
             </span>
-            <div className="pointer-events-none ml-1 opacity-80" aria-hidden="true">
-              <NavLogoLottie className="w-[46px] sm:w-[52px] lg:w-[56px]" speed={0.36} />
+            <div className="pointer-events-none ml-1.5 opacity-85" aria-hidden="true">
+              <NavLogoLottie className="w-[62px] sm:w-[70px] lg:w-[76px]" speed={0.24} />
             </div>
           </a>
 

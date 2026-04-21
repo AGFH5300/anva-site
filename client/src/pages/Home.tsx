@@ -10,157 +10,156 @@ import {
   secondaryButtonClass,
 } from "../components/site/SitePrimitives";
 
-const anvaPillars = [
+const serviceBlocks = [
   {
-    title: "Service",
-    description: "Ship repair support, drydock coordination, and riding squad attendance for planned and urgent needs.",
+    title: "Drydocking & Ship Repair Support",
+    description:
+      "Planning, technical follow-up, repair coordination, and support through pre-drydock, dock, and return-to-service stages.",
   },
   {
-    title: "Supply",
-    description: "Marine machinery, specialist spares, and practical sourcing support across common and hard-to-source items.",
+    title: "Marine Riding Squads & Onboard Repair Teams",
+    description:
+      "Mechanical, piping, steel, electrical, and technical riding squad support for urgent and planned vessel attendance.",
   },
   {
-    title: "Technical expertise",
-    description: "Project coordination and consultancy for upgrades, repairs, and operational technical execution.",
+    title: "Project Management & Technical Consultancy",
+    description:
+      "Hands-on coordination and practical consultancy for vessel upgrades, equipment decisions, and operational execution.",
   },
 ];
 
-const gatewayLinks = [
-  {
-    title: "Services",
-    description: "Ship repair support, riding squads, and technical delivery for planned and urgent jobs.",
-    href: "/services",
-    cta: "Explore Services",
-  },
-  {
-    title: "Products / Brands",
-    description: "Marine products, represented brands, and practical sourcing support for vessel requirements.",
-    href: "/products-brands",
-    cta: "View Products / Brands",
-  },
-  {
-    title: "Green Shipping Solutions",
-    description: "Efficiency and monitoring solutions that support measurable vessel performance improvements.",
-    href: "/green-shipping-solutions",
-    cta: "Explore Green Shipping",
-  },
-  {
-    title: "Contact / RFQ",
-    description: "Send your requirement and get a clear commercial and technical response from ANVA.",
-    href: "/contact",
-    cta: "Request a Quote",
-  },
-];
+const whoWeServe = ["Shipowners", "Ship Managers", "Shipyards", "Technical Teams", "Procurement Teams", "Operators"];
 
 function Home() {
   return (
     <>
-      <section className="relative isolate overflow-hidden py-16 sm:py-20 lg:py-24" id="hero">
+      <section className="relative isolate overflow-hidden py-24 sm:py-28 lg:py-32" id="hero">
         <div className="absolute inset-0 -z-20">
           <img
             className="h-full w-full object-cover object-center opacity-35"
             src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2070&auto=format&fit=crop"
             alt="Commercial marine vessel support"
           />
-          <div className="absolute inset-0 bg-marine-900/45" />
-          <div className="absolute inset-0 bg-[linear-gradient(108deg,rgba(15,29,54,0.86)_0%,rgba(18,36,66,0.78)_42%,rgba(240,244,250,0.18)_100%)]" />
+          <div className="absolute inset-0 bg-marine-900/55" />
+          <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(11,18,33,0.95)_0%,rgba(11,18,33,0.9)_45%,rgba(11,18,33,0.2)_100%)]" />
         </div>
         <Container>
-          <div className="max-w-3xl rounded-2xl border border-white/45 bg-[rgba(12,25,46,0.62)] p-8 shadow-[0_24px_42px_rgba(7,16,31,0.38)] backdrop-blur-md sm:p-10 lg:p-11">
+          <div className="max-w-3xl rounded-2xl border border-white/10 bg-marine-900/45 p-9 shadow-2xl backdrop-blur sm:p-11 lg:p-12">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-signal-500 sm:text-sm">
               Supporting Vessels with Service, Supply &amp; Technical Expertise
             </p>
             <h1 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
               Real marine understanding. Practical support.
             </h1>
-            <p className="mt-5 max-w-[62ch] text-base leading-7 text-gray-200 sm:text-lg sm:leading-8">
-              ANVA Marine is a marine support company serving shipowners, managers, yards, and technical teams with
-              service response, specialist supply, and technical execution.
+            <p className="mt-6 max-w-[62ch] text-base leading-7 text-gray-200 sm:text-lg sm:leading-8">
+              ANVA supports shipowners, managers, yards, and technical teams with ship repair support, riding squads,
+              project coordination, technical consultancy, specialist supply, and selected green shipping solutions.
             </p>
-            <p className="mt-4 text-sm font-medium text-gray-300 sm:text-base">
-              Use the main navigation or choose a section below to go directly to the right ANVA team.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-9 flex flex-wrap gap-3">
               <a className={primaryButtonClass} href="/contact">
                 Request a Quote <ArrowRight className="h-4 w-4" />
               </a>
-              <a className={secondaryButtonClass} href="/services">
-                Explore Services
-              </a>
+              <a className={secondaryButtonClass} href="/services">Explore Services</a>
             </div>
           </div>
         </Container>
       </section>
 
-      <Section className="border-t border-slate-300/70 bg-slate-100/95 py-10 sm:py-12 lg:py-14">
-        <Container className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-10">
-          <SectionHeading
-            title="ANVA Marine in one view"
-            description="Commercial and technical support for active vessel requirements through one clear workflow covering service, supply, and follow-up."
-            className="[&_h2]:text-marine-900 [&_p]:text-slate-700"
-          />
-          <div className={`${mutedPanelClass} border-slate-200 bg-white shadow-[0_10px_26px_rgba(8,14,27,0.12)]`}>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-500 sm:text-sm">Who we support</p>
-            <p className="mt-4 leading-7 text-slate-700">
-              Shipowners, ship managers, shipyards, technical teams, and procurement teams requiring practical commercial
-              and technical response.
-            </p>
+      <Section className="border-t border-white/10 bg-marine-900">
+        <Container className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-12">
+          <div>
+            <SectionHeading
+              title="Who we are. What we do."
+              description="ANVA Marine is a marine-commercial support company focused on technical and commercial execution. We help clients complete repair, retrofit, and sourcing requirements with practical planning and responsive follow-up."
+            />
+          </div>
+          <div className={`${mutedPanelClass} shadow-[0_10px_26px_rgba(8,14,27,0.25)]`}>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-500 sm:text-sm">Support scope</p>
+            <ul className="mt-5 grid gap-3 text-gray-200 sm:grid-cols-2">
+              {["Ship repair support", "Riding squads", "Project coordination", "Technical consultancy", "Specialist spare supply", "Green shipping solutions"].map((item) => (
+                <li className="flex items-center gap-2" key={item}><CheckCircle2 className="h-4 w-4 text-signal-500" />{item}</li>
+              ))}
+            </ul>
           </div>
         </Container>
-        <Container className="mt-8 lg:mt-9">
-          <SectionHeading
-            title="Service. Supply. Technical expertise."
-            className="mb-7 text-marine-900 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-8"
-          />
-          <div className="grid gap-6 md:grid-cols-3">
-            {anvaPillars.map((pillar) => (
-              <SurfaceCard key={pillar.title} className="flex flex-col border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)]">
-                <h3 className="text-xl font-semibold text-marine-900">{pillar.title}</h3>
-                <p className="mt-3 leading-7 text-slate-700">{pillar.description}</p>
+      </Section>
+
+      <Section className="bg-marine-800-50">
+        <Container>
+          <SectionHeading title="Key services" className="mb-10 lg:mb-12" />
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {serviceBlocks.map((service) => (
+              <SurfaceCard key={service.title} className="flex flex-col">
+                <h3 className="text-xl font-semibold text-white">{service.title}</h3>
+                <p className="mt-3 leading-7 text-gray-300">{service.description}</p>
               </SurfaceCard>
             ))}
           </div>
         </Container>
       </Section>
 
-      <Section className="bg-slate-100/95 py-10 sm:py-12 lg:py-14">
-        <Container>
-          <SectionHeading
-            eyebrow="Gateway"
-            title="Go directly to the right section"
-            description="Quick routes into the core ANVA pages for direct action."
-            className="mb-7 [&_h2]:text-marine-900 [&_p]:text-slate-700 lg:mb-8"
-          />
-          <div className="grid gap-6 md:grid-cols-2">
-            {gatewayLinks.map((item) => (
-              <a key={item.title} href={item.href} className="group block h-full rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-marine-700/40">
-                <SurfaceCard className="flex h-full flex-col border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.1)] transition-all duration-200 group-hover:-translate-y-0.5 group-hover:border-marine-900/25 group-hover:shadow-[0_18px_36px_rgba(8,14,27,0.16)]">
-                  <h3 className="text-xl font-semibold text-marine-900">{item.title}</h3>
-                  <p className="mt-3 leading-7 text-slate-700">{item.description}</p>
-                  <div className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-marine-900">
-                    {item.cta} <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </div>
-                </SurfaceCard>
-              </a>
-            ))}
-          </div>
-          <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(8,14,27,0.08)] sm:p-7">
-            <h2 className="font-display text-3xl font-semibold text-marine-900">Why ANVA</h2>
-            <ul className="mt-4 grid gap-3 text-slate-700 sm:grid-cols-2">
+      <Section className="bg-marine-900">
+        <Container className="grid gap-6 lg:grid-cols-2 lg:items-stretch">
+          <SurfaceCard className="flex flex-col">
+            <SectionHeading
+              eyebrow="Products & specialist supply"
+              title="Products, brands & specialist sourcing"
+              description="ANVA supports procurement and sourcing for marine systems, machinery, and spare parts across common and hard-to-source requirements."
+            />
+            <div className="mt-7 flex flex-wrap gap-3 pt-1">
+              <a className={primaryButtonClass} href="/products-brands">View Products / Brands</a>
+              <a className={secondaryButtonClass} href="/spares/engine-room-machinery">Marine Spares Support</a>
+            </div>
+          </SurfaceCard>
+
+          <SurfaceCard className="flex flex-col bg-[linear-gradient(160deg,rgba(19,31,51,0.85),rgba(11,18,33,0.72))]">
+            <SectionHeading
+              eyebrow="Green Shipping"
+              title="Practical efficiency upgrades"
+              description="We support fuel monitoring, flow measurement, bunker measurement, and retrofit-ready vessel efficiency technologies."
+            />
+            <a className={`${secondaryButtonClass} mt-7 border-signal-500 text-signal-500 hover:bg-signal-500 hover:text-marine-900 lg:mt-auto`} href="/green-shipping-solutions">
+              Explore Green Shipping Solutions
+            </a>
+          </SurfaceCard>
+        </Container>
+      </Section>
+
+      <Section className="bg-marine-800-50">
+        <Container className="grid gap-6 lg:grid-cols-2 lg:gap-7">
+          <SurfaceCard>
+            <SectionHeading title="Why ANVA" />
+            <ul className="mt-5 space-y-3 text-gray-200">
               {[
-                "Marine-first response backed by practical execution.",
-                "Combined commercial and technical support.",
-                "Structured handling for urgent and planned requirements.",
-                "Field attendance backed by dependable supply support.",
+                "Real marine understanding and practical execution.",
+                "Technical and commercial support in one workflow.",
+                "Structured response for urgent and planned requirements.",
+                "Service attendance backed by material and supply support.",
               ].map((item) => (
-                <li key={item} className="flex gap-2">
-                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-signal-500" />
-                  {item}
-                </li>
+                <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-signal-500" />{item}</li>
               ))}
             </ul>
-            <a className={`${primaryButtonClass} mt-6`} href="/contact">
-              Discuss Your Requirement <ArrowRight className="h-4 w-4" />
+          </SurfaceCard>
+          <SurfaceCard>
+            <SectionHeading title="Who we serve" />
+            <div className="mt-5 flex flex-wrap gap-2.5">
+              {whoWeServe.map((segment) => (
+                <span key={segment} className="rounded-full border border-white/20 bg-white/[0.02] px-4 py-2 text-sm text-gray-200">{segment}</span>
+              ))}
+            </div>
+          </SurfaceCard>
+        </Container>
+      </Section>
+
+      <Section className="border-y border-white/10 bg-marine-900">
+        <Container>
+          <div className="mx-auto max-w-4xl rounded-2xl border border-signal-500/30 bg-[linear-gradient(145deg,rgba(255,173,1,0.15),rgba(11,18,33,0.9))] p-8 text-center sm:p-12">
+            <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">Need support for an active requirement?</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-200">
+              Send your requirement and ANVA will respond with practical next steps for service, supply, or technical support.
+            </p>
+            <a className={`${primaryButtonClass} mt-7`} href="/contact">
+              Request a Quote <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </Container>

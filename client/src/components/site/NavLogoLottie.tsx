@@ -126,8 +126,8 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
   }, [speed]);
 
   return (
-    <div className={cn("nav-logo-lottie w-[54px] sm:w-[58px] lg:w-[62px]", className)} aria-hidden="true">
-      <div ref={containerRef} className="nav-logo-lottie__viewport h-[1.75rem] w-full sm:h-[1.92rem] lg:h-[2.05rem]" />
+    <div className={cn("nav-logo-lottie w-[62px] sm:w-[68px] lg:w-[74px]", className)} aria-hidden="true">
+      <div ref={containerRef} className="nav-logo-lottie__viewport h-[2.05rem] w-full sm:h-[2.28rem] lg:h-[2.45rem]" />
     </div>
   );
 }
