@@ -124,27 +124,13 @@ const Header = () => {
     >
       <Container className="relative">
         <div className="flex h-[4.7rem] items-center gap-3 lg:h-[4.95rem] lg:gap-5">
-          <a
-            className={cn(
-              "group flex shrink-0 items-center rounded-xl border border-slate-200/80 bg-white/90 px-2 py-1 shadow-[0_2px_8px_rgba(11,23,41,0.08)] transition-colors",
-              isScrolled ? "border-slate-300/90 bg-white" : "border-slate-200/80 bg-white/95",
-            )}
-            href="/"
-            aria-label="ANVA home"
-          >
+          <a className="group flex shrink-0 items-center gap-1.5 sm:gap-2" href="/" aria-label="ANVA home">
             <img
               src={logoWordmark}
               alt="ANVA Marine & Commercial"
-              className="h-9 w-auto sm:h-10 lg:h-[2.55rem]"
+              className="h-9 w-auto sm:h-10 lg:h-[2.6rem]"
             />
-            <span
-              className={cn(
-                "ml-1.5 h-8 w-px bg-slate-300/85 sm:ml-2 sm:h-9",
-                isScrolled ? "opacity-100" : "opacity-90",
-              )}
-              aria-hidden="true"
-            />
-            <div className="pointer-events-none -mr-0.5 ml-1.5 sm:ml-2" aria-hidden="true">
+            <div className="pointer-events-none" aria-hidden="true">
               <NavLogoLottie />
             </div>
           </a>
