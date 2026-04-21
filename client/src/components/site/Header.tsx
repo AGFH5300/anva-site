@@ -130,7 +130,7 @@ const Header = () => {
               alt="ANVA logo"
               className="h-11 w-auto sm:h-12 lg:h-[3.2rem]"
             />
-            <div className="pointer-events-none opacity-75" aria-hidden="true">
+            <div className="pointer-events-none shrink-0 opacity-75" aria-hidden="true">
               <NavLogoLottie speed={0.62} className="w-[32px] sm:w-[36px] lg:w-[40px]" />
             </div>
           </a>
