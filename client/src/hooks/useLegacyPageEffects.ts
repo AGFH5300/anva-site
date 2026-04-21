@@ -49,8 +49,13 @@ export function useLegacyPageEffects() {
     }, defaultObserverOptions);
 
     const targets = Array.from(
-      document.querySelectorAll<HTMLElement>("section > div"),
+      document.querySelectorAll<HTMLElement>("[data-legacy-reveal]"),
     );
+
+    if (!targets.length) {
+      observer.disconnect();
+      return;
+    }
 
     targets.forEach((element) => {
       element.style.opacity = "0";
