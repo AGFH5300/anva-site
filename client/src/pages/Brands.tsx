@@ -3,24 +3,40 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Container, Section, SurfaceCard, primaryButtonClass, secondaryButtonClass } from "../components/site/SitePrimitives";
 
 const categoryGateway = [
-  { title: "Engine Room & Machinery Spares", href: "/spares/engine-room-machinery" },
-  { title: "Hard-to-Source Marine OEM Spares", href: "/spares/hard-to-source-oem" },
-  { title: "Green Shipping Solutions", href: "/green-shipping-solutions" },
-  { title: "Supported Product / Brand Areas", href: "#supported-families" },
+  {
+    title: "Engine Room & Machinery Spares",
+    href: "/spares/engine-room-machinery",
+    text: "Navigate core engine room and machinery supply categories for routine and urgent vessel requirements.",
+  },
+  {
+    title: "Hard-to-Source Marine OEM Spares",
+    href: "/spares/hard-to-source-oem",
+    text: "For obsolete, unclear, or urgent OEM references that need focused sourcing and technical-commercial follow-up.",
+  },
+  {
+    title: "Green Shipping Solutions",
+    href: "/green-shipping-solutions",
+    text: "View practical decarbonisation and compliance-oriented support areas for marine operations.",
+  },
+  {
+    title: "Supported Product / Brand Areas",
+    href: "#supported-families",
+    text: "See key brand families and product groups ANVA supports across specialist marine systems.",
+  },
 ];
 
 const supportedFamilies = [
   {
     heading: "Engine Diagnostics and Monitoring",
-    items: ["MARIDIS", "Related instrumentation and diagnostic support items"],
+    items: ["MARIDIS monitoring references", "Diagnostic instrumentation and associated onboard support items"],
   },
   {
     heading: "Cargo, Tank Gauging and Loading Systems",
-    items: ["Loadmaster", "Associated marine gauging and control references"],
+    items: ["Loadmaster references", "Marine gauging and loading control support requirements"],
   },
   {
     heading: "Hydraulics and Fluid Control",
-    items: ["Bosch Rexroth", "HYDAC", "Related hydraulic and filtration support"],
+    items: ["Bosch Rexroth", "HYDAC", "Hydraulic, filtration, and fluid control supply support"],
   },
   {
     heading: "Signaling and Marine Technical Systems",
@@ -56,8 +72,9 @@ function Brands() {
               <a key={item.title} href={item.href}>
                 <SurfaceCard className="transition-colors hover:border-signal-500/50">
                   <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 text-gray-300">{item.text}</p>
                   <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-signal-500">
-                    Explore <ArrowRight className="h-4 w-4" />
+                    Explore route <ArrowRight className="h-4 w-4" />
                   </p>
                 </SurfaceCard>
               </a>
@@ -70,11 +87,20 @@ function Brands() {
         <Container>
           <SurfaceCard>
             <h2 className="text-2xl font-semibold text-white">Supply support approach</h2>
-            <p className="mt-4 text-gray-300">
-              ANVA supports sourcing, marine supply coordination, OEM and genuine references, and equivalent commercial
-              handling where appropriate. Each enquiry is handled with practical response on lead time, documentation,
-              and technical-commercial fit for vessel use.
-            </p>
+            <ul className="mt-4 grid gap-3 text-gray-300 md:grid-cols-2">
+              {[
+                "Maker, model, serial, and part number review",
+                "Sourcing coordination across OEM, genuine, and suitable equivalent routes where appropriate",
+                "Support for difficult, obsolete, and urgent vessel requirements",
+                "Technical-commercial fit, documentation, and follow-up before supply confirmation",
+                "Internal routing to hard-to-source OEM support when references are incomplete",
+              ].map((item) => (
+                <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-signal-500" />{item}</li>
+              ))}
+            </ul>
+            <a className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-signal-500 hover:text-signal-400" href="/spares/hard-to-source-oem">
+              Go to hard-to-source OEM support <ArrowRight className="h-4 w-4" />
+            </a>
           </SurfaceCard>
         </Container>
       </Section>
@@ -101,8 +127,8 @@ function Brands() {
         <Container>
           <SurfaceCard className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <h2 className="font-display text-3xl font-bold text-white">Need quotation support across brands and spares?</h2>
-              <p className="mt-3 max-w-3xl text-gray-300">Send your requirement with maker, model, and timeline for a focused response.</p>
+              <h2 className="font-display text-3xl font-bold text-white">Need RFQ support across brands and spares?</h2>
+              <p className="mt-3 max-w-3xl text-gray-300">Send maker, model, serial/part number, vessel name, and required timeline for focused sourcing follow-up.</p>
             </div>
             <a className={primaryButtonClass} href="/contact">Send RFQ / Enquiry</a>
           </SurfaceCard>

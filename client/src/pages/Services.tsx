@@ -10,16 +10,16 @@ import {
 
 const supportBlocks = [
   {
-    title: "Vessel repair and technical attendance",
-    text: "Support for repair attendance, onboard defect handling, and coordination with vessel and technical teams.",
+    title: "Voyage and port repair attendance",
+    text: "Support when defects arise during voyage or at port, with attendance planning around port windows and vessel operational limits.",
   },
   {
-    title: "Riding squads and onboard support",
-    text: "Riding manpower for planned and urgent jobs in port, anchorage, and selected voyage windows.",
+    title: "Drydock preparation and yard coordination",
+    text: "Pre-drydock work list support, yard coordination follow-up, and onboard completion actions before handover.",
   },
   {
-    title: "Project and procurement coordination",
-    text: "Practical technical-commercial follow-up to keep service and supply requirements moving without delay.",
+    title: "Project and procurement execution follow-up",
+    text: "RFQ, supplier, and contractor coordination with technical-commercial follow-up to keep execution moving.",
   },
 ];
 
@@ -27,35 +27,60 @@ const coreServices = [
   {
     title: "Drydocking & Ship Repair Support",
     href: "/contact",
-    points: ["Repair scope preparation", "Yard coordination follow-up", "Execution and completion support"],
+    cta: "Plan drydock support",
+    points: [
+      "Drydock preparation and work-list review",
+      "Yard coordination with vessel and technical teams",
+      "Onboard defect follow-up and completion tracking",
+    ],
   },
   {
     title: "Marine Riding Squads & Onboard Repair Teams",
     href: "/services/riding-squads",
-    points: ["Onboard manpower attendance", "Urgent and planned repair support", "Port and voyage response windows"],
+    cta: "Request riding squad attendance",
+    points: [
+      "Voyage repair attendance and urgent onboard jobs",
+      "Port attendance windows and manpower reinforcement",
+      "Pre-drydock completion support onboard",
+    ],
   },
   {
     title: "Marine Project Management",
     href: "/contact",
-    points: ["Project planning and tracking", "Supplier and contractor coordination", "Technical documentation follow-up"],
+    cta: "Coordinate project execution",
+    points: [
+      "Project execution follow-up across work fronts",
+      "Supplier and contractor coordination",
+      "Progress, risk, and handover follow-up",
+    ],
   },
   {
     title: "Marine Technical Consultancy",
     href: "/contact",
-    points: ["Technical review and recommendations", "Troubleshooting support", "Execution-focused guidance"],
+    cta: "Request technical review",
+    points: [
+      "Onboard defect assessment support",
+      "Repair method and sequence input",
+      "Technical recommendations linked to vessel schedule",
+    ],
   },
   {
     title: "Commercial & Procurement Consultancy",
     href: "/contact",
-    points: ["Commercial handling and RFQ follow-up", "Sourcing route support", "Lead-time and cost coordination"],
+    cta: "Send procurement requirement",
+    points: [
+      "RFQ preparation and follow-up",
+      "Supplier route and offer comparison support",
+      "Technical-commercial follow-up on lead time and delivery",
+    ],
   },
 ];
 
 const workflow = [
-  "Review requirement",
-  "Define service or supply scope",
-  "Coordinate attendance and execution",
-  "Respond with technical-commercial follow-up",
+  "Review vessel requirement, constraints, and attendance window",
+  "Align scope, responsibilities, and execution sequence",
+  "Coordinate suppliers, contractors, and onboard/shore interfaces",
+  "Track delivery, completion status, and technical-commercial close-out",
 ];
 
 function Services() {
@@ -82,7 +107,7 @@ function Services() {
 
       <Section className="bg-marine-800-50">
         <Container>
-          <h2 className="font-display text-3xl font-bold text-white">What ANVA supports</h2>
+          <h2 className="font-display text-3xl font-bold text-white">Typical service entry points</h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {supportBlocks.map((item) => (
               <SurfaceCard key={item.title}>
@@ -110,7 +135,7 @@ function Services() {
                   ))}
                 </ul>
                 <a className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-signal-500 hover:text-signal-400" href={service.href}>
-                  Discuss this service <ArrowRight className="h-4 w-4" />
+                  {service.cta} <ArrowRight className="h-4 w-4" />
                 </a>
               </SurfaceCard>
             ))}
@@ -153,7 +178,7 @@ function Services() {
           <SurfaceCard className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <h2 className="font-display text-3xl font-bold text-white">Need urgent vessel support?</h2>
-              <p className="mt-3 max-w-3xl text-gray-300">Send your requirement and ANVA will respond with practical service and supply next steps.</p>
+              <p className="mt-3 max-w-3xl text-gray-300">Send vessel details, location, and scope for practical next steps on service attendance and supply coordination.</p>
             </div>
             <a className={primaryButtonClass} href="/contact">Send your requirement</a>
           </SurfaceCard>
