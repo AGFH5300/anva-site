@@ -1,4 +1,4 @@
-import { Container, Section, SectionHeading, SurfaceCard, primaryButtonClass } from "../components/site/SitePrimitives";
+import { Container, Section, SurfaceCard, primaryButtonClass } from "../components/site/SitePrimitives";
 
 const inputClass =
   "w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder:text-slate-500 transition focus:border-signal-500 focus:outline-none focus:ring-2 focus:ring-signal-500/20";
@@ -8,11 +8,9 @@ function Contact() {
     <>
       <section className="border-b border-white/10 bg-marine-900 py-16 sm:py-20" id="hero">
         <Container>
-          <SectionHeading
-            eyebrow="Contact / RFQ"
-            title="Request marine service, supply, or technical support"
-            description="Send your requirement and ANVA will respond with practical next steps for urgent and planned requirements."
-          />
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-500 sm:text-sm">Contact / RFQ</p>
+          <h1 className="mt-3 font-display text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">Request marine service, supply, or technical support</h1>
+          <p className="mt-4 max-w-4xl text-base leading-7 text-gray-300 sm:text-lg sm:leading-8">Send your requirement and ANVA will respond with practical next steps for urgent and planned requirements.</p>
         </Container>
       </section>
 
