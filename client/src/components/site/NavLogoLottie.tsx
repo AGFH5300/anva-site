@@ -181,8 +181,8 @@ export default function NavLogoLottie() {
   }, []);
 
   return (
-    <div className="nav-logo-lottie w-[156px] sm:w-[168px] lg:w-[180px] xl:w-[188px]" aria-hidden="true">
-      <div ref={containerRef} className="nav-logo-lottie__viewport h-9 w-full sm:h-10 lg:h-10.5 xl:h-11" />
+    <div className="nav-logo-lottie w-[52px] sm:w-[58px] lg:w-[64px]" aria-hidden="true">
+      <div ref={containerRef} className="nav-logo-lottie__viewport h-7 w-full sm:h-8 lg:h-8.5" />
     </div>
   );
 }
