@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 
 import { cn } from "../../lib/utils";
 import logoWordmark from "../../assets/anva-logo-wordmark.svg";
+import NavLogoLottie from "./NavLogoLottie";
 import { Container, primaryButtonClass } from "./SitePrimitives";
 
 type SimpleNavItem = {
@@ -116,23 +117,36 @@ const Header = () => {
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition-all duration-200",
         isScrolled
-          ? "border-slate-300/80 bg-[rgba(246,249,253,0.94)] shadow-[0_10px_24px_rgba(11,23,41,0.12)] backdrop-blur-md"
-          : "border-slate-300/65 bg-[rgba(246,249,253,0.86)]",
+          ? "border-slate-300/90 bg-[rgba(246,249,253,0.98)] shadow-[0_10px_24px_rgba(11,23,41,0.14)] backdrop-blur-sm"
+          : "border-slate-300/80 bg-[rgba(246,249,253,0.95)]",
       )}
       data-shared-component="primary-navigation"
     >
       <Container className="relative">
         <div className="flex h-[4.7rem] items-center gap-3 lg:h-[4.95rem] lg:gap-5">
           <a
-            className="flex shrink-0 items-center"
+            className={cn(
+              "group flex shrink-0 items-center rounded-xl border border-slate-200/80 bg-white/90 px-2 py-1 shadow-[0_2px_8px_rgba(11,23,41,0.08)] transition-colors",
+              isScrolled ? "border-slate-300/90 bg-white" : "border-slate-200/80 bg-white/95",
+            )}
             href="/"
             aria-label="ANVA home"
           >
             <img
               src={logoWordmark}
               alt="ANVA Marine & Commercial"
-              className="h-10 w-auto sm:h-[2.7rem] lg:h-[2.9rem]"
+              className="h-9 w-auto sm:h-10 lg:h-[2.55rem]"
             />
+            <span
+              className={cn(
+                "ml-1.5 h-8 w-px bg-slate-300/85 sm:ml-2 sm:h-9",
+                isScrolled ? "opacity-100" : "opacity-90",
+              )}
+              aria-hidden="true"
+            />
+            <div className="pointer-events-none -mr-0.5 ml-1.5 sm:ml-2" aria-hidden="true">
+              <NavLogoLottie />
+            </div>
           </a>
 
           <nav className="ml-1 hidden min-w-0 flex-1 items-center justify-center lg:flex" aria-label="Primary">
