@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import lottie, { type AnimationItem } from "lottie-web";
 
+import { cn } from "../../lib/utils";
+
 const SVG_CONTENT_SELECTOR = "svg > g";
 const VIEWBOX_X_PADDING_RATIO = 0.035;
 const VIEWBOX_Y_PADDING_RATIO = 0.08;
@@ -40,7 +42,12 @@ const fitArtworkViewBox = (container: HTMLDivElement | null) => {
   svg.style.overflow = "visible";
 };
 
-export default function NavLogoLottie() {
+type NavLogoLottieProps = {
+  className?: string;
+  speed?: number;
+};
+
+export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const animRef = useRef<AnimationItem | null>(null);
 
@@ -73,6 +80,7 @@ export default function NavLogoLottie() {
 
       animRef.current = anim;
       anim.setSubframe(false);
+      anim.setSpeed(speed);
 
       const fitArtwork = () => {
         if (fitFrame !== null) window.cancelAnimationFrame(fitFrame);
@@ -115,10 +123,10 @@ export default function NavLogoLottie() {
       animRef.current?.destroy();
       animRef.current = null;
     };
-  }, []);
+  }, [speed]);
 
   return (
-    <div className="nav-logo-lottie w-[52px] sm:w-[58px] lg:w-[64px]" aria-hidden="true">
+    <div className={cn("nav-logo-lottie w-[52px] sm:w-[58px] lg:w-[64px]", className)} aria-hidden="true">
       <div ref={containerRef} className="nav-logo-lottie__viewport h-7 w-full sm:h-8 lg:h-8.5" />
     </div>
   );

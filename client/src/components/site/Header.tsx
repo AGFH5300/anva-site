@@ -127,11 +127,11 @@ const Header = () => {
           <a className="group flex shrink-0 items-center gap-1.5 sm:gap-2" href="/" aria-label="ANVA home">
             <img
               src={logoWordmark}
-              alt="ANVA Marine & Commercial"
-              className="h-9 w-auto sm:h-10 lg:h-[2.6rem]"
+              alt="ANVA logo"
+              className="h-11 w-auto sm:h-12 lg:h-[3.2rem]"
             />
-            <div className="pointer-events-none" aria-hidden="true">
-              <NavLogoLottie />
+            <div className="pointer-events-none opacity-75" aria-hidden="true">
+              <NavLogoLottie speed={0.62} className="w-[32px] sm:w-[36px] lg:w-[40px]" />
             </div>
           </a>
 
