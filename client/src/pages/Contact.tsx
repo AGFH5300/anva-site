@@ -1,7 +1,7 @@
 import { Container, Section, SectionHeading, SurfaceCard, primaryButtonClass } from "../components/site/SitePrimitives";
 
 const inputClass =
-  "w-full rounded-md border border-white/20 bg-marine-900 px-4 py-3 text-white placeholder:text-gray-500 transition focus:border-signal-500 focus:outline-none focus:ring-2 focus:ring-signal-500/20";
+  "w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder:text-slate-500 transition focus:border-signal-500 focus:outline-none focus:ring-2 focus:ring-signal-500/20";
 
 function Contact() {
   return (
@@ -16,18 +16,18 @@ function Contact() {
         </Container>
       </section>
 
-      <Section className="bg-marine-800-50" id="rfq">
+      <Section className="bg-slate-100/95 py-12 sm:py-14 lg:py-16" id="rfq">
         <Container className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          <SurfaceCard className="order-2 lg:order-1">
-            <h2 className="text-2xl font-semibold">What to include</h2>
-            <ul className="mt-4 space-y-2 text-gray-300">
+          <SurfaceCard className="order-2 border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)] lg:order-1">
+            <h2 className="text-2xl font-semibold text-marine-900">What to include</h2>
+            <ul className="mt-4 space-y-2 text-slate-700">
               <li>• Vessel name / type and current location</li>
               <li>• Service scope or spare part references</li>
               <li>• Required attendance / delivery timeline</li>
               <li>• Any technical photos, model numbers, or documents</li>
             </ul>
-            <div className="mt-8 rounded-xl border border-white/10 bg-marine-900/50 p-5 text-gray-300">
-              <p className="font-semibold text-white">ANVA Marine Office</p>
+            <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700">
+              <p className="font-semibold text-marine-900">ANVA Marine Office</p>
               <p className="mt-2">F1B-W228, Dubai Maritime City, Dubai, UAE</p>
               <p className="mt-1">Telephone: +971 4 553 5699</p>
               <p className="mt-1">Mobile: +971 52 356 7890</p>
@@ -35,33 +35,33 @@ function Contact() {
             </div>
           </SurfaceCard>
 
-          <SurfaceCard className="order-1 lg:order-2">
-            <h2 className="text-2xl font-semibold">Send your RFQ</h2>
+          <SurfaceCard className="order-1 border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)] lg:order-2">
+            <h2 className="text-2xl font-semibold text-marine-900">Send your RFQ</h2>
             <form className="mt-5 space-y-5">
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm text-gray-300">Full Name</label>
+                  <label className="mb-2 block text-sm text-slate-600">Full Name</label>
                   <input className={inputClass} type="text" placeholder="Your name" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm text-gray-300">Company</label>
+                  <label className="mb-2 block text-sm text-slate-600">Company</label>
                   <input className={inputClass} type="text" placeholder="Company name" />
                 </div>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm text-gray-300">Work Email</label>
+                  <label className="mb-2 block text-sm text-slate-600">Work Email</label>
                   <input className={inputClass} type="email" placeholder="name@company.com" />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm text-gray-300">Phone / WhatsApp</label>
+                  <label className="mb-2 block text-sm text-slate-600">Phone / WhatsApp</label>
                   <input className={inputClass} type="tel" placeholder="+971 ..." />
                 </div>
               </div>
 
               <div>
-                <label className="mb-2 block text-sm text-gray-300">Enquiry Type</label>
+                <label className="mb-2 block text-sm text-slate-600">Enquiry Type</label>
                 <select className={inputClass}>
                   <option>Ship Repair Support</option>
                   <option>Marine Riding Squads</option>
@@ -73,7 +73,7 @@ function Contact() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm text-gray-300">Requirement Details</label>
+                <label className="mb-2 block text-sm text-slate-600">Requirement Details</label>
                 <textarea className={`${inputClass} min-h-36`} placeholder="Describe the requirement, timeline, vessel details, and any part references." />
               </div>
 

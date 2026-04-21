@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 
 import { cn } from "../../lib/utils";
-import NavLogoLottie from "./NavLogoLottie";
+import logoWordmark from "../../assets/anva-logo-wordmark.svg";
 import { Container, primaryButtonClass } from "./SitePrimitives";
 
 type SimpleNavItem = {
@@ -114,32 +114,25 @@ const Header = () => {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 py-2.5 transition-all duration-200",
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-200",
         isScrolled
-          ? "bg-[rgba(236,243,251,0.82)] backdrop-blur-md"
-          : "bg-[rgba(236,243,251,0.45)]",
+          ? "border-slate-300/80 bg-[rgba(246,249,253,0.94)] shadow-[0_10px_24px_rgba(11,23,41,0.12)] backdrop-blur-md"
+          : "border-slate-300/65 bg-[rgba(246,249,253,0.86)]",
       )}
       data-shared-component="primary-navigation"
     >
       <Container className="relative">
-        <div
-          className={cn(
-            "flex h-[4.95rem] items-center gap-3 rounded-2xl border px-3 shadow-[0_12px_28px_rgba(12,21,39,0.14)] transition-all lg:h-[5.2rem] lg:gap-5 lg:px-4",
-            isScrolled
-              ? "border-marine-900/18 bg-[rgba(248,250,253,0.96)]"
-              : "border-slate-300/85 bg-[rgba(248,250,253,0.94)]",
-          )}
-        >
+        <div className="flex h-[4.7rem] items-center gap-3 lg:h-[4.95rem] lg:gap-5">
           <a
-            className="flex shrink-0 items-center gap-3 rounded-xl border border-slate-300 bg-white px-3 py-2 shadow-[0_8px_20px_rgba(12,21,39,0.12)]"
+            className="flex shrink-0 items-center"
             href="/"
             aria-label="ANVA home"
           >
-            <NavLogoLottie />
-            <span className="text-left">
-              <strong className="block text-base font-semibold tracking-[0.05em] text-marine-900">ANVA</strong>
-              <span className="block text-[0.67rem] uppercase tracking-[0.16em] text-slate-600">Marine & Commercial</span>
-            </span>
+            <img
+              src={logoWordmark}
+              alt="ANVA Marine & Commercial"
+              className="h-10 w-auto sm:h-[2.7rem] lg:h-[2.9rem]"
+            />
           </a>
 
           <nav className="ml-1 hidden min-w-0 flex-1 items-center justify-center lg:flex" aria-label="Primary">

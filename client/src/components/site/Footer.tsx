@@ -3,7 +3,7 @@ import { Container, primaryButtonClass } from "./SitePrimitives";
 const quickLinks = [
   { href: "/services", label: "Services" },
   { href: "/products-brands", label: "Products / Brands" },
-  { href: "/green-shipping-solutions", label: "Green Shipping Solutions" },
+  { href: "/green-shipping-solutions", label: "Green Shipping" },
   { href: "/contact", label: "Contact" },
   { href: "/about", label: "About" },
 ];
