@@ -1,11 +1,8 @@
-# Temporary keep-alive for the ANVA corporate website during Apple Developer review.
-# Remove/disable once ANVA is on always-on or static hosting, or after Apple approval.
+# Scheduled keep-alive disabled after migration to Render Static Site.
+# Manual diagnostic remains available; static hosting does not sleep.
 name: ANVA Website Keep-Alive
 
 on:
-  schedule:
-    # Every ten minutes, offset from the top of the hour for better scheduling reliability.
-    - cron: '7,17,27,37,47,57 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
