@@ -8,6 +8,10 @@ const VIEWBOX_X_PADDING_RATIO = 0.03;
 const VIEWBOX_Y_PADDING_RATIO = 0.07;
 const VIEWBOX_SCALE_DAMPENING = 1.28;
 const animationDataUrl = new URL("../../assets/nav-logo-lottie.json", import.meta.url).href;
+// The original animation morphs a colored ANVA wordmark out of view.
+// Hold its readable opening frame between occasional morphing replays.
+const WORDMARK_HOLD_MS = 5800;
+const WORDMARK_MORPH_END_FRAME = 21;
 
 const fitArtworkViewBox = (container: HTMLDivElement | null) => {
   if (!container) return;
@@ -58,6 +62,7 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
     let cleanupResize: (() => void) | null = null;
     let cleanupAnimListeners: (() => void) | null = null;
     let fitFrame: number | null = null;
+    let replayTimer: number | null = null;
 
     const init = async () => {
       const response = await fetch(animationDataUrl, { cache: "force-cache" });
@@ -68,8 +73,8 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
       const anim = lottie.loadAnimation({
         container: containerRef.current,
         renderer: "svg",
-        loop: true,
-        autoplay: true,
+        loop: false,
+        autoplay: false,
         animationData,
         rendererSettings: {
           preserveAspectRatio: "xMidYMid meet",
@@ -91,15 +96,35 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
         });
       };
 
+      const holdReadableWordmark = () => {
+        if (!mounted || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        replayTimer = window.setTimeout(() => {
+          replayTimer = null;
+          if (!mounted) return;
+          anim.playSegments([0, WORDMARK_MORPH_END_FRAME], true);
+        }, WORDMARK_HOLD_MS);
+      };
+
+      const onMorphComplete = () => {
+        // The final animation frame is effectively blank. Restore the brand
+        // immediately so the navbar does not spend time displaying fragments.
+        anim.goToAndStop(0, true);
+        holdReadableWordmark();
+      };
+
       const onDomLoaded = () => {
+        anim.goToAndStop(0, true);
         anim.resize();
         fitArtwork();
+        holdReadableWordmark();
       };
 
       anim.addEventListener("DOMLoaded", onDomLoaded);
+      anim.addEventListener("complete", onMorphComplete);
 
       cleanupAnimListeners = () => {
         anim.removeEventListener("DOMLoaded", onDomLoaded);
+        anim.removeEventListener("complete", onMorphComplete);
       };
 
       const onResize = () => {
@@ -118,6 +143,7 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
       mounted = false;
       initPromise.catch(() => null);
       if (fitFrame !== null) window.cancelAnimationFrame(fitFrame);
+      if (replayTimer !== null) window.clearTimeout(replayTimer);
       cleanupAnimListeners?.();
       cleanupResize?.();
       animRef.current?.destroy();
@@ -126,8 +152,8 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
   }, [speed]);
 
   return (
-    <div className={cn("nav-logo-lottie w-[62px] sm:w-[68px] lg:w-[74px]", className)} aria-hidden="true">
-      <div ref={containerRef} className="nav-logo-lottie__viewport h-[2.05rem] w-full sm:h-[2.28rem] lg:h-[2.45rem]" />
+    <div className={cn("nav-logo-lottie w-[112px] min-[360px]:w-[132px] sm:w-[162px] lg:w-[176px]", className)} aria-hidden="true">
+      <div ref={containerRef} className="nav-logo-lottie__viewport h-[2.15rem] w-full sm:h-[2.65rem] lg:h-[2.85rem]" />
     </div>
   );
 }
