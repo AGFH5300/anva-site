@@ -34,10 +34,10 @@ function staticRouteEntries(): Plugin {
         await mkdir(routeDir, { recursive: true });
         await writeFile(path.join(routeDir, "index.html"), html);
         // Render's clean-URL resolver may prefer /route.html over /route/index.html.
+        if (route !== "contact") {
         await writeFile(path.join(output, `${route}.html`), html);
+        }
       }
-      // Preserve old bookmarked URLs without serving the obsolete placeholder content.
-      await writeFile(path.join(output, "anva.html"), html);
     },
   };
 }
