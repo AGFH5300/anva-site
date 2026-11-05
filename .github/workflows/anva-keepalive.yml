@@ -7,6 +7,10 @@ on:
     # Every ten minutes, offset from the top of the hour for better scheduling reliability.
     - cron: '7,17,27,37,47,57 * * * *'
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/anva-keepalive.yml'
 
 permissions:
   contents: read
