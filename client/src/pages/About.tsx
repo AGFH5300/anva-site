@@ -20,7 +20,7 @@ function About() {
         <Container className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           <SurfaceCard>
             <h2 className="text-xl font-semibold text-white">Who we are</h2>
-            <p className="mt-3 text-gray-300">A marine-focused support company with service and supply experience across vessel technical and commercial requirements.</p>
+            <p className="mt-3 text-gray-300">Advanced Nautical Ventures FZE (ANVA Marine) is a Dubai-based marine support company with service and supply experience across vessel technical and commercial requirements.</p>
           </SurfaceCard>
           <SurfaceCard>
             <h2 className="text-xl font-semibold text-white">What we support</h2>

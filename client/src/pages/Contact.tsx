@@ -1,9 +1,33 @@
+import { useState, type FormEvent } from "react";
 import { Container, Section, SurfaceCard, primaryButtonClass } from "../components/site/SitePrimitives";
 
 const inputClass =
   "w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder:text-slate-500 transition focus:border-signal-500 focus:outline-none focus:ring-2 focus:ring-signal-500/20";
 
 function Contact() {
+  const [draftPrepared, setDraftPrepared] = useState(false);
+  const handleEmailDraft = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const fields = new FormData(event.currentTarget);
+    const get = (key: string) => String(fields.get(key) ?? "").trim();
+    const subject = `Marine RFQ: ${get("enquiryType")}`;
+    const body = [
+      "Marine Service / Supply Request",
+      "",
+      `Name: ${get("fullName")}`,
+      `Company: ${get("company")}`,
+      `Email: ${get("workEmail")}`,
+      `Phone / WhatsApp: ${get("phone") || "Not provided"}`,
+      `Enquiry type: ${get("enquiryType")}`,
+      "",
+      "Requirement details:",
+      get("requirement"),
+    ].join("\n");
+    // Static hosting has no email-sending backend. Use an explicit mail draft
+    // rather than falsely reporting that the form was submitted.
+    window.location.href = `mailto:info@anva-group.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setDraftPrepared(true);
+  };
   return (
     <>
       <section className="border-b border-white/10 bg-marine-900 py-16 sm:py-20" id="hero">
@@ -25,7 +49,7 @@ function Contact() {
               <li>• Any technical photos, model numbers, or documents</li>
             </ul>
             <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-700">
-              <p className="font-semibold text-marine-900">ANVA Marine Office</p>
+              <p className="font-semibold text-marine-900">Advanced Nautical Ventures FZE (ANVA Marine)</p>
               <p className="mt-2">F1B-W228, Dubai Maritime City, Dubai, UAE</p>
               <p className="mt-1">Telephone: +971 4 553 5699</p>
               <p className="mt-1">Mobile: +971 52 356 7890</p>
@@ -34,33 +58,33 @@ function Contact() {
           </SurfaceCard>
 
           <SurfaceCard className="order-1 border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)] lg:order-2">
-            <h2 className="text-2xl font-semibold text-marine-900">Send your RFQ</h2>
-            <form className="mt-5 space-y-5">
+            <h2 className="text-2xl font-semibold text-marine-900">Prepare your RFQ email</h2>
+            <form className="mt-5 space-y-5" onSubmit={handleEmailDraft}>
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm text-slate-600">Full Name</label>
-                  <input className={inputClass} type="text" placeholder="Your name" />
+                  <input className={inputClass} name="fullName" type="text" placeholder="Your name" required maxLength={120} />
                 </div>
                 <div>
                   <label className="mb-2 block text-sm text-slate-600">Company</label>
-                  <input className={inputClass} type="text" placeholder="Company name" />
+                  <input className={inputClass} name="company" type="text" placeholder="Company name" required maxLength={180} />
                 </div>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm text-slate-600">Work Email</label>
-                  <input className={inputClass} type="email" placeholder="name@company.com" />
+                  <input className={inputClass} name="workEmail" type="email" placeholder="name@company.com" required maxLength={254} />
                 </div>
                 <div>
                   <label className="mb-2 block text-sm text-slate-600">Phone / WhatsApp</label>
-                  <input className={inputClass} type="tel" placeholder="+971 ..." />
+                  <input className={inputClass} name="phone" type="tel" placeholder="+971 ..." maxLength={64} />
                 </div>
               </div>
 
               <div>
                 <label className="mb-2 block text-sm text-slate-600">Enquiry Type</label>
-                <select className={inputClass}>
+                <select className={inputClass} name="enquiryType">
                   <option>Ship Repair Support</option>
                   <option>Marine Riding Squads</option>
                   <option>Project Coordination / Consultancy</option>
@@ -75,7 +99,17 @@ function Contact() {
                 <textarea className={`${inputClass} min-h-36`} placeholder="Describe the requirement, timeline, vessel details, and any part references." />
               </div>
 
-              <button type="submit" className={primaryButtonClass}>Submit RFQ</button>
+              <button type="submit" className={primaryButtonClass}>Open email draft</button>
+              <p className="text-sm text-slate-600">
+                This opens your email application with the enquiry filled in. Review and press Send in your email app.
+                No enquiry is sent automatically by this website.
+              </p>
+              {draftPrepared && (
+                <p role="status" className="rounded-md bg-slate-100 p-3 text-sm text-slate-800">
+                  Email app not opening? Send your request directly to{" "}
+                  <a className="font-semibold underline" href="mailto:info@anva-group.com">info@anva-group.com</a>.
+                </p>
+              )}
             </form>
           </SurfaceCard>
         </Container>

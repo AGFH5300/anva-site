@@ -51,7 +51,7 @@ const Footer = () => (
     </Container>
 
     <div className="border-t border-white/15 py-4 sm:py-5">
-      <Container className="text-xs text-gray-400 sm:text-sm">© 2026 ANVA Marine. All rights reserved.</Container>
+      <Container className="text-xs text-gray-400 sm:text-sm">© 2026 Advanced Nautical Ventures FZE (ANVA Marine). All rights reserved.</Container>
     </div>
   </footer>
 );
