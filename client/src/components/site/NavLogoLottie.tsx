@@ -8,10 +8,11 @@ const VIEWBOX_X_PADDING_RATIO = 0.03;
 const VIEWBOX_Y_PADDING_RATIO = 0.07;
 const VIEWBOX_SCALE_DAMPENING = 1.28;
 const animationDataUrl = new URL("../../assets/nav-logo-lottie.json", import.meta.url).href;
-// The original animation morphs a colored ANVA wordmark out of view.
-// Hold its readable opening frame between occasional morphing replays.
-const WORDMARK_HOLD_MS = 5800;
-const WORDMARK_MORPH_END_FRAME = 21;
+// Frame 0 is the complete, proportionate colored ANVA wordmark.
+ // Play the animation backwards once so the pieces assemble into the finished logo.
+ // Keep frame 0 visible afterward rather than disappearing or shrinking repeatedly.
+const WORDMARK_START_FRAME = 21;
+const WORDMARK_FINISH_FRAME = 0;
 
 const fitArtworkViewBox = (container: HTMLDivElement | null) => {
   if (!container) return;
@@ -62,7 +63,6 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
     let cleanupResize: (() => void) | null = null;
     let cleanupAnimListeners: (() => void) | null = null;
     let fitFrame: number | null = null;
-    let replayTimer: number | null = null;
 
     const init = async () => {
       const response = await fetch(animationDataUrl, { cache: "force-cache" });
@@ -96,35 +96,28 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
         });
       };
 
-      const holdReadableWordmark = () => {
-        if (!mounted || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        replayTimer = window.setTimeout(() => {
-          replayTimer = null;
-          if (!mounted) return;
-          anim.playSegments([0, WORDMARK_MORPH_END_FRAME], true);
-        }, WORDMARK_HOLD_MS);
-      };
-
-      const onMorphComplete = () => {
-        // The final animation frame is effectively blank. Restore the brand
-        // immediately so the navbar does not spend time displaying fragments.
-        anim.goToAndStop(0, true);
-        holdReadableWordmark();
+      const onAssembleComplete = () => {
+        // Lock to the full-sized finished artwork.
+        anim.goToAndStop(WORDMARK_FINISH_FRAME, true);
+        fitArtwork();
       };
 
       const onDomLoaded = () => {
-        anim.goToAndStop(0, true);
         anim.resize();
+        // Calculate artwork viewBox at the full-size frame, not the tiny
+        // initial fragments. This avoids stretching or shrinking the final logo.
+        anim.goToAndStop(WORDMARK_FINISH_FRAME, true);
         fitArtwork();
-        holdReadableWordmark();
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        anim.playSegments([WORDMARK_START_FRAME, WORDMARK_FINISH_FRAME], true);
       };
 
       anim.addEventListener("DOMLoaded", onDomLoaded);
-      anim.addEventListener("complete", onMorphComplete);
+      anim.addEventListener("complete", onAssembleComplete);
 
       cleanupAnimListeners = () => {
         anim.removeEventListener("DOMLoaded", onDomLoaded);
-        anim.removeEventListener("complete", onMorphComplete);
+        anim.removeEventListener("complete", onAssembleComplete);
       };
 
       const onResize = () => {
@@ -143,7 +136,6 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
       mounted = false;
       initPromise.catch(() => null);
       if (fitFrame !== null) window.cancelAnimationFrame(fitFrame);
-      if (replayTimer !== null) window.clearTimeout(replayTimer);
       cleanupAnimListeners?.();
       cleanupResize?.();
       animRef.current?.destroy();

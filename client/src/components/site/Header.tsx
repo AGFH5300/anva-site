@@ -128,13 +128,13 @@ const Header = () => {
             <img
               src={anvaSymbol}
               alt=""
-              className="h-[1.8rem] w-auto shrink-0 object-contain sm:h-[2.25rem] lg:h-[2.4rem]"
+              className="h-[1.85rem] w-auto shrink-0 object-contain min-[360px]:h-[2.15rem] sm:h-[2.65rem] lg:h-[2.85rem] xl:h-[3.15rem]"
               loading="eager"
               decoding="sync"
             />
             <NavLogoLottie
               className="w-[112px] min-[360px]:w-[132px] sm:w-[162px] lg:w-[176px]"
-              speed={0.55}
+              speed={0.85}
             />
           </a>
 
