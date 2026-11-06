@@ -33,3 +33,30 @@ jobs:
       - name: Dependency audit (report findings separately)
         continue-on-error: true
         run: npm audit --omit=dev --audit-level=high
+      - name: Verify legacy Node Render build (separate service)
+        run: |
+          npm run build:legacy-server
+          test -s dist/index.cjs
+      - name: Smoke-test legacy Node service startup
+        shell: bash
+        run: |
+          set -euo pipefail
+          PORT=4175 NODE_ENV=production node dist/index.cjs > /tmp/anva-legacy.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for i in {1..30}; do
+            if curl -f --silent http://127.0.0.1:4175/ > /tmp/anva-legacy-index.html; then
+              grep -q 'ANVA Marine' /tmp/anva-legacy-index.html
+              curl -fsS http://127.0.0.1:4175/contact > /dev/null
+              echo 'Legacy Node service starts and serves routes'
+              exit 0
+            fi
+            if ! kill -0 "$server_pid" 2>/dev/null; then break; fi
+            sleep 1
+          done
+          cat /tmp/anva-legacy.log
+          exit 1
+      - name: Validate Render Blueprint YAML
+        run: |
+          node -e "const fs=require('fs');if(!fs.readFileSync('render.yaml','utf8').includes('anva-site-static'))process.exit(1)"
+
