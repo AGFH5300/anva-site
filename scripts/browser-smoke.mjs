@@ -60,6 +60,59 @@ try {
   }
   assert.equal(await page.locator('[name="requirement"]').getAttribute("required"), "", "Requirement should be required");
 
+  const rfqEndpoint = "https://formsubmit.co/ajax/info@anva-group.com";
+  let deliveredPayload;
+  let providerAccepted = true;
+  await page.route(rfqEndpoint, async (route) => {
+    const request = route.request();
+    if (request.method() === "OPTIONS") {
+      await route.fulfill({
+        status: 204,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Content-Type, Accept",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+        },
+      });
+      return;
+    }
+    deliveredPayload = JSON.parse(request.postData() ?? "{}");
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: JSON.stringify(providerAccepted ? { success: "true" } : { success: "false", message: "Form is not activated" }),
+    });
+  });
+  const fillRfq = async () => {
+    await page.locator('[name="fullName"]').fill("ANVA Smoke Test");
+    await page.locator('[name="company"]').fill("ANVA Quality Assurance");
+    await page.locator('[name="workEmail"]').fill("qa@example.com");
+    await page.locator('[name="phone"]').fill("+971000000000");
+    await page.locator('[name="requirement"]').fill("Please quote one test marine part; no real enquiry.");
+  };
+  await fillRfq();
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await page.getByRole("status").filter({ hasText: "accepted by the delivery service" }).waitFor({ timeout: 15000 });
+  assert.equal(deliveredPayload.email, "qa@example.com", "RFQ email missing from delivery");
+  assert.equal(deliveredPayload.company, "ANVA Quality Assurance", "RFQ company missing");
+  assert.ok(deliveredPayload.message.includes("test marine part"), "RFQ requirement missing");
+  assert.equal(await page.locator('[name="fullName"]').inputValue(), "", "Successful RFQ should clear form");
+  console.log("PASS RFQ provider success (mocked)");
+
+  await page.reload({ waitUntil: "domcontentloaded" });
+  providerAccepted = false;
+  await fillRfq();
+  await page.getByRole("button", { name: "Send enquiry" }).click();
+  await page.getByRole("alert").filter({ hasText: "one-time activation" }).waitFor({ timeout: 15000 });
+  assert.equal(await page.locator('[name="fullName"]').inputValue(), "ANVA Smoke Test", "Failed RFQ erased input");
+  const gmailFallback = await page.getByRole("link", { name: "Open prepared enquiry in Gmail" }).getAttribute("href");
+  assert.ok(gmailFallback?.includes("mail.google.com/mail/?view=cm"), "Missing Gmail fallback");
+  assert.ok(gmailFallback?.includes("test%20marine%20part"), "Gmail fallback lost requirement");
+  console.log("PASS RFQ provider error with preserved fields and Gmail fallback (mocked)");
+  await page.unroute(rfqEndpoint);
+
+
   await page.goto(origin + "/services#drydocking-ship-repair-support", { waitUntil: "domcontentloaded" });
   await page.waitForSelector("#drydocking-ship-repair-support", { timeout: 10000 });
   await page.waitForFunction(() => window.scrollY > 50, undefined, { timeout: 10000 });
