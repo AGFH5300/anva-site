@@ -6,6 +6,7 @@ const inputClass =
 
 function Contact() {
   const [draftPrepared, setDraftPrepared] = useState(false);
+  const [draftText, setDraftText] = useState("");
   const handleEmailDraft = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const fields = new FormData(event.currentTarget);
@@ -25,8 +26,9 @@ function Contact() {
     ].join("\n");
     // Static hosting has no email-sending backend. Use an explicit mail draft
     // rather than falsely reporting that the form was submitted.
-    window.location.href = `mailto:info@anva-group.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setDraftText(`To: info@anva-group.com\nSubject: ${subject}\n\n${body}`);
     setDraftPrepared(true);
+    window.location.href = `mailto:info@anva-group.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
   return (
     <>
@@ -62,29 +64,29 @@ function Contact() {
             <form className="mt-5 space-y-5" onSubmit={handleEmailDraft}>
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm text-slate-600">Full Name</label>
-                  <input className={inputClass} name="fullName" type="text" placeholder="Your name" required maxLength={120} />
+                  <label htmlFor="rfq-full-name" className="mb-2 block text-sm text-slate-600">Full Name</label>
+                  <input className={inputClass} id="rfq-full-name" name="fullName" type="text" autoComplete="name" placeholder="Your name" required maxLength={120} />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm text-slate-600">Company</label>
-                  <input className={inputClass} name="company" type="text" placeholder="Company name" required maxLength={180} />
+                  <label htmlFor="rfq-company" className="mb-2 block text-sm text-slate-600">Company</label>
+                  <input className={inputClass} id="rfq-company" name="company" type="text" autoComplete="organization" placeholder="Company name" required maxLength={180} />
                 </div>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm text-slate-600">Work Email</label>
-                  <input className={inputClass} name="workEmail" type="email" placeholder="name@company.com" required maxLength={254} />
+                  <label htmlFor="rfq-email" className="mb-2 block text-sm text-slate-600">Work Email</label>
+                  <input className={inputClass} id="rfq-email" name="workEmail" type="email" autoComplete="email" placeholder="name@company.com" required maxLength={254} />
                 </div>
                 <div>
-                  <label className="mb-2 block text-sm text-slate-600">Phone / WhatsApp</label>
-                  <input className={inputClass} name="phone" type="tel" placeholder="+971 ..." maxLength={64} />
+                  <label htmlFor="rfq-phone" className="mb-2 block text-sm text-slate-600">Phone / WhatsApp</label>
+                  <input className={inputClass} id="rfq-phone" name="phone" type="tel" autoComplete="tel" placeholder="+971 ..." maxLength={64} />
                 </div>
               </div>
 
               <div>
-                <label className="mb-2 block text-sm text-slate-600">Enquiry Type</label>
-                <select className={inputClass} name="enquiryType">
+                <label htmlFor="rfq-enquiry-type" className="mb-2 block text-sm text-slate-600">Enquiry Type</label>
+                <select className={inputClass} id="rfq-enquiry-type" name="enquiryType">
                   <option>Ship Repair Support</option>
                   <option>Marine Riding Squads</option>
                   <option>Project Coordination / Consultancy</option>
@@ -95,8 +97,8 @@ function Contact() {
               </div>
 
               <div>
-                <label className="mb-2 block text-sm text-slate-600">Requirement Details</label>
-                <textarea className={`${inputClass} min-h-36`} placeholder="Describe the requirement, timeline, vessel details, and any part references." />
+                <label htmlFor="rfq-requirement" className="mb-2 block text-sm text-slate-600">Requirement Details</label>
+                <textarea className={`${inputClass} min-h-36`} id="rfq-requirement" name="requirement" placeholder="Describe the requirement, timeline, vessel details, and any part references." required maxLength={1500} />
               </div>
 
               <button type="submit" className={primaryButtonClass}>Open email draft</button>
@@ -105,11 +107,21 @@ function Contact() {
                 No enquiry is sent automatically by this website.
               </p>
               {draftPrepared && (
-                <p role="status" className="rounded-md bg-slate-100 p-3 text-sm text-slate-800">
-                  Email app not opening? Send your request directly to{" "}
-                  <a className="font-semibold underline" href="mailto:info@anva-group.com">info@anva-group.com</a>.
-                </p>
-              )}
+                <div role="status" className="rounded-md bg-slate-100 p-3 text-sm text-slate-800">
+                  <p>Email app not opening? Copy the prepared message below and send it directly to{" "}
+                    <a className="font-semibold underline" href="mailto:info@anva-group.com">info@anva-group.com</a>.
+                  </p>
+                  <label htmlFor="rfq-email-fallback" className="mt-3 block font-medium">Prepared enquiry (select and copy)</label>
+                  <textarea
+                    id="rfq-email-fallback"
+                    className="mt-2 w-full rounded-md border border-slate-300 bg-white p-3 text-sm text-slate-800"
+                    value={draftText}
+                    onFocus={(event) => event.currentTarget.select()}
+                    rows={9}
+                    readOnly
+                  />
+                </div>
+              )
             </form>
           </SurfaceCard>
         </Container>
