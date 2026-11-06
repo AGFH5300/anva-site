@@ -30,7 +30,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx vite preview --host 127.0.0.1 --port 4173 > /tmp/anva-vite.log 2>&1 &
+          node scripts/serve-static.mjs > /tmp/anva-preview.log 2>&1 &
           for i in {1..40}; do
             if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
               node scripts/browser-smoke.mjs
@@ -38,5 +38,5 @@ jobs:
             fi
             sleep 1
           done
-          cat /tmp/anva-vite.log
+          cat /tmp/anva-preview.log
           exit 1
