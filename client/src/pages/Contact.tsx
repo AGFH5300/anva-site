@@ -40,7 +40,7 @@ function Contact() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 90000);
+    const timeout = window.setTimeout(() => { setDeliveryStatus("unavailable"); controller.abort(); }, 90000);
     fetch(API_BASE_URL + "/api/rfq/status", { signal: controller.signal })
       .then(async (response) => {
         const data: unknown = await response.json();
