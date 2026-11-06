@@ -5,30 +5,82 @@ const inputClass =
   "w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-slate-800 placeholder:text-slate-500 transition focus:border-signal-500 focus:outline-none focus:ring-2 focus:ring-signal-500/20";
 
 function Contact() {
-  const [draftPrepared, setDraftPrepared] = useState(false);
-  const [draftText, setDraftText] = useState("");
-  const handleEmailDraft = (event: FormEvent<HTMLFormElement>) => {
+  const [formState, setFormState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [fallbackDraft, setFallbackDraft] = useState("");
+  const [gmailComposeUrl, setGmailComposeUrl] = useState("");
+
+  const handleSendEnquiry = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const fields = new FormData(event.currentTarget);
+    if (formState === "sending") return;
+
+    const form = event.currentTarget;
+    const fields = new FormData(form);
     const get = (key: string) => String(fields.get(key) ?? "").trim();
-    const subject = `Marine RFQ: ${get("enquiryType")}`;
+    const subject = "Marine RFQ: " + get("enquiryType");
     const body = [
       "Marine Service / Supply Request",
       "",
-      `Name: ${get("fullName")}`,
-      `Company: ${get("company")}`,
-      `Email: ${get("workEmail")}`,
-      `Phone / WhatsApp: ${get("phone") || "Not provided"}`,
-      `Enquiry type: ${get("enquiryType")}`,
+      "Name: " + get("fullName"),
+      "Company: " + get("company"),
+      "Email: " + get("workEmail"),
+      "Phone / WhatsApp: " + (get("phone") || "Not provided"),
+      "Enquiry type: " + get("enquiryType"),
       "",
       "Requirement details:",
       get("requirement"),
     ].join("\n");
-    // Static hosting has no email-sending backend. Use an explicit mail draft
-    // rather than falsely reporting that the form was submitted.
-    setDraftText(`To: info@anva-group.com\nSubject: ${subject}\n\n${body}`);
-    setDraftPrepared(true);
-    window.location.href = `mailto:info@anva-group.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    setFallbackDraft("To: info@anva-group.com\nSubject: " + subject + "\n\n" + body);
+    setGmailComposeUrl(
+      "https://mail.google.com/mail/?view=cm&fs=1&to=info%40anva-group.com&su=" +
+        encodeURIComponent(subject) + "&body=" + encodeURIComponent(body),
+    );
+    setFormState("sending");
+    setErrorMessage("");
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
+    try {
+      // FormSubmit is an external email-delivery service for static websites.
+      // A verified receiving mailbox is required before this will deliver email.
+      const response = await fetch("https://formsubmit.co/ajax/info@anva-group.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        signal: controller.signal,
+        body: JSON.stringify({
+          name: get("fullName"),
+          company: get("company"),
+          email: get("workEmail"),
+          phone: get("phone") || "Not provided",
+          enquiryType: get("enquiryType"),
+          message: get("requirement"),
+          _subject: subject,
+          _template: "table",
+          _url: "https://www.anva-group.com/contact",
+          _honey: get("_honey"),
+        }),
+      });
+      const result: unknown = await response.json();
+      const data = result && typeof result === "object" ? result as Record<string, unknown> : {};
+      // FormSubmit can return HTTP 200 and the STRING "false" on errors.
+      // Never show a delivery confirmation unless success is explicitly true.
+      if (!response.ok || (data.success !== true && data.success !== "true")) {
+        throw new Error(typeof data.message === "string" ? data.message : "Submission was not accepted.");
+      }
+      form.reset();
+      setFormState("sent");
+    } catch (error) {
+      const providerMessage = error instanceof Error ? error.message : "";
+      setErrorMessage(
+        /activat|verif/i.test(providerMessage)
+          ? "This site's email delivery requires one-time activation by ANVA. Please use the Gmail option below until it is activated."
+          : "The enquiry could not be sent from the website. Your details are preserved; use the Gmail option below or try again.",
+      );
+      setFormState("error");
+    } finally {
+      window.clearTimeout(timeout);
+    }
   };
   return (
     <>
@@ -60,8 +112,8 @@ function Contact() {
           </SurfaceCard>
 
           <SurfaceCard className="order-1 border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)] lg:order-2">
-            <h2 className="text-2xl font-semibold text-marine-900">Prepare your RFQ email</h2>
-            <form className="mt-5 space-y-5" onSubmit={handleEmailDraft}>
+            <h2 className="text-2xl font-semibold text-marine-900">Send your marine enquiry</h2>
+            <form className="mt-5 space-y-5" onSubmit={handleSendEnquiry} onChange={() => { if (formState === "sent") setFormState("idle"); }}>\n              <div className="hidden" aria-hidden="true"><input type="text" tabIndex={-1} autoComplete="off" name="_honey" /></div>
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
                   <label htmlFor="rfq-full-name" className="mb-2 block text-sm text-slate-600">Full Name</label>
@@ -101,21 +153,30 @@ function Contact() {
                 <textarea className={`${inputClass} min-h-36`} id="rfq-requirement" name="requirement" placeholder="Describe the requirement, timeline, vessel details, and any part references." required maxLength={1500} />
               </div>
 
-              <button type="submit" className={primaryButtonClass}>Open email draft</button>
+              <button type="submit" className={primaryButtonClass} disabled={formState === "sending"} aria-busy={formState === "sending"}>
+                {formState === "sending" ? "Sending enquiry..." : "Send enquiry"}
+              </button>
               <p className="text-sm text-slate-600">
-                This opens your email application with the enquiry filled in. Review and press Send in your email app.
-                No enquiry is sent automatically by this website.
+                Submit your requirement directly to ANVA Marine. Enquiries are forwarded to info@anva-group.com by a third-party email delivery service.
+                Please do not include passwords or highly confidential documents in this form.
               </p>
-              {draftPrepared && (
-                <div role="status" className="rounded-md bg-slate-100 p-3 text-sm text-slate-800">
-                  <p>Email app not opening? Copy the prepared message below and send it directly to{" "}
-                    <a className="font-semibold underline" href="mailto:info@anva-group.com">info@anva-group.com</a>.
-                  </p>
-                  <label htmlFor="rfq-email-fallback" className="mt-3 block font-medium">Prepared enquiry (select and copy)</label>
+              {formState === "sent" && (
+                <div role="status" className="rounded-md border border-emerald-300 bg-emerald-50 p-4 text-sm text-emerald-900">
+                  Your enquiry was accepted by the delivery service. Thank you for contacting ANVA Marine.
+                </div>
+              )}
+              {formState === "error" && (
+                <div role="alert" className="rounded-md border border-amber-300 bg-amber-50 p-4 text-sm text-amber-950">
+                  <p>{errorMessage}</p>
+                  <a className="mt-3 inline-block font-semibold underline" target="_blank" rel="noopener noreferrer" href={gmailComposeUrl}>
+                    Open prepared enquiry in Gmail (with Send button)
+                  </a>
+                  <p className="mt-3">Or copy your enquiry and send it to info@anva-group.com:</p>
+                  <label htmlFor="rfq-email-fallback" className="mt-2 block font-medium">Prepared enquiry</label>
                   <textarea
                     id="rfq-email-fallback"
-                    className="mt-2 w-full rounded-md border border-slate-300 bg-white p-3 text-sm text-slate-800"
-                    value={draftText}
+                    className="mt-2 w-full rounded-md border border-amber-300 bg-white p-3 text-sm text-slate-800"
+                    value={fallbackDraft}
                     onFocus={(event) => event.currentTarget.select()}
                     rows={9}
                     readOnly
