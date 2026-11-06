@@ -5,9 +5,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
-    "build": "tsx script/build.ts",
+    "build": "vite build",
+    "build:legacy-server": "tsx script/build.ts",
     "start": "NODE_ENV=production node dist/index.cjs",
-    "check": "tsc"
+    "check": "tsc",
+    "test:site": "node scripts/verify-static.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
