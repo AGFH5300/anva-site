@@ -25,6 +25,7 @@ const supportBlocks = [
 
 const coreServices = [
   {
+    id: "drydocking-ship-repair-support",
     title: "Drydocking & Ship Repair Support",
     href: "/contact",
     cta: "Plan drydock support",
@@ -35,6 +36,7 @@ const coreServices = [
     ],
   },
   {
+    id: "marine-riding-squads",
     title: "Marine Riding Squads & Onboard Repair Teams",
     href: "/services/riding-squads",
     cta: "Request riding squad attendance",
@@ -45,6 +47,7 @@ const coreServices = [
     ],
   },
   {
+    id: "marine-project-management",
     title: "Marine Project Management",
     href: "/contact",
     cta: "Coordinate project execution",
@@ -55,6 +58,7 @@ const coreServices = [
     ],
   },
   {
+    id: "marine-technical-consultancy",
     title: "Marine Technical Consultancy",
     href: "/contact",
     cta: "Request technical review",
@@ -65,6 +69,7 @@ const coreServices = [
     ],
   },
   {
+    id: "commercial-procurement-consultancy",
     title: "Commercial & Procurement Consultancy",
     href: "/contact",
     cta: "Send procurement requirement",
@@ -125,7 +130,7 @@ function Services() {
           <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {coreServices.map((service) => (
               <SurfaceCard key={service.title}>
-                <h3 className="text-xl font-semibold text-white">{service.title}</h3>
+                <h3 id={service.id} className="scroll-mt-32 text-xl font-semibold text-white">{service.title}</h3>
                 <ul className="mt-4 space-y-2 text-gray-300">
                   {service.points.map((point) => (
                     <li key={point} className="flex gap-2">
