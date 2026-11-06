@@ -1,0 +1,47 @@
+name: ANVA Browser Regression Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: anva-browser-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Install isolated browser test tool
+        run: npm install --no-save --package-lock=false playwright@latest
+      - name: Install Chromium
+        run: npx playwright install chromium
+      - name: Build static ANVA site
+        run: npm run build
+      - name: Start local static preview and verify browser behaviour
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/serve-static.mjs > /tmp/anva-preview.log 2>&1 &
+          for i in {1..40}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              node scripts/browser-smoke.mjs
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/anva-preview.log
+          exit 1
