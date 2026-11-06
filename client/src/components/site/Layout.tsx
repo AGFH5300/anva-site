@@ -1,11 +1,13 @@
 import { PropsWithChildren } from "react";
 
 import { useLegacyPageEffects } from "../../hooks/useLegacyPageEffects";
+import { usePageMetadata } from "../../hooks/usePageMetadata";
 import Footer from "./Footer";
 import Header from "./Header";
 
 const Layout = ({ children }: PropsWithChildren) => {
   useLegacyPageEffects();
+  usePageMetadata();
 
   return (
     <div className="min-h-screen overflow-x-clip bg-[linear-gradient(180deg,#edf2f9_0%,#f8fafd_36%,#eef3f9_100%)] font-body text-slate-800 selection:bg-signal-500 selection:text-marine-900">
