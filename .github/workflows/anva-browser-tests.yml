@@ -8,6 +8,11 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: anva-browser-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
 jobs:
   browser-smoke:
     runs-on: ubuntu-latest
@@ -23,7 +28,7 @@ jobs:
       - name: Install isolated browser test tool
         run: npm install --no-save --package-lock=false playwright@latest
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Build static ANVA site
         run: npm run build
       - name: Start local static preview and verify browser behaviour
