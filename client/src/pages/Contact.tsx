@@ -7,28 +7,44 @@ const inputClass =
 function Contact() {
   const [draftPrepared, setDraftPrepared] = useState(false);
   const [draftText, setDraftText] = useState("");
+  const [webmailLinks, setWebmailLinks] = useState({ gmail: "", outlook: "" });
   const handleEmailDraft = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const fields = new FormData(event.currentTarget);
     const get = (key: string) => String(fields.get(key) ?? "").trim();
-    const subject = `Marine RFQ: ${get("enquiryType")}`;
+    const subject = "Marine RFQ: " + get("enquiryType");
     const body = [
       "Marine Service / Supply Request",
       "",
-      `Name: ${get("fullName")}`,
-      `Company: ${get("company")}`,
-      `Email: ${get("workEmail")}`,
-      `Phone / WhatsApp: ${get("phone") || "Not provided"}`,
-      `Enquiry type: ${get("enquiryType")}`,
+      "Name: " + get("fullName"),
+      "Company: " + get("company"),
+      "Email: " + get("workEmail"),
+      "Phone / WhatsApp: " + (get("phone") || "Not provided"),
+      "Enquiry type: " + get("enquiryType"),
       "",
       "Requirement details:",
       get("requirement"),
     ].join("\n");
-    // Static hosting has no email-sending backend. Use an explicit mail draft
-    // rather than falsely reporting that the form was submitted.
-    setDraftText(`To: info@anva-group.com\nSubject: ${subject}\n\n${body}`);
+
+    const gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=info%40anva-group.com&su=" +
+      encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    const outlookUrl = "https://outlook.office.com/mail/deeplink/compose?to=info%40anva-group.com&subject=" +
+      encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    const mailtoUrl = "mailto:info@anva-group.com?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+
+    setDraftText("To: info@anva-group.com\nSubject: " + subject + "\n\n" + body);
     setDraftPrepared(true);
-    window.location.href = `mailto:info@anva-group.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setWebmailLinks({ gmail: gmailUrl, outlook: outlookUrl });
+    const clicked = (event.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const client = clicked?.value ?? "gmail";
+    if (client === "default") {
+      window.location.href = mailtoUrl;
+    } else {
+      // A direct user click opens an actual email composer with a Send button.
+      // We do not claim this static website itself can send email.
+      window.open(client === "outlook" ? outlookUrl : gmailUrl, "_blank", "noopener,noreferrer");
+    }
   };
   return (
     <>
@@ -60,7 +76,7 @@ function Contact() {
           </SurfaceCard>
 
           <SurfaceCard className="order-1 border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)] lg:order-2">
-            <h2 className="text-2xl font-semibold text-marine-900">Prepare your RFQ email</h2>
+            <h2 className="text-2xl font-semibold text-marine-900">Send your RFQ email</h2>
             <form className="mt-5 space-y-5" onSubmit={handleEmailDraft}>
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
@@ -101,16 +117,29 @@ function Contact() {
                 <textarea className={`${inputClass} min-h-36`} id="rfq-requirement" name="requirement" placeholder="Describe the requirement, timeline, vessel details, and any part references." required maxLength={1500} />
               </div>
 
-              <button type="submit" className={primaryButtonClass}>Open email draft</button>
+              <div className="flex flex-wrap gap-3">
+                <button type="submit" name="mailClient" value="gmail" className={primaryButtonClass}>
+                  Continue to Gmail to send
+                </button>
+                <button type="submit" name="mailClient" value="outlook" className="rounded-md border border-marine-800 bg-white px-5 py-3 font-semibold text-marine-900 transition hover:bg-slate-100">
+                  Continue to Outlook to send
+                </button>
+              </div>
               <p className="text-sm text-slate-600">
-                This opens your email application with the enquiry filled in. Review and press Send in your email app.
-                No enquiry is sent automatically by this website.
+                Your selected email service opens a real compose window with your RFQ filled in.
+                Click <strong>Send</strong> there. You must be signed in to that email service; the website itself does not send enquiries automatically.
               </p>
+              <button type="submit" name="mailClient" value="default" className="text-sm font-semibold text-marine-900 underline">
+                Use my device's default email application
+              </button>
               {draftPrepared && (
                 <div role="status" className="rounded-md bg-slate-100 p-3 text-sm text-slate-800">
-                  <p>Email app not opening? Copy the prepared message below and send it directly to{" "}
-                    <a className="font-semibold underline" href="mailto:info@anva-group.com">info@anva-group.com</a>.
-                  </p>
+                  <p className="font-medium">Composer not opening? Use these direct links:</p>
+                  <div className="mt-3 flex flex-wrap gap-4">
+                    <a className="font-semibold underline" href={webmailLinks.gmail} target="_blank" rel="noopener noreferrer">Open Gmail compose</a>
+                    <a className="font-semibold underline" href={webmailLinks.outlook} target="_blank" rel="noopener noreferrer">Open Outlook compose</a>
+                  </div>
+                  <p className="mt-3">Or copy the prepared enquiry and send it to info@anva-group.com.</p>
                   <label htmlFor="rfq-email-fallback" className="mt-3 block font-medium">Prepared enquiry (select and copy)</label>
                   <textarea
                     id="rfq-email-fallback"
