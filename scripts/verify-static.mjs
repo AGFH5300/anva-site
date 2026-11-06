@@ -1,0 +1,59 @@
+import assert from "node:assert/strict";
+import { readFile, stat } from "node:fs/promises";
+import { join } from "node:path";
+
+const outDir = join("dist", "public");
+const site = "https://www.anva-group.com";
+const pages = [
+  ["", "Advanced Nautical Ventures FZE | ANVA Marine"],
+  ["about", "About ANVA Marine | Marine Support Company Dubai"],
+  ["contact", "Contact ANVA Marine | Request a Marine Service or Spares Quote"],
+  ["services", "Marine Services, Drydocking and Ship Repair | ANVA Marine"],
+  ["services/riding-squads", "Marine Riding Squads and Onboard Repairs | ANVA Marine"],
+  ["products-brands", "Marine Equipment, Products and Brands | ANVA Marine"],
+  ["green-shipping-solutions", "Green Shipping and Vessel Efficiency Solutions | ANVA Marine"],
+  ["spares/engine-room-machinery", "Engine Room and Machinery Spares | ANVA Marine"],
+  ["spares/hard-to-source-oem", "Hard-to-Source Marine OEM Spares | ANVA Marine"],
+];
+const aliases = {
+  products: "products-brands",
+  brands: "products-brands",
+  "green-shipping": "green-shipping-solutions",
+};
+
+for (const [path, title] of pages) {
+  const html = await readFile(join(outDir, path, "index.html"), "utf8");
+  const canonical = `${site}/${path}`;
+  assert.ok(html.includes(`<title>${title}</title>`), `Missing unique title: ${path || "/"}`);
+  assert.ok(html.includes(`<link rel="canonical" href="${canonical}"`), `Missing canonical: ${path || "/"}`);
+  assert.ok(html.includes(`<meta property="og:url" content="${canonical}"`), `Missing Open Graph URL: ${path || "/"}`);
+  assert.match(html, /<meta name="description" content="[^"]{30,}"/, `Missing description: ${path || "/"}`);
+  assert.ok(!html.includes("maximum-scale=1"), `Mobile zoom blocked: ${path || "/"}`);
+}
+
+for (const [alias, target] of Object.entries(aliases)) {
+  const html = await readFile(join(outDir, alias, "index.html"), "utf8");
+  assert.ok(html.includes(`href="${site}/${target}"`), `Alias canonical incorrect: ${alias}`);
+}
+
+const robots = await readFile(join(outDir, "robots.txt"), "utf8");
+const sitemap = await readFile(join(outDir, "sitemap.xml"), "utf8");
+assert.ok(robots.includes(`Sitemap: ${site}/sitemap.xml`));
+for (const [page] of pages) {
+  assert.ok(sitemap.includes(`<loc>${site}/${page}</loc>`), `Missing sitemap URL: ${page || "/"}`);
+}
+
+const contact = await readFile("client/src/pages/Contact.tsx", "utf8");
+assert.match(contact, /name="requirement"/, "RFQ requirement field not captured");
+assert.match(contact, /htmlFor="rfq-requirement"/, "Requirement field label not associated");
+const services = await readFile("client/src/pages/Services.tsx", "utf8");
+for (const id of [
+  "drydocking-ship-repair-support",
+  "marine-project-management",
+  "marine-technical-consultancy",
+  "commercial-procurement-consultancy",
+]) {
+  assert.ok(services.includes(`id: "${id}"`), `Missing Services anchor: ${id}`);
+}
+await stat(join(outDir, "assets"));
+console.log(`ANVA static build checks passed for ${pages.length} canonical pages and ${Object.keys(aliases).length} aliases.`);
