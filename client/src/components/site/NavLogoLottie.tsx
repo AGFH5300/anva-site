@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import lottie, { type AnimationItem } from "lottie-web";
 
 import { cn } from "../../lib/utils";
@@ -55,6 +55,7 @@ type NavLogoLottieProps = {
 export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const animRef = useRef<AnimationItem | null>(null);
+  const [logoReady, setLogoReady] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined" || !containerRef.current) return;
@@ -66,6 +67,7 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
 
     const init = async () => {
       const response = await fetch(animationDataUrl, { cache: "force-cache" });
+      if (!response.ok) throw new Error(`Logo asset failed with status ${response.status}`);
       const animationData = await response.json();
 
       if (!mounted || !containerRef.current) return;
@@ -108,6 +110,7 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
         // initial fragments. This avoids stretching or shrinking the final logo.
         anim.goToAndStop(WORDMARK_FINISH_FRAME, true);
         fitArtwork();
+        if (mounted) setLogoReady(true);
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         anim.playSegments([WORDMARK_START_FRAME, WORDMARK_FINISH_FRAME], true);
       };
@@ -130,11 +133,14 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
       fitArtwork();
     };
 
-    const initPromise = init();
+    // Never let an unavailable animation asset remove ANVA's visible name.
+    void init().catch((error) => {
+      console.error("ANVA navigation animation unavailable; showing static wordmark.", error);
+      if (mounted) setLogoReady(false);
+    });
 
     return () => {
       mounted = false;
-      initPromise.catch(() => null);
       if (fitFrame !== null) window.cancelAnimationFrame(fitFrame);
       cleanupAnimListeners?.();
       cleanupResize?.();
@@ -144,8 +150,13 @@ export default function NavLogoLottie({ className, speed = 0.7 }: NavLogoLottieP
   }, [speed]);
 
   return (
-    <div className={cn("nav-logo-lottie w-[112px] min-[360px]:w-[132px] sm:w-[162px] lg:w-[176px]", className)} aria-hidden="true">
-      <div ref={containerRef} className="nav-logo-lottie__viewport h-[2.15rem] w-full sm:h-[2.65rem] lg:h-[2.85rem]" />
+    <div className={cn("nav-logo-lottie relative w-[112px] min-[360px]:w-[132px] sm:w-[162px] lg:w-[176px]", className)} aria-hidden="true">
+      {!logoReady && (
+        <span className="absolute inset-0 flex items-center whitespace-nowrap font-display text-[1.55rem] font-bold tracking-tight sm:text-[1.9rem] lg:text-[2rem]">
+          <span className="text-signal-500">AN</span><span className="text-marine-900">VA</span>
+        </span>
+      )}
+      <div ref={containerRef} className={cn("nav-logo-lottie__viewport h-[2.15rem] w-full sm:h-[2.65rem] lg:h-[2.85rem]", !logoReady && "opacity-0")} />
     </div>
   );
 }
