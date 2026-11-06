@@ -25,6 +25,28 @@ const defaultObserverOptions: IntersectionObserverInit = {
 };
 
 export function useLegacyPageEffects() {
+
+  // These sections are rendered by React after the browser's initial hash-scroll.
+  // Retry once after mount and whenever the hash changes.
+  useEffect(() => {
+    const scrollToHash = () => {
+      let id = window.location.hash.slice(1);
+      if (!id) return;
+      try {
+        id = decodeURIComponent(id);
+      } catch {
+        return;
+      }
+      document.getElementById(id)?.scrollIntoView({ block: "start" });
+    };
+
+    const frame = window.requestAnimationFrame(scrollToHash);
+    window.addEventListener("hashchange", scrollToHash);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", scrollToHash);
+    };
+  }, []);
   useEffect(() => {
     if (document.getElementById(SCROLLBAR_STYLE_ID)) {
       return;
