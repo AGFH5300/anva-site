@@ -18,6 +18,12 @@ const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1365, height: 900 } });
 const pageErrors = [];
 page.on("pageerror", (error) => pageErrors.push(error.message));
+const cspErrors = [];
+page.on("console", (message) => {
+  if (message.type() === "error" && /content security policy|refused to (load|execute|evaluate|apply)/i.test(message.text())) {
+    cspErrors.push(message.text());
+  }
+});
 
 try {
   for (const [route, title] of Object.entries(titleByRoute)) {
@@ -36,6 +42,10 @@ try {
     assert.equal(head.canonical, `https://www.anva-group.com${route}`);
     assert.equal(head.ogUrl, head.canonical);
     assert.ok(head.heading, `No H1 on ${route}`);
+    if (route === "/") {
+      await page.locator(".nav-logo-lottie__viewport svg").waitFor({ state: "visible", timeout: 12000 });
+      console.log("PASS animated navigation logo under strict CSP");
+    }
     console.log(`PASS ${route}: ${head.title}`);
   }
 
@@ -67,6 +77,7 @@ try {
   console.log("PASS mobile form and menu");
 
   assert.deepEqual(pageErrors, [], "Uncaught JavaScript errors");
+  assert.deepEqual(cspErrors, [], "Strict CSP blocked ANVA scripts, images or styles");
   console.log("ANVA Chromium desktop/mobile smoke tests PASSED.");
 } finally {
   await browser.close();
