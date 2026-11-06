@@ -49,9 +49,9 @@ function isConfigured(): boolean {
 function rateLimit(req: Request, res: Response): boolean {
   const now = Date.now();
   if (requestsByIp.size > 5000) {
-    for (const [key, state] of requestsByIp) {
+    requestsByIp.forEach((state, key) => {
       if (state.resetAt <= now) requestsByIp.delete(key);
-    }
+    });
   }
   const key = req.ip || req.socket.remoteAddress || "unknown";
   const existing = requestsByIp.get(key);
