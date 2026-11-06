@@ -1,0 +1,21 @@
+name: ANVA RFQ FormSubmit Activation Test (one-time)
+on:
+  push:
+    branches:
+      - fix/anva-rfq-direct-send-20261106
+permissions:
+  contents: read
+jobs:
+  activate-formsubmit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Request email verification for ANVA website RFQ
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -sS --max-time 20 -X POST 'https://formsubmit.co/ajax/info@anva-group.com' \
+            -H 'Accept: application/json' -H 'Content-Type: application/json' \
+            -H 'Referer: https://www.anva-group.com/contact' \
+            --data '{"name":"ANVA Marine Website QA","email":"info@anva-group.com","company":"ANVA Marine","message":"Controlled delivery test to activate website RFQ forwarding. No customer enquiry.","_subject":"[ANVA TEST] Activate website RFQ forwarding","_url":"https://www.anva-group.com/contact"}' \
+            --write-out '\nHTTP %{http_code}\n'
