@@ -33,3 +33,11 @@ jobs:
       - name: Dependency audit (report findings separately)
         continue-on-error: true
         run: npm audit --omit=dev --audit-level=high
+      - name: Verify legacy Node Render build (separate service)
+        run: |
+          npm run build:legacy-server
+          test -s dist/index.cjs
+      - name: Validate Render Blueprint YAML
+        run: |
+          node -e "const fs=require('fs');if(!fs.readFileSync('render.yaml','utf8').includes('anva-site-static'))process.exit(1)"
+
