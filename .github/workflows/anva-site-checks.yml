@@ -1,0 +1,35 @@
+name: ANVA Website Build and Security Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - fix/anva-website-audit-20261106
+
+permissions:
+  contents: read
+
+jobs:
+  verify-static-site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies from lockfile
+        run: npm ci
+      - name: Typecheck
+        run: npm run check
+      - name: Build static website
+        run: npm run build
+      - name: Verify static pages, canonical URLs, anchors, and RFQ fields
+        run: npm run test:site
+      - name: Dependency audit (report findings separately)
+        continue-on-error: true
+        run: npm audit --omit=dev --audit-level=high
