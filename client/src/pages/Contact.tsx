@@ -113,7 +113,8 @@ function Contact() {
 
           <SurfaceCard className="order-1 border-slate-200 bg-white shadow-[0_12px_30px_rgba(8,14,27,0.12)] lg:order-2">
             <h2 className="text-2xl font-semibold text-marine-900">Send your marine enquiry</h2>
-            <form className="mt-5 space-y-5" onSubmit={handleSendEnquiry} onChange={() => { if (formState === "sent") setFormState("idle"); }}>\n              <div className="hidden" aria-hidden="true"><input type="text" tabIndex={-1} autoComplete="off" name="_honey" /></div>
+            <form className="mt-5 space-y-5" onSubmit={handleSendEnquiry} onChange={() => { if (formState === "sent") setFormState("idle"); }}>
+              <div className="hidden" aria-hidden="true"><input type="text" tabIndex={-1} autoComplete="off" name="_honey" /></div>
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
                   <label htmlFor="rfq-full-name" className="mb-2 block text-sm text-slate-600">Full Name</label>
