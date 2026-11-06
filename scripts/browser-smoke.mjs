@@ -18,6 +18,29 @@ const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1365, height: 900 } });
 const pageErrors = [];
 page.on("pageerror", (error) => pageErrors.push(error.message));
+
+let providerReady = true;
+let providerFailure = false;
+let lastPayload = null;
+await page.route("https://anva-site-c5i4.onrender.com/api/rfq/status", async (route) => {
+  await route.fulfill({
+    status: 200,
+    contentType: "application/json",
+    headers: { "access-control-allow-origin": "*" },
+    body: JSON.stringify({ available: providerReady }),
+  });
+});
+await page.route("https://anva-site-c5i4.onrender.com/api/rfq", async (route) => {
+  lastPayload = JSON.parse(route.request().postData() ?? "{}");
+  await route.fulfill({
+    status: providerFailure ? 502 : 200,
+    contentType: "application/json",
+    headers: { "access-control-allow-origin": "*" },
+    body: providerFailure ? JSON.stringify({ ok: false, message: "Provider unavailable" })
+      : JSON.stringify({ ok: true, reference: "test-provider-message-1" }),
+  });
+});
+
 const cspErrors = [];
 page.on("console", (message) => {
   if (message.type() === "error" && /content security policy|refused to (load|execute|evaluate|apply)/i.test(message.text())) {
@@ -60,31 +83,40 @@ try {
   }
   assert.equal(await page.locator('[name="requirement"]').getAttribute("required"), "", "Requirement should be required");
 
-  await page.evaluate(() => {
-    window.__anvaOpenedComposeUrls = [];
-    window.open = (url) => {
-      window.__anvaOpenedComposeUrls.push(String(url));
-      return null;
-    };
-  });
+  await page.waitForFunction(() => document.querySelector('button[type="submit"]')?.disabled === false);
   await page.locator('[name="fullName"]').fill("ANVA Website Test");
   await page.locator('[name="company"]').fill("ANVA Marine QA");
   await page.locator('[name="workEmail"]').fill("website-test@example.com");
+  await page.locator('[name="phone"]').fill("+971500000000");
   await page.locator('[name="requirement"]').fill("Please quote replacement ship spare item TEST123.");
-  await page.getByRole("button", { name: "Continue to Gmail to send" }).click();
-  await page.getByRole("button", { name: "Continue to Outlook to send" }).click();
-  const composeUrls = await page.evaluate(() => window.__anvaOpenedComposeUrls);
-  assert.equal(composeUrls.length, 2, "Expected Gmail and Outlook compose actions");
-  assert.ok(composeUrls[0].startsWith("https://mail.google.com/mail/?view=cm"), "Gmail compose URL missing");
-  assert.ok(composeUrls[1].startsWith("https://outlook.office.com/mail/deeplink/compose"), "Outlook compose URL missing");
-  for (const url of composeUrls) {
-    assert.ok(decodeURIComponent(url).includes("replacement ship spare item TEST123"), "Requirement was omitted from composer");
-    assert.ok(decodeURIComponent(url).includes("ANVA Marine QA"), "Company was omitted from composer");
-    assert.ok(url.includes("info%40anva-group.com"), "RFQ recipient incorrect");
-  }
-  assert.ok(await page.getByRole("link", { name: "Open Gmail compose" }).isVisible(), "Missing visible fallback link");
-  console.log("PASS Gmail and Outlook compose actions preserve RFQ details");
+  await page.getByRole("button", { name: "Send Enquiry" }).click();
+  await page.getByRole("status").filter({ hasText: "accepted for email delivery" }).waitFor();
+  assert.equal(lastPayload.company, "ANVA Marine QA", "RFQ company omitted");
+  assert.equal(lastPayload.workEmail, "website-test@example.com", "RFQ reply email omitted");
+  assert.ok(lastPayload.requirement.includes("ship spare item TEST123"), "RFQ description omitted");
+  assert.ok(lastPayload.requestId, "RFQ must include stable idempotency ID");
+  assert.equal(await page.locator('[name="fullName"]').inputValue(), "", "Successful request should clear form");
+  console.log("PASS direct website enquiry accepted by mocked backend");
 
+  await page.goto(origin + "/contact", { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => document.querySelector('button[type="submit"]')?.disabled === false);
+  providerFailure = true;
+  await page.locator('[name="fullName"]').fill("ANVA Website Test");
+  await page.locator('[name="company"]').fill("ANVA Marine QA");
+  await page.locator('[name="workEmail"]').fill("website-test@example.com");
+  await page.locator('[name="requirement"]').fill("Replacement engine part for vessel TEST456.");
+  await page.getByRole("button", { name: "Send Enquiry" }).click();
+  await page.getByRole("alert").filter({ hasText: "could not be confirmed" }).waitFor();
+  assert.equal(await page.locator('[name="fullName"]').inputValue(), "ANVA Website Test", "Failed request erased input");
+  assert.ok(await page.getByRole("button", { name: "Gmail" }).isVisible(), "Missing error fallback");
+  console.log("PASS backend failure preserves fields and displays alternatives");
+
+  providerReady = false;
+  await page.goto(origin + "/contact", { waitUntil: "domcontentloaded" });
+  await page.getByRole("alert").filter({ hasText: "Direct website sending is not available" }).waitFor();
+  assert.ok(await page.getByRole("button", { name: "Send Enquiry" }).isDisabled(), "Unconfigured backend must not offer fake sending");
+  assert.ok(await page.getByRole("button", { name: "Outlook" }).isVisible(), "Unconfigured backend must show alternatives");
+  console.log("PASS direct form never claims availability without configured backend");
 
   await page.goto(origin + "/services#drydocking-ship-repair-support", { waitUntil: "domcontentloaded" });
   await page.waitForSelector("#drydocking-ship-repair-support", { timeout: 10000 });
