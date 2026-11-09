@@ -58,5 +58,26 @@ for (const id of [
 const capabilityPage = await readFile(join(outDir, "marine-capabilities", "index.html"), "utf8");
 assert.ok(capabilityPage.includes("<h1>Marine spares, drydocking support"), "Missing crawlable marine capabilities page");
 assert.ok(sitemap.includes("https://www.anva-group.com/marine-capabilities/"), "Marine capabilities not listed in sitemap");
+const productPages = [
+  ["bildal-airfield-lighting", "BILDAL Airfield Lighting Isolation Transformers UAE"],
+  ["power-rectifiers-semiconductors", "Power Diodes, SCR Thyristors & Rectifier Modules UAE"],
+  ["welding-cables", "Welding Cable 35"],
+];
+for (const [slug, titleStart] of productPages) {
+  const html = await readFile(join(outDir, "products", slug, "index.html"), "utf8");
+  assert.ok(html.includes("<title>" + titleStart), "Wrong product page title for " + slug);
+  assert.ok(html.includes('<link rel="canonical" href="' + site + "/products/" + slug + '/"'), "Missing canonical for " + slug);
+  assert.ok(html.includes('href="/contact?product=' + slug), "No contextual RFQ CTA for " + slug);
+  assert.ok(sitemap.includes(site + "/products/" + slug + "/"), "Product not in sitemap: " + slug);
+}
+const rectifierPage = await readFile(join(outDir, "products", "power-rectifiers-semiconductors", "index.html"), "utf8");
+assert.doesNotMatch(rectifierPage, /insel|\\bIRI\\b|rectifierindia/i, "Prohibited supplier name disclosed on rectifier landing page");
+const privacy = await readFile(join(outDir, "privacy", "index.html"), "utf8");
+assert.ok(privacy.includes("Visitor statistics"), "Missing privacy disclosure");
+assert.ok(sitemap.includes(site + "/privacy/"), "Missing privacy sitemap entry");
+const tracking = await readFile(join(outDir, "traffic.js"), "utf8");
+assert.ok(tracking.includes("navigator.doNotTrack"), "Tracking opt-out missing");
+assert.ok(tracking.includes("public-site-analytics"), "Analytics endpoint not configured");
+await stat(join(outDir, "product-landing.css"));
 await stat(join(outDir, "assets"));
 console.log(`ANVA static build checks passed for ${pages.length} canonical pages and ${Object.keys(aliases).length} aliases.`);

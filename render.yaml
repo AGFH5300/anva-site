@@ -32,7 +32,7 @@ services:
           style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
           font-src 'self' https://fonts.gstatic.com;
           img-src 'self' data: https://images.unsplash.com;
-          connect-src 'self'; object-src 'none'; base-uri 'self';
+          connect-src 'self' https://mxdibxggmfdfdgcrzbqy.supabase.co; object-src 'none'; base-uri 'self';
           frame-ancestors 'none'; form-action 'self' mailto:
       - path: /assets/*
         name: Cache-Control
@@ -40,6 +40,31 @@ services:
     routes:
       # These take precedence over the existing SPA fallback rewrite.
       # Render must return each page's correct prerendered HTML to crawlers.
+      - type: rewrite
+        source: /privacy
+        destination: /privacy/index.html
+      - type: rewrite
+        source: /privacy/
+        destination: /privacy/index.html
+      # Three standalone, crawlable product pages.
+      - type: rewrite
+        source: /products/bildal-airfield-lighting
+        destination: /products/bildal-airfield-lighting/index.html
+      - type: rewrite
+        source: /products/bildal-airfield-lighting/
+        destination: /products/bildal-airfield-lighting/index.html
+      - type: rewrite
+        source: /products/power-rectifiers-semiconductors
+        destination: /products/power-rectifiers-semiconductors/index.html
+      - type: rewrite
+        source: /products/power-rectifiers-semiconductors/
+        destination: /products/power-rectifiers-semiconductors/index.html
+      - type: rewrite
+        source: /products/welding-cables
+        destination: /products/welding-cables/index.html
+      - type: rewrite
+        source: /products/welding-cables/
+        destination: /products/welding-cables/index.html
       - type: rewrite
         source: /marine-capabilities
         destination: /marine-capabilities/index.html

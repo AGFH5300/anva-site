@@ -33,6 +33,11 @@ jobs:
       - name: Dependency audit (report findings separately)
         continue-on-error: true
         run: npm audit --omit=dev --audit-level=high
+      - name: Test live ANVA RFQ and anonymous analytics APIs (approved growth branch only)
+        if: github.event_name == 'pull_request' && github.head_ref == 'growth/product-lines-analytics-20261109'
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: node scripts/check-growth-endpoints.mjs
       - name: Verify legacy Node Render build (separate service)
         run: |
           npm run build:legacy-server

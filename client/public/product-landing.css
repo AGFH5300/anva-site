@@ -1,0 +1,19 @@
+:root{color-scheme:light;--navy:#101c30;--blue:#173858;--text:#25374b;--muted:#526375;--gold:#ecaf4c;--border:#dce5ee}
+*{box-sizing:border-box}body{margin:0;background:#f4f7fa;color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1080px;margin:auto;padding:0 22px}a{color:#0d5687}a:hover{text-decoration-thickness:2px}
+header{background:var(--navy);color:#fff}header>.wrap{min-height:72px;display:flex;gap:25px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header a{color:white;text-decoration:none}header strong{font-size:1.25rem}nav{display:flex;flex-wrap:wrap;gap:18px;font-size:.91rem}
+.hero{background:linear-gradient(118deg,#0d1b2f,#21496a);color:#fff;padding:58px 0 52px}
+.eyebrow{color:#ffcc7c;text-transform:uppercase;letter-spacing:.12em;font-size:.79rem;font-weight:700}
+h1{font-size:clamp(2rem,4.8vw,3.1rem);line-height:1.16;max-width:840px;margin:.5rem 0 1rem}
+.hero p{max-width:800px;color:#e3eaf2;font-size:1.08rem}
+.cta{display:inline-block;border-radius:7px;padding:12px 19px;background:var(--gold);color:#142437;text-decoration:none;font-weight:750;margin-top:12px}
+.hero .cta:hover{background:#ffd083}h2{line-height:1.25;color:#162c45;font-size:1.7rem;margin:0 0 15px}
+h3{color:#1d466b;font-size:1.16rem;margin:0 0 10px}.section{padding:34px 0 0}.panel{padding:26px;background:#fff;border:1px solid var(--border);border-radius:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:17px;margin:18px 0}
+.grid>article{background:#fff;border:1px solid var(--border);border-radius:12px;padding:22px}
+.grid p{margin:0}.table-scroll{overflow:auto}.table{width:100%;border-collapse:collapse;text-align:left;background:#fff}.table th,.table td{padding:12px 13px;border-bottom:1px solid #e3eaf2;vertical-align:top}.table th{background:#eef4f8;color:#173858;white-space:nowrap}
+ul,ol{padding-left:23px}li{margin:5px 0}.fine{font-size:.89rem;color:#526375}
+.contact{margin:30px 0 52px;background:#112f50;color:#fff;border-radius:13px;padding:29px}.contact h2{color:#fff}.contact p{color:#e6edf4}.contact a:not(.cta){color:#fff}
+footer{padding:30px 0;background:#0d1b2e;color:#d6e0eb}footer a{color:#fff}
+@media(max-width:600px){nav{gap:12px;padding-bottom:16px}header .wrap{padding-top:14px}.hero{padding:37px 0}.panel{padding:18px}.table{font-size:.88rem}}

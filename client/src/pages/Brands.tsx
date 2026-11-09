@@ -3,6 +3,9 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Container, Section, SurfaceCard, primaryButtonClass, secondaryButtonClass } from "../components/site/SitePrimitives";
 
 const categoryGateway = [
+  { title: "BILDAL AGL Transformers & Connectors", href: "/products/bildal-airfield-lighting/", text: "Stocked airfield series isolation transformer lines, L-823 connector kits and leads for UAE aviation projects." },
+  { title: "Industrial Rectifier Components", href: "/products/power-rectifiers-semiconductors/", text: "Power diodes, SCR thyristors, bridge rectifiers, generator and welding modules with technical part references." },
+  { title: "Marine & Industrial Welding Cables", href: "/products/welding-cables/", text: "Flexible welding cables in 35–95 mm² enquiry sizes for shipyards, workshops and construction." },
   {
     title: "Engine Room & Machinery Spares",
     href: "/spares/engine-room-machinery",
