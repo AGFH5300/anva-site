@@ -92,7 +92,7 @@ try {
     await page.waitForURL(origin + target);
     assert.match(await page.locator("h1").textContent(), heading, `Products card opened wrong page: ${target}`);
     assert.equal(await page.locator('link[rel="icon"][href^="/favicon.svg"]').count(), 1, `No branded favicon on ${target}`);
-    await page.locator('header nav[aria-label="Navigation"] a[href="/products-brands"]').click();
+    await page.locator('header nav[aria-label="Main navigation"] a[href="/products-brands"]').click();
     await page.waitForURL(origin + "/products-brands");
     assert.match(await page.locator("main h1").textContent(), /Products, Brands/i,
       `Products link from ${target} must return to Products / Brands, not homepage`);
