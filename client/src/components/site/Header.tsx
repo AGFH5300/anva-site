@@ -200,7 +200,7 @@ const Header = () => {
                           : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
                       )}
                       aria-expanded={expanded}
-                      aria-haspopup="menu"
+                      aria-controls={`desktop-${group.key}-submenu`}
                       onFocus={() => openDesktopGroup(group.key)}
                     >
                       {group.label}
@@ -212,7 +212,8 @@ const Header = () => {
                         "absolute left-0 top-full mt-1 max-h-[calc(100vh-7rem)] w-[min(24rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain rounded-lg border border-slate-200 bg-white p-1 shadow-[0_14px_24px_rgba(8,18,32,0.12)] transition",
                         expanded ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
                       )}
-                      role="menu"
+                      id={`desktop-${group.key}-submenu`}
+                      role="group"
                       aria-label={`${group.label} submenu`}
                       onMouseEnter={() => openDesktopGroup(group.key)}
                       onMouseLeave={queueCloseDesktopMenu}
@@ -223,7 +224,6 @@ const Header = () => {
                           <a
                             key={item.href}
                             href={item.href}
-                            role="menuitem"
                             className={cn(
                               "flex items-center justify-between rounded-md px-3 py-2 text-sm leading-snug transition-colors",
                               activeItem ? "bg-marine-900/10 text-marine-900" : "text-slate-700 hover:bg-marine-900/6 hover:text-marine-900",
