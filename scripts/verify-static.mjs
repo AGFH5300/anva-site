@@ -55,5 +55,8 @@ for (const id of [
 ]) {
   assert.ok(services.includes(`id: "${id}"`), `Missing Services anchor: ${id}`);
 }
+const capabilityPage = await readFile(join(outDir, "marine-capabilities", "index.html"), "utf8");
+assert.ok(capabilityPage.includes("<h1>Marine spares, drydocking support"), "Missing crawlable marine capabilities page");
+assert.ok(sitemap.includes("https://www.anva-group.com/marine-capabilities/"), "Marine capabilities not listed in sitemap");
 await stat(join(outDir, "assets"));
 console.log(`ANVA static build checks passed for ${pages.length} canonical pages and ${Object.keys(aliases).length} aliases.`);
