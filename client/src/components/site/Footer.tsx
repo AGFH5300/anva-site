@@ -10,6 +10,7 @@ const quickLinks = [
   { href: "/green-shipping-solutions", label: "Green Shipping" },
   { href: "/contact", label: "Contact" },
   { href: "/about", label: "About" },
+  { href: "/privacy/", label: "Privacy Notice" },
 ];
 
 const Footer = () => (
