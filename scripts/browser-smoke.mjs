@@ -60,30 +60,33 @@ try {
   }
   assert.equal(await page.locator('[name="requirement"]').getAttribute("required"), "", "Requirement should be required");
 
-  await page.evaluate(() => {
-    window.__anvaOpenedComposeUrls = [];
-    window.open = (url) => {
-      window.__anvaOpenedComposeUrls.push(String(url));
-      return null;
-    };
+  let capturedPayload = null;
+  await page.route("https://mxdibxggmfdfdgcrzbqy.supabase.co/functions/v1/anva-website-rfq", async (route) => {
+    if (route.request().method() === "OPTIONS") {
+      await route.fulfill({ status: 204, headers: {
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "content-type" } });
+      return;
+    }
+    capturedPayload = route.request().postDataJSON();
+    await route.fulfill({ status: 200, contentType: "application/json",
+      headers: { "Access-Control-Allow-Origin": origin },
+      body: JSON.stringify({ ok: true }) });
   });
   await page.locator('[name="fullName"]').fill("ANVA Website Test");
   await page.locator('[name="company"]').fill("ANVA Marine QA");
   await page.locator('[name="workEmail"]').fill("website-test@example.com");
-  await page.locator('[name="requirement"]').fill("Please quote replacement ship spare item TEST123.");
-  await page.getByRole("button", { name: "Continue to Gmail to send" }).click();
-  await page.getByRole("button", { name: "Continue to Outlook to send" }).click();
-  const composeUrls = await page.evaluate(() => window.__anvaOpenedComposeUrls);
-  assert.equal(composeUrls.length, 2, "Expected Gmail and Outlook compose actions");
-  assert.ok(composeUrls[0].startsWith("https://mail.google.com/mail/?view=cm"), "Gmail compose URL missing");
-  assert.ok(composeUrls[1].startsWith("https://outlook.office.com/mail/deeplink/compose"), "Outlook compose URL missing");
-  for (const url of composeUrls) {
-    assert.ok(decodeURIComponent(url).includes("replacement ship spare item TEST123"), "Requirement was omitted from composer");
-    assert.ok(decodeURIComponent(url).includes("ANVA Marine QA"), "Company was omitted from composer");
-    assert.ok(url.includes("info%40anva-group.com"), "RFQ recipient incorrect");
-  }
-  assert.ok(await page.getByRole("link", { name: "Open Gmail compose" }).isVisible(), "Missing visible fallback link");
-  console.log("PASS Gmail and Outlook compose actions preserve RFQ details");
+  await page.locator('[name="requirement"]').fill("Please quote replacement marine spare item TEST123.");
+  await page.locator('[name="agreed_to_contact"]').check();
+  await page.getByRole("button", { name: "Submit RFQ to ANVA Marine" }).click();
+  await page.getByText("Thank you. Your enquiry has been received.").waitFor();
+  assert.ok(capturedPayload, "RFQ request was not sent");
+  assert.equal(capturedPayload.fullName, "ANVA Website Test");
+  assert.equal(capturedPayload.company, "ANVA Marine QA");
+  assert.equal(capturedPayload.agreed_to_contact, true);
+  assert.match(capturedPayload.requirement, /TEST123/);
+  console.log("PASS direct RFQ submission, consent and success state with mocked backend");
 
 
   await page.goto(origin + "/services#drydocking-ship-repair-support", { waitUntil: "domcontentloaded" });
