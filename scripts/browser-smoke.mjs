@@ -51,8 +51,8 @@ try {
 
   // Test public product discovery in the desktop dropdown and human sitemap.
   await page.goto(origin + "/", { waitUntil: "domcontentloaded" });
-  await page.locator('nav[aria-label="Primary"] a[href="/products-brands"]').hover();
-  const productMenu = page.locator('[role="menu"][aria-label="Products / Brands submenu"]');
+  await page.locator('nav[aria-label="Primary"] > ul > li > a[href="/products-brands"]').hover();
+  const productMenu = page.locator("#desktop-products-brands-submenu");
   await productMenu.waitFor({ state: "visible" });
   for (const href of [
     "/products/bildal-airfield-lighting/",
