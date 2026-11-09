@@ -5,7 +5,7 @@ import { join } from "node:path";
 const outDir = join("dist", "public");
 const site = "https://www.anva-group.com";
 const pages = [
-  ["", "Advanced Nautical Ventures FZE | ANVA Marine"],
+  ["", "Marine Spares, Ship Repair & Drydocking in Dubai | ANVA Marine"],
   ["about", "About ANVA Marine | Marine Support Company Dubai"],
   ["contact", "Contact ANVA Marine | Request a Marine Service or Spares Quote"],
   ["services", "Marine Services, Drydocking and Ship Repair | ANVA Marine"],
