@@ -46,6 +46,12 @@ services:
       - type: rewrite
         source: /privacy/
         destination: /privacy/index.html
+      - type: rewrite
+        source: /sitemap
+        destination: /sitemap/index.html
+      - type: rewrite
+        source: /sitemap/
+        destination: /sitemap/index.html
       # Three standalone, crawlable product pages.
       - type: rewrite
         source: /products/bildal-airfield-lighting

@@ -49,6 +49,38 @@ try {
     console.log(`PASS ${route}: ${head.title}`);
   }
 
+  // Test public product discovery in the desktop dropdown and human sitemap.
+  await page.goto(origin + "/", { waitUntil: "domcontentloaded" });
+  await page.locator('nav[aria-label="Primary"] > ul > li > a[href="/products-brands"]').hover();
+  const productMenu = page.locator("#desktop-products-brands-submenu");
+  await productMenu.waitFor({ state: "visible" });
+  for (const href of [
+    "/products/bildal-airfield-lighting/",
+    "/products/power-rectifiers-semiconductors/",
+    "/products/welding-cables/",
+    "/spares/engine-room-machinery",
+    "/spares/hard-to-source-oem",
+    "/sitemap/",
+  ]) {
+    assert.equal(await productMenu.locator(`a[href="${href}"]`).count(), 1, `Missing desktop menu link ${href}`);
+  }
+  await productMenu.locator('a[href="/products/bildal-airfield-lighting/"]').click();
+  await page.waitForURL("**/products/bildal-airfield-lighting/");
+  const productPage = await page.goto(origin + "/products/bildal-airfield-lighting/", { waitUntil: "domcontentloaded" });
+  assert.equal(productPage?.status(), 200, "Product link must load the actual BILDAL HTML page");
+  assert.ok((await page.locator("h1").textContent())?.includes("BILDAL"), "Product menu did not open BILDAL page");
+  const sitemapPage = await page.goto(origin + "/sitemap/", { waitUntil: "domcontentloaded" });
+  assert.equal(sitemapPage?.status(), 200, "Readable sitemap should return HTTP 200");
+  assert.ok((await page.locator("h1").textContent())?.includes("sitemap"), "Human sitemap unavailable");
+  for (const href of [
+    "/products/bildal-airfield-lighting/",
+    "/products/power-rectifiers-semiconductors/",
+    "/products/welding-cables/",
+  ]) {
+    assert.equal(await page.locator(`main a[href="${href}"]`).count(), 1, `Sitemap omits product ${href}`);
+  }
+  console.log("PASS desktop product dropdown and public sitemap");
+
   await page.goto(origin + "/contact", { waitUntil: "domcontentloaded" });
   const formFields = ["fullName", "company", "workEmail", "phone", "enquiryType", "requirement"];
   for (const name of formFields) {
@@ -103,7 +135,18 @@ try {
   assert.ok(horizontalOverflow <= 4, `390px viewport has ${horizontalOverflow}px horizontal overflow`);
   await page.getByRole("button", { name: "Toggle mobile menu" }).click();
   assert.ok(await page.locator("#mobile-primary-menu").isVisible(), "Mobile menu failed to open");
-  console.log("PASS mobile form and menu");
+  await page.locator('#mobile-primary-menu button[aria-controls="mobile-products-brands-submenu"]').click();
+  for (const href of [
+    "/products/bildal-airfield-lighting/",
+    "/products/power-rectifiers-semiconductors/",
+    "/products/welding-cables/",
+    "/sitemap/",
+  ]) {
+    assert.equal(await page.locator(`#mobile-products-brands-submenu a[href="${href}"]`).count(), 1, `Mobile menu missing ${href}`);
+  }
+  await page.keyboard.press("Escape");
+  assert.ok(!(await page.locator("#mobile-primary-menu").isVisible()), "Escape should close mobile menu");
+  console.log("PASS mobile form, full product menu and Escape keyboard dismissal");
 
   assert.deepEqual(pageErrors, [], "Uncaught JavaScript errors");
   assert.deepEqual(cspErrors, [], "Strict CSP blocked ANVA scripts, images or styles");
