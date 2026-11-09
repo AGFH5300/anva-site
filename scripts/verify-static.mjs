@@ -78,6 +78,34 @@ assert.ok(sitemap.includes(site + "/privacy/"), "Missing privacy sitemap entry")
 const tracking = await readFile(join(outDir, "traffic.js"), "utf8");
 assert.ok(tracking.includes("navigator.doNotTrack"), "Tracking opt-out missing");
 assert.ok(tracking.includes("public-site-analytics"), "Analytics endpoint not configured");
+const sourceHeader = await readFile("client/src/components/site/Header.tsx", "utf8");
+const brandOverview = await readFile("client/src/pages/Brands.tsx", "utf8");
+const sitemapHtml = await readFile(join(outDir, "sitemap", "index.html"), "utf8");
+assert.match(sitemapHtml, /<h1>ANVA Marine sitemap<\/h1>/, "Missing visitor-facing sitemap");
+assert.ok(sitemap.includes(site + "/sitemap/"), "Human-readable sitemap must be indexed");
+const productRoutes = [
+  "/products/bildal-airfield-lighting/",
+  "/products/power-rectifiers-semiconductors/",
+  "/products/welding-cables/",
+  "/spares/engine-room-machinery",
+  "/spares/hard-to-source-oem",
+  "/green-shipping-solutions",
+];
+for (const href of productRoutes) {
+  assert.ok(sourceHeader.includes(`href: "${href}"`), `Product missing from top dropdown: ${href}`);
+  assert.ok(sitemapHtml.includes(`href="${href}"`), `Product missing from HTML sitemap: ${href}`);
+}
+const familyAnchors = [
+  "engine-diagnostics", "cargo-gauging", "hydraulics", "corrosion-protection",
+  "marine-signaling", "propulsion-components", "tank-cleaning", "water-treatment", "doors-hatches",
+];
+for (const id of familyAnchors) {
+  assert.ok(sourceHeader.includes(`"/products-brands#${id}"`), `Family missing from top dropdown: ${id}`);
+  assert.ok(brandOverview.includes(`id: "${id}"`), `No brand section matching ${id}`);
+  assert.ok(sitemapHtml.includes(`href="/products-brands#${id}"`), `Family missing from HTML sitemap: ${id}`);
+}
+assert.ok(sourceHeader.includes("max-h-[calc(100vh-7rem)]"), "Large desktop dropdown must scroll");
+
 await stat(join(outDir, "product-landing.css"));
 await stat(join(outDir, "assets"));
 console.log(`ANVA static build checks passed for ${pages.length} canonical pages and ${Object.keys(aliases).length} aliases.`);
