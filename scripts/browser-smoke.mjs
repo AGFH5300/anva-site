@@ -66,8 +66,11 @@ try {
   }
   await productMenu.locator('a[href="/products/bildal-airfield-lighting/"]').click();
   await page.waitForURL("**/products/bildal-airfield-lighting/");
+  const productPage = await page.goto(origin + "/products/bildal-airfield-lighting/", { waitUntil: "domcontentloaded" });
+  assert.equal(productPage?.status(), 200, "Product link must load the actual BILDAL HTML page");
   assert.ok((await page.locator("h1").textContent())?.includes("BILDAL"), "Product menu did not open BILDAL page");
-  await page.goto(origin + "/sitemap/", { waitUntil: "domcontentloaded" });
+  const sitemapPage = await page.goto(origin + "/sitemap/", { waitUntil: "domcontentloaded" });
+  assert.equal(sitemapPage?.status(), 200, "Readable sitemap should return HTTP 200");
   assert.ok((await page.locator("h1").textContent())?.includes("sitemap"), "Human sitemap unavailable");
   for (const href of [
     "/products/bildal-airfield-lighting/",
