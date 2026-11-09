@@ -49,8 +49,9 @@ export default function Contact() {
       if (!response.ok || !result.ok) throw new Error(result.error || "The submission service could not confirm receipt.");
       setState("sent");
       form.reset();
-      if (Array.isArray((window as Window & { dataLayer?: unknown[] }).dataLayer)) {
-        (window as Window & { dataLayer: unknown[] }).dataLayer.push({ event: "anva_rfq_submitted", enquiryType: payload.enquiryType });
+      const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer;
+      if (Array.isArray(dataLayer)) {
+        dataLayer.push({ event: "anva_rfq_submitted", enquiryType: payload.enquiryType });
       }
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Submission unsuccessful. Please retry.");
