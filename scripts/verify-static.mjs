@@ -72,6 +72,12 @@ for (const [slug, titleStart] of productPages) {
 }
 const rectifierPage = await readFile(join(outDir, "products", "power-rectifiers-semiconductors", "index.html"), "utf8");
 assert.doesNotMatch(rectifierPage, /insel|\\bIRI\\b|rectifierindia/i, "Prohibited supplier name disclosed on rectifier landing page");
+const privacy = await readFile(join(outDir, "privacy", "index.html"), "utf8");
+assert.ok(privacy.includes("Visitor statistics"), "Missing privacy disclosure");
+assert.ok(sitemap.includes(site + "/privacy/"), "Missing privacy sitemap entry");
+const tracking = await readFile(join(outDir, "traffic.js"), "utf8");
+assert.ok(tracking.includes("navigator.doNotTrack"), "Tracking opt-out missing");
+assert.ok(tracking.includes("public-site-analytics"), "Analytics endpoint not configured");
 await stat(join(outDir, "product-landing.css"));
 await stat(join(outDir, "assets"));
 console.log(`ANVA static build checks passed for ${pages.length} canonical pages and ${Object.keys(aliases).length} aliases.`);
