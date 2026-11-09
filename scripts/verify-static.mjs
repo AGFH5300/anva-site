@@ -107,7 +107,12 @@ for (const id of familyAnchors) {
 assert.ok(sourceHeader.includes("max-h-[calc(100vh-7rem)]"), "Large desktop dropdown must scroll");
 
 const logoFavicon = await readFile(join(outDir, "favicon.svg"), "utf8");
-assert.match(logoFavicon, /#FFAD01/i, "ANVA SVG favicon does not use the company mark");
+const animation = JSON.parse(await readFile("client/src/assets/nav-logo-lottie.json", "utf8"));
+const originalLogo = animation.assets.find(asset => asset.p?.startsWith("data:image/webp;base64,"));
+assert.ok(originalLogo, "Original animated ANVA logo artwork is missing");
+assert.ok(logoFavicon.includes(originalLogo.p), "Favicon must contain exactly the original ANVA image bytes");
+assert.match(logoFavicon, /<image x="2" y="14" width="60" height="36" preserveAspectRatio="xMidYMid meet"/,
+  "Favicon must center the original logo without cropping or stretching");
 const faviconFiles = [
   "index.html",
   "products/bildal-airfield-lighting/index.html",
