@@ -41,6 +41,12 @@ services:
       # These take precedence over the existing SPA fallback rewrite.
       # Render must return each page's correct prerendered HTML to crawlers.
       - type: rewrite
+        source: /marine-capabilities
+        destination: /marine-capabilities/index.html
+      - type: rewrite
+        source: /marine-capabilities/
+        destination: /marine-capabilities/index.html
+      - type: rewrite
         source: /about
         destination: /about/index.html
       - type: rewrite
