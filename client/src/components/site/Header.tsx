@@ -41,9 +41,23 @@ const navGroups: NavGroup[] = [
     key: "products-brands",
     label: "Products / Brands",
     items: [
-      { href: "/products-brands", label: "Products / Brands overview" },
-      { href: "/spares/engine-room-machinery", label: "Marine Engine Room & Machinery Spares" },
-      { href: "/spares/hard-to-source-oem", label: "Hard-to-Source Marine OEM Spares" },
+      { href: "/products-brands", label: "All products and brands" },
+      { href: "/products/bildal-airfield-lighting/", label: "BILDAL Airfield Transformers & Connectors" },
+      { href: "/products/power-rectifiers-semiconductors/", label: "Power Rectifiers, Diodes & Thyristors" },
+      { href: "/products/welding-cables/", label: "Marine & Industrial Welding Cables" },
+      { href: "/spares/engine-room-machinery", label: "Engine Room & Machinery Spares" },
+      { href: "/spares/hard-to-source-oem", label: "Hard-to-Source OEM Spares" },
+      { href: "/products-brands#engine-diagnostics", label: "MARIDIS Engine Diagnostics" },
+      { href: "/products-brands#cargo-gauging", label: "Loadmaster / Levelmaster Gauging" },
+      { href: "/products-brands#hydraulics", label: "Bosch Rexroth / HYDAC Hydraulics" },
+      { href: "/products-brands#corrosion-protection", label: "ICCP / MGPS / Anodes" },
+      { href: "/products-brands#marine-signaling", label: "Kockums Sonics & Signaling" },
+      { href: "/products-brands#propulsion-components", label: "Propellers, Rudders & Ejectors" },
+      { href: "/products-brands#tank-cleaning", label: "Tank Cleaning / Washing Systems" },
+      { href: "/products-brands#water-treatment", label: "OWS / Sewage Treatment Equipment" },
+      { href: "/products-brands#doors-hatches", label: "Marine Doors, Hatches & Windows" },
+      { href: "/green-shipping-solutions", label: "Green Shipping Solutions" },
+      { href: "/sitemap/", label: "Complete Website Sitemap" },
     ],
   },
 ];
@@ -89,6 +103,17 @@ const Header = () => {
     return () => {
       if (closeTimerRef.current !== null) window.clearTimeout(closeTimerRef.current);
     };
+  }, []);
+
+  useEffect(() => {
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpenDesktopMenu(null);
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onEscape);
+    return () => window.removeEventListener("keydown", onEscape);
   }, []);
 
   const queueCloseDesktopMenu = () => {
@@ -184,7 +209,7 @@ const Header = () => {
 
                     <div
                       className={cn(
-                        "absolute left-0 top-full mt-1 w-[21rem] rounded-lg border border-slate-200 bg-white p-1 shadow-[0_14px_24px_rgba(8,18,32,0.12)] transition",
+                        "absolute left-0 top-full mt-1 max-h-[calc(100vh-7rem)] w-[min(24rem,calc(100vw-2rem))] overflow-y-auto overscroll-contain rounded-lg border border-slate-200 bg-white p-1 shadow-[0_14px_24px_rgba(8,18,32,0.12)] transition",
                         expanded ? "pointer-events-auto visible translate-y-0 opacity-100" : "pointer-events-none invisible -translate-y-1 opacity-0",
                       )}
                       role="menu"
@@ -256,7 +281,7 @@ const Header = () => {
       </Container>
 
       <div
-        className={cn("border-t border-slate-200 bg-[rgba(245,248,252,0.98)] lg:hidden", isOpen ? "block" : "hidden")}
+        className={cn("max-h-[calc(100vh-4.7rem)] overflow-y-auto overscroll-contain border-t border-slate-200 bg-[rgba(245,248,252,0.98)] lg:hidden", isOpen ? "block" : "hidden")}
         data-ref="mobile-menu"
         id="mobile-primary-menu"
       >
