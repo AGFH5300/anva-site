@@ -17,3 +17,19 @@ ul,ol{padding-left:23px}li{margin:5px 0}.fine{font-size:.89rem;color:#526375}
 .contact{margin:30px 0 52px;background:#112f50;color:#fff;border-radius:13px;padding:29px}.contact h2{color:#fff}.contact p{color:#e6edf4}.contact a:not(.cta){color:#fff}
 footer{padding:30px 0;background:#0d1b2e;color:#d6e0eb}footer a{color:#fff}
 @media(max-width:600px){nav{gap:12px;padding-bottom:16px}header .wrap{padding-top:14px}.hero{padding:37px 0}.panel{padding:18px}.table{font-size:.88rem}}
+
+/* Shared product-page navigation: native disclosure avoids accidental homepage navigation. */
+.product-nav-menu{position:relative;display:inline-block}
+.product-nav-menu>summary{color:#fff;cursor:pointer;list-style:none;border:1px solid transparent;border-radius:6px;padding:5px 9px;font-weight:600}
+.product-nav-menu>summary::-webkit-details-marker{display:none}
+.product-nav-menu>summary::after{content:" ▾";font-size:.82em}
+.product-nav-menu[open]>summary,.product-nav-menu>summary:hover{background:rgba(255,255,255,.12)}
+.product-nav-menu>summary:focus-visible,.product-nav-menu a:focus-visible,nav>a:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+.product-nav-items{position:absolute;top:calc(100% + 7px);left:0;z-index:100;display:flex;flex-direction:column;gap:2px;width:min(350px,calc(100vw - 36px));max-height:min(70vh,540px);overflow-y:auto;overscroll-behavior:contain;padding:7px;border:1px solid #dce5ee;border-radius:9px;background:#fff;box-shadow:0 10px 28px #101c3029}
+.product-nav-items a{color:var(--text);padding:8px 10px;line-height:1.3;border-radius:5px;text-decoration:none;font-size:.87rem}
+.product-nav-items a:hover,.product-nav-items a:focus-visible{background:#e8f1f8;color:#102d46}
+.product-nav-items a[aria-current="page"]{font-weight:700;background:#e8f1f8}
+.product-nav-items .product-nav-divider{height:1px;background:#e4ebf2;margin:5px 6px}
+.breadcrumbs{padding:10px 0;color:#50657c;font-size:.87rem}
+.breadcrumbs a{color:#14577f}
+@media(max-width:600px){.product-nav-items{left:0;max-height:55vh}.product-nav-menu>summary{padding:4px 6px}}
