@@ -30,20 +30,49 @@ const categoryGateway = [
 
 const supportedFamilies = [
   {
-    heading: "Engine Diagnostics and Monitoring",
-    items: ["MARIDIS monitoring references", "Diagnostic instrumentation and associated onboard support items"],
+    id: "engine-diagnostics",
+    heading: "Engine Diagnostics & Monitoring",
+    items: ["MARIDIS engine monitoring and diagnostics references", "Marine diagnostic instruments and related technical support enquiries"],
   },
   {
-    heading: "Cargo, Tank Gauging and Loading Systems",
-    items: ["Loadmaster references", "Marine gauging and loading control support requirements"],
+    id: "cargo-gauging",
+    heading: "Cargo, Tank Gauging & Loading Systems",
+    items: ["Loadmaster and Levelmaster cargo/tank gauging references", "Level measurement, loading control and associated marine spares"],
   },
   {
-    heading: "Hydraulics and Fluid Control",
-    items: ["Bosch Rexroth", "HYDAC", "Hydraulic, filtration, and fluid control supply support"],
+    id: "hydraulics",
+    heading: "Hydraulics, Filtration & Fluid Control",
+    items: ["Bosch Rexroth hydraulic equipment and components", "HYDAC filtration and hydraulic equipment enquiries", "Marine hydraulic hoses, valves and control components"],
   },
   {
-    heading: "Signaling and Marine Technical Systems",
-    items: ["Kockums Sonics", "ICCP / MGPS", "Subhadra", "Additional specialist references on request"],
+    id: "corrosion-protection",
+    heading: "ICCP, MGPS & Marine Corrosion Protection",
+    items: ["ICCP and MGPS systems, including Arico product enquiries", "Cathelco anodes and associated marine corrosion-protection spares", "Cathodic-protection and anti-fouling system replacement parts"],
+  },
+  {
+    id: "marine-signaling",
+    heading: "Marine Signaling & Acoustic Equipment",
+    items: ["Kockums Sonics equipment and replacement components", "Shipboard signaling and acoustic system enquiries"],
+  },
+  {
+    id: "propulsion-components",
+    heading: "Propellers, Rudders & Marine Propulsion Components",
+    items: ["Subhadra Metals propellers, rudders and ejectors", "Replacement propulsion-related components and vessel repair enquiries"],
+  },
+  {
+    id: "tank-cleaning",
+    heading: "Tank Cleaning & Marine Washing Systems",
+    items: ["Polarmarine and Polarjet cleaning / washing equipment enquiries", "Tank-cleaning system spares and technical replacement requirements"],
+  },
+  {
+    id: "water-treatment",
+    heading: "Marine Water Treatment & Pollution Control",
+    items: ["HMSA oily water separator (OWS) equipment and spares", "Sewage treatment plant (STP) equipment and spare parts"],
+  },
+  {
+    id: "doors-hatches",
+    heading: "Marine Doors, Hatches & Windows",
+    items: ["Watertight and weathertight doors, hatches, access covers and windows", "Marine replacement fittings and project-specific procurement support"],
   },
 ];
 
@@ -113,14 +142,17 @@ function Brands() {
           <h2 className="font-display text-3xl font-bold text-white">Supported product and brand families</h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {supportedFamilies.map((group) => (
-              <SurfaceCard key={group.heading}>
-                <h3 className="text-xl font-semibold text-white">{group.heading}</h3>
-                <ul className="mt-4 space-y-2 text-gray-300">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-signal-500" />{item}</li>
-                  ))}
-                </ul>
-              </SurfaceCard>
+              <div key={group.id} id={group.id} className="scroll-mt-28">
+                <SurfaceCard className="h-full">
+                  <h3 className="text-xl font-semibold text-white">{group.heading}</h3>
+                  <ul className="mt-4 space-y-2 text-gray-300">
+                    {group.items.map((item) => (
+                      <li key={item} className="flex gap-2"><CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-signal-500" />{item}</li>
+                    ))}
+                  </ul>
+                  <a className="mt-4 inline-flex text-sm font-semibold text-signal-500 hover:text-signal-400" href="/contact">Enquire about this product family</a>
+                </SurfaceCard>
+              </div>
             ))}
           </div>
         </Container>
