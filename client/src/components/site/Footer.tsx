@@ -11,6 +11,7 @@ const quickLinks = [
   { href: "/contact", label: "Contact" },
   { href: "/about", label: "About" },
   { href: "/privacy/", label: "Privacy Notice" },
+  { href: "/sitemap/", label: "Website Sitemap" },
 ];
 
 const Footer = () => (
