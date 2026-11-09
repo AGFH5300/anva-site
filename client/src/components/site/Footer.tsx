@@ -2,6 +2,7 @@ import { Container, primaryButtonClass } from "./SitePrimitives";
 
 const quickLinks = [
   { href: "/services", label: "Services" },
+  { href: "/marine-capabilities/", label: "Marine Capabilities" },
   { href: "/products-brands", label: "Products / Brands" },
   { href: "/green-shipping-solutions", label: "Green Shipping" },
   { href: "/contact", label: "Contact" },
