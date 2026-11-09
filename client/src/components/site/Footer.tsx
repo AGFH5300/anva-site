@@ -47,9 +47,6 @@ const Footer = () => (
             Telephone: <a className="transition-colors hover:text-white" href="tel:+97145535699">+971 4 553 5699</a>
           </li>
           <li>
-            Mobile: <a className="transition-colors hover:text-white" href="tel:+971523567890">+971 52 356 7890</a>
-          </li>
-          <li>
             <a className="transition-colors hover:text-white" href="mailto:info@anva-group.com">info@anva-group.com</a>
           </li>
         </ul>
