@@ -33,6 +33,26 @@ function createRouteHtml(baseHtml: string, route: string): string {
   return output;
 }
 
+// Legacy URL aliases must produce real redirects, not cloned React bootstrap HTML.
+// A cloned /products/ entry may miss a route after trailing-slash normalization
+// and silently render the homepage, which is confusing for product buyers.
+function createAliasRedirectHtml(target: string): string {
+  const destination = `/${target}`;
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<meta http-equiv="refresh" content="0;url=${destination}">
+<link rel="canonical" href="${SITE_URL}${destination}">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261109">
+<title>ANVA Marine — Redirecting</title>
+</head>
+<body><main><p>Continue to <a href="${destination}">ANVA Marine Products &amp; Services</a>.</p></main></body>
+</html>`;
+}
+
 const staticRoutes = [
   "about",
   "contact",
@@ -56,7 +76,9 @@ function staticRouteEntries(): Plugin {
       const html = await readFile(path.join(output, "index.html"), "utf8");
       for (const route of staticRoutes) {
         const routeDir = path.join(output, route);
-        const routeHtml = createRouteHtml(html, route);
+        const routeHtml = routeAliases[route]
+          ? createAliasRedirectHtml(routeAliases[route])
+          : createRouteHtml(html, route);
         await mkdir(routeDir, { recursive: true });
         await writeFile(path.join(routeDir, "index.html"), routeHtml);
         // Render's clean-URL resolver may prefer /route.html over /route/index.html.
