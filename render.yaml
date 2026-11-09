@@ -101,12 +101,22 @@ services:
       - type: rewrite
         source: /spares/hard-to-source-oem
         destination: /spares/hard-to-source-oem/index.html
+      # Preserve legacy product URL variants instead of falling back to /.
       - type: redirect
         source: /products
         destination: /products-brands
       - type: redirect
+        source: /products/
+        destination: /products-brands
+      - type: redirect
         source: /brands
         destination: /products-brands
+      - type: redirect
+        source: /brands/
+        destination: /products-brands
+      - type: rewrite
+        source: /products-brands/
+        destination: /products-brands/index.html
       - type: redirect
         source: /green-shipping
         destination: /green-shipping-solutions
