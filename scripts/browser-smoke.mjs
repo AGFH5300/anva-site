@@ -105,9 +105,24 @@ try {
       `Legacy alias ${alias} resolved incorrectly`);
   }
   const faviconResponse = await page.request.get(origin + "/favicon.svg");
-  assert.equal(faviconResponse.status(), 200, "ANVA logo favicon not accessible");
-  assert.match(await faviconResponse.text(), /<svg[^>]*viewBox="0 0 52 52"/);
-  console.log("PASS legacy Products aliases and branded ANVA favicon");
+  assert.equal(faviconResponse.status(), 200, "ANVA original logo favicon not accessible");
+  const faviconSvg = await faviconResponse.text();
+  assert.match(faviconSvg, /<svg[^>]*viewBox="0 0 64 64"/);
+  assert.match(faviconSvg, /<image x="2" y="14" width="60" height="36"/);
+  assert.ok(faviconSvg.includes('href="data:image/webp;base64,'), "Favicon must contain original ANVA artwork");
+  await page.goto(origin + "/", { waitUntil: "domcontentloaded" });
+  const faviconDecoded = await page.evaluate(async () => {
+    const img = new Image();
+    img.src = "/favicon.svg?v=20261109-original";
+    try {
+      await img.decode();
+      return img.naturalWidth === 64 && img.naturalHeight === 64;
+    } catch {
+      return false;
+    }
+  });
+  assert.ok(faviconDecoded, "Browser could not render centered original ANVA logo favicon");
+  console.log("PASS original ANVA logo favicon renders at 64x64, all legacy aliases");
 
   console.log("PASS desktop product dropdown and public sitemap");
 
