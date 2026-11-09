@@ -121,7 +121,7 @@ const faviconFiles = [
 ];
 for (const file of faviconFiles) {
   const html = await readFile(join(outDir, file), "utf8");
-  assert.match(html, /rel="icon" type="image\/svg\+xml" href="\/favicon\.svg\?v=20261109"/,
+  assert.match(html, /rel="icon" type="image\/svg\+xml" href="\/favicon\.svg\?v=20261109-original"/,
     `Missing ANVA logo favicon on ${file}`);
 }
 for (const route of ["products", "brands"]) {

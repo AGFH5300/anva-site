@@ -46,7 +46,7 @@ function createAliasRedirectHtml(target: string): string {
 <meta name="robots" content="noindex,follow">
 <meta http-equiv="refresh" content="0;url=${destination}">
 <link rel="canonical" href="${SITE_URL}${destination}">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261109">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261109-original">
 <title>ANVA Marine — Redirecting</title>
 </head>
 <body><main><p>Continue to <a href="${destination}">ANVA Marine Products &amp; Services</a>.</p></main></body>
