@@ -40,6 +40,16 @@ services:
     routes:
       # These take precedence over the existing SPA fallback rewrite.
       # Render must return each page's correct prerendered HTML to crawlers.
+      # Three standalone, crawlable product pages.
+      - type: rewrite
+        source: /products/bildal-airfield-lighting
+        destination: /products/bildal-airfield-lighting/index.html
+      - type: rewrite
+        source: /products/power-rectifiers-semiconductors
+        destination: /products/power-rectifiers-semiconductors/index.html
+      - type: rewrite
+        source: /products/welding-cables
+        destination: /products/welding-cables/index.html
       - type: rewrite
         source: /marine-capabilities
         destination: /marine-capabilities/index.html
