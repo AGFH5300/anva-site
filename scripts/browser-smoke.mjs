@@ -3,7 +3,7 @@ import { chromium } from "playwright";
 
 const origin = process.env.ANVA_TEST_URL ?? "http://127.0.0.1:4173";
 const titleByRoute = {
-  "/": "Advanced Nautical Ventures FZE | ANVA Marine",
+  "/": "Marine Spares, Ship Repair & Drydocking in Dubai | ANVA Marine",
   "/about": "About ANVA Marine | Marine Support Company Dubai",
   "/contact": "Contact ANVA Marine | Request a Marine Service or Spares Quote",
   "/services": "Marine Services, Drydocking and Ship Repair | ANVA Marine",

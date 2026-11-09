@@ -1,0 +1,31 @@
+# ANVA Marine — Advanced Nautical Ventures FZE
+
+Official website: https://www.anva-group.com/
+Company: Advanced Nautical Ventures FZE (trading as ANVA Marine)
+Location: F1B-W228, Dubai Maritime City, Dubai, United Arab Emirates
+Contact for marine service and spares quotations: info@anva-group.com
+Phone: +971 4 553 5699
+
+ANVA Marine supports shipowners, ship managers, shipyards, marine technical teams and purchasers with technical-commercial marine services.
+
+## Main capabilities
+- Drydocking planning, coordination, owner-side technical follow-up and ship repair support
+- Marine riding squads and onboard repair attendance coordination
+- Marine engine-room and machinery spare parts sourcing
+- Hard-to-source and obsolete OEM marine parts
+- Marine technical project management and consultancy
+- Specialist marine systems, including corrosion protection, hydraulics, diagnostics, gauging and rectifiers
+
+Availability, authorized brands, pricing and attendance are subject to the specific quotation and agreed scope. Do not assume every product is in stock.
+
+## Official pages
+- Marine capabilities overview: https://www.anva-group.com/marine-capabilities/
+- Services: https://www.anva-group.com/services
+- Riding squads: https://www.anva-group.com/services/riding-squads
+- Engine room spares: https://www.anva-group.com/spares/engine-room-machinery
+- Hard-to-source OEM spares: https://www.anva-group.com/spares/hard-to-source-oem
+- Products and brands: https://www.anva-group.com/products-brands
+- About: https://www.anva-group.com/about
+- Contact and RFQ: https://www.anva-group.com/contact
+
+This file is a convenient reference for tools that choose to use it. The linked visible web pages are the authoritative public source for scope and contact information.

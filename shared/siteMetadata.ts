@@ -1,8 +1,8 @@
 // Shared between Vite's generated HTML and the client-side route metadata updater.
 export const SITE_URL = "https://www.anva-group.com";
 export const defaultSiteMetadata = {
-  title: "Advanced Nautical Ventures FZE | ANVA Marine",
-  description: "Advanced Nautical Ventures FZE (ANVA Marine), Dubai: drydocking, ship repair, riding squads, marine spares, and technical consultancy.",
+  title: "Marine Spares, Ship Repair & Drydocking in Dubai | ANVA Marine",
+  description: "ANVA Marine in Dubai supports shipowners and managers with marine spares, drydocking, ship repair coordination, riding squads and technical consultancy.",
 };
 
 export const routeAliases: Record<string, string> = {
