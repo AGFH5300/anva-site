@@ -21,7 +21,7 @@ const auditCsp = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: https://images.unsplash.com",
-  "connect-src 'self'",
+  "connect-src 'self' https://mxdibxggmfdfdgcrzbqy.supabase.co",
   "object-src 'none'",
   "base-uri 'self'",
   "frame-ancestors 'none'",
@@ -38,10 +38,11 @@ createServer(async (req, res) => {
   }
   try {
     const pathname = new URL(req.url ?? "/", "http://127.0.0.1").pathname;
-    const file = pathname.startsWith("/assets/") ||
-      ["/favicon.png", "/robots.txt", "/sitemap.xml"].includes(pathname)
-      ? decodeURIComponent(pathname).slice(1)
-      : "index.html";
+    const staticProduct = pathname.startsWith("/products/") || pathname.startsWith("/marine-capabilities/") || pathname.startsWith("/privacy/");
+    const file = staticProduct
+      ? decodeURIComponent(pathname).replace(/^\\//, "") + (pathname.endsWith("/") ? "index.html" : "")
+      : pathname.startsWith("/assets/") || ["/favicon.png", "/robots.txt", "/sitemap.xml", "/traffic.js", "/product-landing.css"].includes(pathname)
+        ? decodeURIComponent(pathname).slice(1) : "index.html";
     const absolutePath = resolve(root, file);
     if (!absolutePath.startsWith(root + sep)) {
       res.writeHead(403).end();
