@@ -79,6 +79,36 @@ try {
   ]) {
     assert.equal(await page.locator(`main a[href="${href}"]`).count(), 1, `Sitemap omits product ${href}`);
   }
+  // A buyer must be able to go Products -> any product -> Products,
+  // without landing on the homepage or a generic catch-all route.
+  const journeys = [
+    ["/products/bildal-airfield-lighting/", /BILDAL/i],
+    ["/products/power-rectifiers-semiconductors/", /thyristors|rectifier/i],
+    ["/products/welding-cables/", /welding cables/i],
+  ];
+  for (const [target, heading] of journeys) {
+    await page.goto(origin + "/products-brands", { waitUntil: "domcontentloaded" });
+    await page.locator(`main a[href="${target}"]`).first().click();
+    await page.waitForURL(origin + target);
+    assert.match(await page.locator("h1").textContent(), heading, `Products card opened wrong page: ${target}`);
+    assert.equal(await page.locator('link[rel="icon"][href^="/favicon.svg"]').count(), 1, `No branded favicon on ${target}`);
+    await page.locator('header nav[aria-label="Main navigation"] a[href="/products-brands"]').click();
+    await page.waitForURL(origin + "/products-brands");
+    assert.match(await page.locator("main h1").textContent(), /Products, Brands/i,
+      `Products link from ${target} must return to Products / Brands, not homepage`);
+    console.log(`PASS customer journey Products -> ${target} -> Products`);
+  }
+  for (const alias of ["/products/", "/brands/"]) {
+    await page.goto(origin + alias, { waitUntil: "domcontentloaded" });
+    await page.waitForURL(origin + "/products-brands");
+    assert.match(await page.locator("main h1").textContent(), /Products, Brands/i,
+      `Legacy alias ${alias} resolved incorrectly`);
+  }
+  const faviconResponse = await page.request.get(origin + "/favicon.svg");
+  assert.equal(faviconResponse.status(), 200, "ANVA logo favicon not accessible");
+  assert.match(await faviconResponse.text(), /<svg[^>]*viewBox="0 0 52 52"/);
+  console.log("PASS legacy Products aliases and branded ANVA favicon");
+
   console.log("PASS desktop product dropdown and public sitemap");
 
   await page.goto(origin + "/contact", { waitUntil: "domcontentloaded" });

@@ -106,6 +106,29 @@ for (const id of familyAnchors) {
 }
 assert.ok(sourceHeader.includes("max-h-[calc(100vh-7rem)]"), "Large desktop dropdown must scroll");
 
+const logoFavicon = await readFile(join(outDir, "favicon.svg"), "utf8");
+assert.match(logoFavicon, /#FFAD01/i, "ANVA SVG favicon does not use the company mark");
+const faviconFiles = [
+  "index.html",
+  "products/bildal-airfield-lighting/index.html",
+  "products/power-rectifiers-semiconductors/index.html",
+  "products/welding-cables/index.html",
+  "marine-capabilities/index.html",
+  "privacy/index.html",
+  "sitemap/index.html",
+  "products/index.html",
+  "brands/index.html",
+];
+for (const file of faviconFiles) {
+  const html = await readFile(join(outDir, file), "utf8");
+  assert.match(html, /rel="icon" type="image\/svg\+xml" href="\/favicon\.svg\?v=20261109"/,
+    `Missing ANVA logo favicon on ${file}`);
+}
+for (const route of ["products", "brands"]) {
+  const html = await readFile(join(outDir, route, "index.html"), "utf8");
+  assert.match(html, /url=\/products-brands/, `Legacy route ${route} does not redirect to Products overview`);
+}
+
 await stat(join(outDir, "product-landing.css"));
 await stat(join(outDir, "assets"));
 console.log(`ANVA static build checks passed for ${pages.length} canonical pages and ${Object.keys(aliases).length} aliases.`);

@@ -38,11 +38,11 @@ createServer(async (req, res) => {
   }
   try {
     const pathname = new URL(req.url ?? "/", "http://127.0.0.1").pathname;
-    const staticProduct = pathname.startsWith("/products/") || pathname.startsWith("/marine-capabilities/") || pathname.startsWith("/privacy/") || pathname === "/sitemap/" || pathname === "/sitemap";
+    const staticProduct = pathname.startsWith("/products/") || pathname === "/brands/" || pathname.startsWith("/marine-capabilities/") || pathname.startsWith("/privacy/") || pathname === "/sitemap/" || pathname === "/sitemap";
     const folder = pathname.endsWith("/") ? pathname.slice(1, -1) : pathname.slice(1);
     const file = staticProduct
       ? folder + "/index.html"
-      : pathname.startsWith("/assets/") || ["/favicon.png", "/robots.txt", "/sitemap.xml", "/traffic.js", "/product-landing.css"].includes(pathname)
+      : pathname.startsWith("/assets/") || ["/favicon.png", "/favicon.svg", "/robots.txt", "/sitemap.xml", "/traffic.js", "/product-landing.css"].includes(pathname)
         ? decodeURIComponent(pathname).slice(1) : "index.html";
     const absolutePath = resolve(root, file);
     if (!absolutePath.startsWith(root + sep)) {
