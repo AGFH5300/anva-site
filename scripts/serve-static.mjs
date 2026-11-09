@@ -39,8 +39,9 @@ createServer(async (req, res) => {
   try {
     const pathname = new URL(req.url ?? "/", "http://127.0.0.1").pathname;
     const staticProduct = pathname.startsWith("/products/") || pathname.startsWith("/marine-capabilities/") || pathname.startsWith("/privacy/");
+    const folder = pathname.endsWith("/") ? pathname.slice(1, -1) : pathname.slice(1);
     const file = staticProduct
-      ? decodeURIComponent(pathname).replace(/^\\//, "") + (pathname.endsWith("/") ? "index.html" : "")
+      ? folder + "/index.html"
       : pathname.startsWith("/assets/") || ["/favicon.png", "/robots.txt", "/sitemap.xml", "/traffic.js", "/product-landing.css"].includes(pathname)
         ? decodeURIComponent(pathname).slice(1) : "index.html";
     const absolutePath = resolve(root, file);
