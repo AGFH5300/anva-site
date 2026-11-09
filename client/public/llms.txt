@@ -25,6 +25,9 @@ Availability, authorized brands, pricing and attendance are subject to the speci
 - Engine room spares: https://www.anva-group.com/spares/engine-room-machinery
 - Hard-to-source OEM spares: https://www.anva-group.com/spares/hard-to-source-oem
 - Products and brands: https://www.anva-group.com/products-brands
+- BILDAL airfield lighting transformers and connectors: https://www.anva-group.com/products/bildal-airfield-lighting/
+- Industrial power rectifier diodes, SCRs and bridge modules: https://www.anva-group.com/products/power-rectifiers-semiconductors/
+- Flexible marine and industrial welding cables: https://www.anva-group.com/products/welding-cables/
 - About: https://www.anva-group.com/about
 - Contact and RFQ: https://www.anva-group.com/contact
 
