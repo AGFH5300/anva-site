@@ -109,7 +109,7 @@ try {
   const faviconSvg = await faviconResponse.text();
   assert.match(faviconSvg, /<svg[^>]*viewBox="0 0 64 64"/);
   assert.match(faviconSvg, /<image x="2" y="14" width="60" height="36"/);
-  assert.match(faviconSvg, /href="data:image\\/webp;base64,/, "Favicon must contain original ANVA artwork");
+  assert.ok(faviconSvg.includes('href="data:image/webp;base64,'), "Favicon must contain original ANVA artwork");
   await page.goto(origin + "/", { waitUntil: "domcontentloaded" });
   const faviconDecoded = await page.evaluate(async () => {
     const img = new Image();
